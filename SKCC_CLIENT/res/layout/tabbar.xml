@@ -11,27 +11,27 @@
 	    android:layout_width="0dip"
 	    android:layout_height="fill_parent"
 	    android:layout_weight="1"
-	    android:text="창고" />
+	    android:text="@string/label_inventory" />
 
 	<Button
 	    android:id="@+id/btn_production"
 	    android:layout_width="0dip"
 	    android:layout_height="fill_parent"
 	    android:layout_weight="1"
-	    android:text="생산" />
+	    android:text="@string/label_production" />
 
 	<Button
 	    android:id="@+id/btn_quest"
 	    android:layout_width="0dip"
 	    android:layout_height="fill_parent"
 	    android:layout_weight="1"
-	    android:text="퀘스트" />
+	    android:text="@string/label_quest" />
 
 	<Button
 	    android:id="@+id/btn_nfc"
 	    android:layout_width="0dip"
 	    android:layout_height="fill_parent"
 	    android:layout_weight="1"
-	    android:text="NFC" />
+	    android:text="@string/label_nfc" />
 
 </LinearLayout>

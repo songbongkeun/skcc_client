@@ -10,10 +10,15 @@ public class TabBarActivity extends LinearLayout {
 	Context context;
 	
 	public TabBarActivity(Context context, AttributeSet attrs) {
+		
 		super(context, attrs);
+		
 		this.context = context;
 		
-		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		inflater.inflate(R.layout.tabbar, this, true);
-	}
+		if (!isInEditMode()) {
+			
+			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			inflater.inflate(R.layout.tabbar, this, true);
+		}
+	};
 }
