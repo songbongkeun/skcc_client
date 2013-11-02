@@ -10,18 +10,18 @@ import android.view.ViewGroup;
 
 @SuppressLint("ValidFragment")
 public class TabQuest extends Fragment {
-		Context mContext;
+	Context mContext;
+	
+	public TabQuest(Context context) {
+		mContext = context;
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	
+		View view = inflater.inflate(R.layout.tab_quest, null);
 		
-		public TabQuest(Context context) {
-			mContext = context;
-		}
-		
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			
-			View view = inflater.inflate(R.layout.tab_quest, null);
-			
-	    	return view;
-		}
+		return view;
+	}
 
 }

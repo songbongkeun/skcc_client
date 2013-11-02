@@ -10,18 +10,18 @@ import android.view.ViewGroup;
 
 @SuppressLint("ValidFragment")
 public class TabNFC extends Fragment {
-		Context mContext;
+	Context mContext;
+	
+	public TabNFC(Context context) {
+		mContext = context;
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	
+		View view = inflater.inflate(R.layout.tab_nfc, null);
 		
-		public TabNFC(Context context) {
-			mContext = context;
-		}
-		
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			
-			View view = inflater.inflate(R.layout.tab_nfc, null);
-			
-	    	return view;
-		}
+		return view;
+	}
 
 }
