@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.InventoryItem;
+import com.example.skcc_client.gameObject.ProductionItem;
 
 import android.content.Context;
 import android.view.View;
@@ -12,11 +13,11 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-public class InventoryItemGridAdapter extends BaseAdapter {
+public class ProductionGridAdapter extends BaseAdapter {
 	
 	private Context context;
 
-	public InventoryItemGridAdapter(Context context) {
+	public ProductionGridAdapter(Context context) {
 
 		this.context = context;
 	}
@@ -40,19 +41,12 @@ public class InventoryItemGridAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		if(convertView == null) {
-
-			ImageView imageView;
 			
-			imageView = new ImageView(context);
-			imageView.setLayoutParams(new GridView.LayoutParams(150, 150));
-			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-			imageView.setPadding(0, 0, 0, 0);
+			// Grid item 을 가져온다.
+			ProductionItem item = Global.getInstance().productionList.get(position);
+			ProductionGridItem gridItem = new ProductionGridItem(context, item);
 			
-			ArrayList<InventoryItem> list = Global.getInstance().inventoryList;
-			int imageId = context.getResources().getIdentifier(list.get(position).getImageName(), "drawable", context.getPackageName());
-			imageView.setImageResource(imageId);
-			
-			return imageView;
+			return gridItem;
 		}
 		else {
 			

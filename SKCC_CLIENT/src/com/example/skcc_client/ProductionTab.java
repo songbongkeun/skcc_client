@@ -39,7 +39,7 @@ public class ProductionTab extends Fragment {
 		
 		if(null != gridView) {
 
-			ProductionItemGridAdapter adapter = new ProductionItemGridAdapter(this.getActivity());
+			ProductionGridAdapter adapter = new ProductionGridAdapter(this.getActivity());
 			
 			if(null != adapter) {
 				

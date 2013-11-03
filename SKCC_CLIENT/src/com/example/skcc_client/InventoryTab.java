@@ -40,7 +40,7 @@ public class InventoryTab extends Fragment {
 		
 		if(null != gridView) {
 
-			InventoryItemGridAdapter adapter = new InventoryItemGridAdapter(this.getActivity());
+			InventoryGridAdapter adapter = new InventoryGridAdapter(this.getActivity());
 			
 			if(null != adapter) {
 				

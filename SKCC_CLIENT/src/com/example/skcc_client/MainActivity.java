@@ -81,7 +81,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		ArrayList<ProductionItem> productionList = Global.getInstance().productionList;
 		Date date = new Date(); 
 		// 1 Producing
-		Timestamp start1	= new Timestamp(date.getTime() - 200000);
+		Timestamp start1	= new Timestamp(date.getTime() - 400000);
 		Timestamp end1		= new Timestamp(date.getTime() + 200000);
 		Timestamp expire1	= new Timestamp(date.getTime() + 400000);
 		// 2 Finished

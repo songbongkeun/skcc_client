@@ -40,13 +40,13 @@ public class ProductionItem extends Item {
 		Date date = new Date();
 		Timestamp now = new Timestamp(date.getTime());
 		
-		if(now.compareTo(endTime) > 0) {
+		if(now.compareTo(endTime) < 0) {
 			
 			state = Constants.code.ITEM_STATE_PRODUCING;
 		}
 		else {
 			
-			if(now.compareTo(expireTime) > 0) {
+			if(now.compareTo(expireTime) < 0) {
 				
 				state = Constants.code.ITEM_STATE_FINISHED;
 			}

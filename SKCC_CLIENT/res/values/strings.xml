@@ -3,9 +3,14 @@
 
     <string name="app_name">Product Game</string>
     <string name="action_settings">Settings</string>
+    
     <string name="label_inventory">창고</string>
     <string name="label_production">생산</string>
     <string name="label_quest">퀘스트</string>
     <string name="label_nfc">NFC</string>
+    
+    <string name="state_producing">Producing</string>
+    <string name="state_finished">Finished</string>
+    <string name="state_rotten">Rotten</string>
 
 </resources>

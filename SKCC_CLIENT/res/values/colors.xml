@@ -1,0 +1,9 @@
+<resources>
+    
+    <color name="icon_rounding">#ff424242</color>
+    <color name="item_nothing">#ff000000</color>
+    <color name="item_producing">#ff55aa00</color>
+    <color name="item_finished">#ffff6600</color>
+    <color name="item_rotten">#ff555555</color>
+
+</resources>
