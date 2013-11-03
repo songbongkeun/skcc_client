@@ -1,6 +1,5 @@
 package com.example.skcc_client;
 
-import com.example.skcc_client.common.ItemAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 @SuppressLint("ValidFragment")
-public class TabProduction extends Fragment {
+public class ProductionTab extends Fragment {
 	Context mContext;
 	
-	public TabProduction(Context context) {
+	public ProductionTab(Context context) {
 		
 		mContext = context;
 	}
@@ -40,7 +39,7 @@ public class TabProduction extends Fragment {
 		
 		if(null != gridView) {
 
-			ItemAdapter adapter = new ItemAdapter(this.getActivity());
+			ProductionItemGridAdapter adapter = new ProductionItemGridAdapter(this.getActivity());
 			
 			if(null != adapter) {
 				

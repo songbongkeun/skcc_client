@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 @SuppressLint("ValidFragment")
-public class TabNFC extends Fragment {
+public class NFCTab extends Fragment {
 	Context mContext;
 	
-	public TabNFC(Context context) {
+	public NFCTab(Context context) {
 		mContext = context;
 	}
 	

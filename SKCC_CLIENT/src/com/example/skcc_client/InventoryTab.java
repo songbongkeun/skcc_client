@@ -1,6 +1,5 @@
 package com.example.skcc_client;
 
-import com.example.skcc_client.common.ItemAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 @SuppressLint("ValidFragment")
-public class TabInventory extends Fragment {
+public class InventoryTab extends Fragment {
 	
 	Context mContext;
 	
-	public TabInventory(Context context) {
+	public InventoryTab(Context context) {
 		
 		mContext = context;
 	}
@@ -41,7 +40,7 @@ public class TabInventory extends Fragment {
 		
 		if(null != gridView) {
 
-			ItemAdapter adapter = new ItemAdapter(this.getActivity());
+			InventoryItemGridAdapter adapter = new InventoryItemGridAdapter(this.getActivity());
 			
 			if(null != adapter) {
 				

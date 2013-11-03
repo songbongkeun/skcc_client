@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 @SuppressLint("ValidFragment")
-public class TabQuest extends Fragment {
+public class QuestTab extends Fragment {
 	Context mContext;
 	
-	public TabQuest(Context context) {
+	public QuestTab(Context context) {
 		mContext = context;
 	}
 	

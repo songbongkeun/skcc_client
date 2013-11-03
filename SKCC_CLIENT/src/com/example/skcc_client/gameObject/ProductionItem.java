@@ -14,13 +14,13 @@ public class ProductionItem extends Item {
 	private int state;
 
 	public ProductionItem(int id, int companyId, int itemType, String name, String description,
-			Timestamp startTime, Timestamp endTime, Timestamp expireTime, int state) {
+			Timestamp startTime, Timestamp endTime, Timestamp expireTime) {
 		
 		super(id, companyId, itemType, name, description);
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.expireTime = expireTime;
-		this.state = state;
+		this.state = getState();
 	}
 
 	public Timestamp getStartTime() {

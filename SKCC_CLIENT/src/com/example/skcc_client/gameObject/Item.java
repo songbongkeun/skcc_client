@@ -1,5 +1,7 @@
 package com.example.skcc_client.gameObject;
 
+import java.util.Locale;
+
 public class Item {
 	
 	private int id;
@@ -36,5 +38,9 @@ public class Item {
 
 	public String getDescription() {
 		return description;
+	}
+	
+	public String getImageName() {
+		return "item" + String.format(Locale.KOREA, "%04d", this.id);
 	}
 }

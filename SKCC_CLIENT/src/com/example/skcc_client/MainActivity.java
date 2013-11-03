@@ -1,6 +1,14 @@
 package com.example.skcc_client;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
+
+import com.example.skcc_client.common.Constants;
+import com.example.skcc_client.common.Global;
+import com.example.skcc_client.gameObject.InventoryItem;
+import com.example.skcc_client.gameObject.ProductionItem;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -61,6 +69,33 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				.setText(mSectionsPagerAdapter.getPageTitle(i))
 				.setTabListener(this));
 		}
+		
+		// TODO: Test Code
+		// Inventory Item
+		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;
+		inventoryList.add(new InventoryItem(1, 1, Constants.code.ITEM_TYPE_MATERIAL, "目乔后", "目乔后", 10));
+		inventoryList.add(new InventoryItem(2, 1, Constants.code.ITEM_TYPE_MATERIAL, "快蜡", "快蜡", 20));
+		inventoryList.add(new InventoryItem(1001, 1, Constants.code.ITEM_TYPE_MATERIAL, "檬内快蜡", "檬内快蜡", 30));
+
+		// Production Item
+		ArrayList<ProductionItem> productionList = Global.getInstance().productionList;
+		Date date = new Date(); 
+		// 1 Producing
+		Timestamp start1	= new Timestamp(date.getTime() - 200000);
+		Timestamp end1		= new Timestamp(date.getTime() + 200000);
+		Timestamp expire1	= new Timestamp(date.getTime() + 400000);
+		// 2 Finished
+		Timestamp start2	= new Timestamp(date.getTime() - 400000);
+		Timestamp end2		= new Timestamp(date.getTime() - 200000);
+		Timestamp expire2	= new Timestamp(date.getTime() + 200000);
+		// 3 Rotten
+		Timestamp start3	= new Timestamp(date.getTime() - 400000);
+		Timestamp end3		= new Timestamp(date.getTime() - 200000);
+		Timestamp expire3	= new Timestamp(date.getTime() - 100000);
+		
+		productionList.add(new ProductionItem(8001, 1, Constants.code.ITEM_TYPE_MATERIAL, "目乔后", "目乔后", start1, end1, expire1));
+		productionList.add(new ProductionItem(9001, 1, Constants.code.ITEM_TYPE_MATERIAL, "快蜡", "快蜡", start2, end2, expire2));
+		productionList.add(new ProductionItem(9003, 1, Constants.code.ITEM_TYPE_MATERIAL, "檬内快蜡", "檬内快蜡", start3, end3, expire3));
 	}
 	
 	@Override
@@ -100,13 +135,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			switch(position) {
 			
 				case 0:
-					return new TabInventory(mContext);
+					return new InventoryTab(mContext);
 				case 1:
-					return new TabProduction(mContext);
+					return new ProductionTab(mContext);
 				case 2:
-					return new TabQuest(mContext);
+					return new QuestTab(mContext);
 				case 3:
-					return new TabNFC(mContext);
+					return new NFCTab(mContext);
 			}
 			
 			return null;
