@@ -41,6 +41,9 @@ public class ProductionGridItem extends LinearLayout {
 		else if(item.getState() == Constants.code.ITEM_STATE_ROTTEN) {
 			stateColor = context.getResources().getColor(R.color.item_rotten);
 		}
+		else if(item.getState() == Constants.code.ITEM_STATE_NOTHING) {
+			stateColor = context.getResources().getColor(R.color.item_nothing);
+		}
 
 		// Calculate progress rate
 		int progressRate = 0;
@@ -59,6 +62,9 @@ public class ProductionGridItem extends LinearLayout {
 		}
 		else if(item.getState() == Constants.code.ITEM_STATE_ROTTEN) {
 			progressRate = Constants.code.ITEM_PROGRESS_ROTTEN;
+		}
+		else if(item.getState() == Constants.code.ITEM_STATE_NOTHING) {
+			progressRate = Constants.code.ITEM_PROGRESS_NOTHING;
 		}
 		
 		
@@ -80,23 +86,31 @@ public class ProductionGridItem extends LinearLayout {
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Set item name to TextView
 		TextView name = new TextView(context);
-		name.setTypeface(name.getTypeface(), Typeface.BOLD);
 		name.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_height));
-		name.setText(item.getName());
-		name.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
-		name.setTextColor(stateColor);
-		name.setGravity(Gravity.LEFT | Gravity.BOTTOM);
+		
+		if(0 != item.getId()) {
+			
+			name.setTypeface(name.getTypeface(), Typeface.BOLD);
+			name.setText(item.getName());
+			name.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
+			name.setTextColor(stateColor);
+			name.setGravity(Gravity.LEFT | Gravity.BOTTOM);
+		}
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Set remain time to TextView
 		TextView remains = new TextView(context);
-		remains.setTypeface(name.getTypeface(), Typeface.BOLD);
 		remains.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_height));
-		remains.setText(item.getRemainTime());
-		remains.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
-		remains.setTextColor(stateColor);
-		remains.setGravity(Gravity.LEFT | Gravity.TOP);
+		
+		if(0 != item.getId()) {
+			
+			remains.setTypeface(remains.getTypeface(), Typeface.BOLD);
+			remains.setText(item.getRemainTime());
+			remains.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
+			remains.setTextColor(stateColor);
+			remains.setGravity(Gravity.LEFT | Gravity.TOP);
+		}
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////////

@@ -13,8 +13,13 @@ public final class Constants {
         public static final int ITEM_STATE_FINISHED			= 2;
         public static final int ITEM_STATE_ROTTEN			= 3;
         
-        public static final int ITEM_PROGRESS_FINISHED		=  100;
+        public static final int ITEM_PROGRESS_NOTHING		=  100;
         public static final int ITEM_PROGRESS_ROTTEN		= -100;
+    }
+    
+    public static final class rule {
+    	
+    	public static final int PRODUCTION_MAX_COUNT		= 16;
     }
 
     public static final class system {

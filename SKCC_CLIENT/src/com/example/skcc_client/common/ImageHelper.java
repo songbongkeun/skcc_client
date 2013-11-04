@@ -81,7 +81,7 @@ public class ImageHelper {
 		
 		/////////////////////////////////////////////////////////////////////
 		// Draw complete part
-		if(progressRate < 0) {
+		if(state == Constants.code.ITEM_STATE_FINISHED || state == Constants.code.ITEM_STATE_ROTTEN) {
 			paint.setColorFilter(colorFilterRotten);
 		}
 		canvas.drawBitmap(bitmap, rectComplete, rectComplete, paint);
@@ -92,12 +92,9 @@ public class ImageHelper {
 		// Draw incomplete part
 		if(state == Constants.code.ITEM_STATE_PRODUCING) {
 			paint.setColorFilter(colorFilterIncomplete);
-			canvas.drawBitmap(bitmap, rectIncomplete, rectIncomplete, paint);
-			paint.setColorFilter(null); // Remove color filter
 		}
-		else if(state == Constants.code.ITEM_STATE_FINISHED) {
-			canvas.drawBitmap(bitmap, rectIncomplete, rectIncomplete, paint);
-		}
+		canvas.drawBitmap(bitmap, rectIncomplete, rectIncomplete, paint);
+		paint.setColorFilter(null); // Remove color filter
 		
 		
 		/////////////////////////////////////////////////////////////////////

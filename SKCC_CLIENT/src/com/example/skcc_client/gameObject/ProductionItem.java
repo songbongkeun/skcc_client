@@ -84,6 +84,10 @@ public class ProductionItem extends Item {
 
 	public int getState() {
 		
+		if(0 == getId()) {
+			return Constants.code.ITEM_STATE_NOTHING;
+		}
+		
 		Date date = new Date();
 		Timestamp now = new Timestamp(date.getTime());
 		
