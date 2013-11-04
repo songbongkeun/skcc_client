@@ -19,7 +19,7 @@ public class ProductionGridAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		return Global.getInstance().inventoryList.size();
+		return Global.getInstance().productionList.size();
 	}
 
 	@Override
