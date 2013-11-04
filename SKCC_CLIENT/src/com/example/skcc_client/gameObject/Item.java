@@ -10,7 +10,17 @@ public class Item {
 	private String name;
 	private String description;
 	
-	protected Item(int id, int companyId, int itemType, String name, String description) {
+	public Item(Item item) {
+		
+		super();
+		this.id = item.getId();
+		this.companyId = item.getCompanyId();
+		this.itemType = item.getItemType();
+		this.name = item.getName();
+		this.description = item.getDescription();
+	}
+	
+	public Item(int id, int companyId, int itemType, String name, String description) {
 		
 		super();
 		this.id = id;

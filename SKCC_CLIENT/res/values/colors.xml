@@ -1,5 +1,7 @@
 <resources>
     
+    <color name="tapstrip_font_color">#ff000000</color>
+    
     <color name="icon_rounding">#ff424242</color>
     <color name="item_nothing">#ff000000</color>
     <color name="item_producing">#ff55aa00</color>

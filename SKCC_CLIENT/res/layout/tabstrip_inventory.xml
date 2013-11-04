@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabstrip_inventory"
+	android:orientation="vertical"
+	android:padding="0dp"
+	android:layout_margin="0dp"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/pattern1"
+	>
+	
+    <TextView
+        android:text="@string/label_inventory"
+        android:width="@dimen/tapstrip_width"
+        android:height="@dimen/tapstrip_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"      
+        android:textColor="@color/tapstrip_font_color"
+        android:textSize="@dimen/tapstrip_textSize"
+        android:textStyle="bold"
+        android:gravity="bottom|center"
+        android:paddingBottom="3dp"
+        />
+
+</LinearLayout>

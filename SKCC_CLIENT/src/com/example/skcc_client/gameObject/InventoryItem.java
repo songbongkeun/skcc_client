@@ -5,6 +5,17 @@ public class InventoryItem extends Item {
 	private int quantity;
 	
 	/**
+	 * Constructor : Item을 이용하여 생성
+	 * @param item		Item
+	 * @param quantity	수량
+	 */
+	public InventoryItem(Item item, int quantity) {
+		
+		super(item);
+		this.quantity = quantity;
+	}
+	
+	/**
 	 * Constructor : ProductionItem을 이용하여 생성
 	 * @param item		ProductionItem
 	 * @param quantity	수량
@@ -12,7 +23,6 @@ public class InventoryItem extends Item {
 	public InventoryItem(ProductionItem item, int quantity) {
 		
 		super(item.getId(), item.getCompanyId(), item.getItemType(), item.getName(), item.getDescription());
-		
 		this.quantity = quantity;
 	}
 	
@@ -28,7 +38,6 @@ public class InventoryItem extends Item {
 	public InventoryItem(int id, int companyId, int itemType, String name, String description, int quantity) {
 		
 		super(id, companyId, itemType, name, description);
-		
 		this.quantity = quantity;
 	}
 

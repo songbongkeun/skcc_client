@@ -1,18 +1,13 @@
 package com.example.skcc_client;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
-import com.example.skcc_client.common.Constants;
-import com.example.skcc_client.common.Global;
-import com.example.skcc_client.gameObject.InventoryItem;
-import com.example.skcc_client.gameObject.ProductionItem;
+import com.example.skcc_client.test.TestData;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -22,6 +17,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -33,11 +29,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
+		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+		actionBar.setDisplayOptions(1, ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_USE_LOGO);
+		
+		ImageView a = new ImageView(getApplicationContext());
 		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -65,37 +68,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			// the adapter. Also specify this Activity object, which implements
 			// the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
+			
 			actionBar.addTab(actionBar.newTab()
-				.setText(mSectionsPagerAdapter.getPageTitle(i))
 				.setTabListener(this));
 		}
 		
-		// TODO: Test Code
-		// Inventory Item
-		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;
-		inventoryList.add(new InventoryItem(1, 1, Constants.code.ITEM_TYPE_MATERIAL, "目乔后", "目乔后", 10));
-		inventoryList.add(new InventoryItem(2, 1, Constants.code.ITEM_TYPE_MATERIAL, "快蜡", "快蜡", 20));
-		inventoryList.add(new InventoryItem(1001, 1, Constants.code.ITEM_TYPE_MATERIAL, "檬内快蜡", "檬内快蜡", 30));
-
-		// Production Item
-		ArrayList<ProductionItem> productionList = Global.getInstance().productionList;
-		Date date = new Date(); 
-		// 1 Producing
-		Timestamp start1	= new Timestamp(date.getTime() - 40000);
-		Timestamp end1		= new Timestamp(date.getTime() + 20000);
-		Timestamp expire1	= new Timestamp(date.getTime() + 40000);
-		// 2 Finished
-		Timestamp start2	= new Timestamp(date.getTime() - 40000);
-		Timestamp end2		= new Timestamp(date.getTime() - 20000);
-		Timestamp expire2	= new Timestamp(date.getTime() + 20000);
-		// 3 Rotten
-		Timestamp start3	= new Timestamp(date.getTime() - 40000);
-		Timestamp end3		= new Timestamp(date.getTime() - 20000);
-		Timestamp expire3	= new Timestamp(date.getTime() - 10000);
 		
-		productionList.add(new ProductionItem(8001, 1, Constants.code.ITEM_TYPE_MATERIAL, "墨其扼都", "墨其扼都", start1, end1, expire1));
-		productionList.add(new ProductionItem(9001, 1, Constants.code.ITEM_TYPE_MATERIAL, "户", "户", start2, end2, expire2));
-		productionList.add(new ProductionItem(9003, 1, Constants.code.ITEM_TYPE_MATERIAL, "檬内房", "檬内房", start3, end3, expire3));
+		// TODO: Test Code
+		TestData test = new TestData();
+		test.generateTestData();
 	}
 	
 	@Override
@@ -103,10 +84,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
+		tab.setCustomView(mSectionsPagerAdapter.getBackground(tab.getPosition()));
 	}
 	
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+		
+		tab.setCustomView(null);
 	}
 	
 	@Override
@@ -152,6 +136,23 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		
 			// Show 4 total pages.
 			return 4;
+		}
+	
+		public int getBackground(int position) {
+			
+			switch (position) {
+			
+				case 0:
+					return R.layout.tabstrip_inventory;
+				case 1:
+					return R.layout.tabstrip_production;
+				case 2:
+					return R.layout.tabstrip_quest;
+				case 3:
+					return R.layout.tabstrip_nfc;
+			}
+			
+			return R.layout.tabstrip_inventory;
 		}
 	
 		@Override

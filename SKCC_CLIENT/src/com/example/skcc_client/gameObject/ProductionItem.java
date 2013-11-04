@@ -14,7 +14,33 @@ public class ProductionItem extends Item {
 	private Timestamp expireTime;
 	
 	private int state;
-
+	
+	/**
+	 * Constructor : Item을 입력 받아 생성
+	 * @param item			Item
+	 * @param startTime		생산 시작 시각
+	 * @param endTime		생산 종료 시각
+	 * @param expireTime	유통기한 시각
+	 */
+	public ProductionItem(Item item, Timestamp startTime, Timestamp endTime, Timestamp expireTime) {
+		
+		super(item);
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.expireTime = expireTime;
+	}
+	
+	/**
+	 * Constructor : 파라미터를 입력받아 생성
+	 * @param id			아이템 id
+	 * @param companyId		회사 id
+	 * @param itemType		아이템 타입
+	 * @param name			이름
+	 * @param description	설명
+	 * @param startTime		생산 시작 시각
+	 * @param endTime		생산 종료 시각
+	 * @param expireTime	유통기한 시각
+	 */
 	public ProductionItem(int id, int companyId, int itemType, String name, String description,
 			Timestamp startTime, Timestamp endTime, Timestamp expireTime) {
 		
@@ -39,15 +65,14 @@ public class ProductionItem extends Item {
 	
 	public String getRemainTime() {
 		
-		String time = "";
+		StringBuffer time = new StringBuffer();
 		long timeMSec = 0;
 		Date date = new Date();
 		Timestamp now = new Timestamp(date.getTime());
 
 		if(getState() == Constants.code.ITEM_STATE_ROTTEN) {
 			
-			time = "Rotten";
-			return time;
+			return "Rotten";
 		}
 		else if(getState() == Constants.code.ITEM_STATE_PRODUCING) {
 			
@@ -58,28 +83,42 @@ public class ProductionItem extends Item {
 			date = new Date(expireTime.getTime() - now.getTime());
 		}
 		
+		int units = 2; // Show just 2 units
 		timeMSec = date.getTime(); 
+
+		// days
+		if(units > 0 && timeMSec > 24 * 60 * 60 * 1000) {
+			
+			SimpleDateFormat dd = new SimpleDateFormat("d", Locale.KOREA);
+			time.append(dd.format(date));
+			time.append("d ");
+			--units;
+		}
+		// hours
+		if(units > 0 && timeMSec > 60 * 60 * 1000) {
+			
+			SimpleDateFormat hh = new SimpleDateFormat("h", Locale.KOREA);
+			time.append(hh.format(date));
+			time.append("h ");
+			--units;
+		}
+		// minutes
+		if(units > 0 && timeMSec > 60 * 1000) {
+			
+			SimpleDateFormat mm = new SimpleDateFormat("m", Locale.KOREA);
+			time.append(mm.format(date));
+			time.append("m ");
+			--units;
+		}
+		// seconds
+		if(units > 0) {
+			
+			SimpleDateFormat ss = new SimpleDateFormat("s", Locale.KOREA);
+			time.append(ss.format(date));
+			time.append("s ");
+		}
 		
-		// mm:ss
-		if(timeMSec < 60 * 60 * 1000) {
-			
-			SimpleDateFormat mmss = new SimpleDateFormat("mm:ss", Locale.KOREA);
-			time = mmss.format(date);
-		}
-		// hh:mm:ss
-		else if(timeMSec < 24 * 60 * 60 * 1000) {
-			
-			SimpleDateFormat hhmmss = new SimpleDateFormat("hh:mm:ss", Locale.KOREA);
-			time = hhmmss.format(date);
-		}
-		// dd hh
-		else if(timeMSec < 24 * 60 * 60 * 1000) {
-			
-			SimpleDateFormat ddhh = new SimpleDateFormat("dd hh", Locale.KOREA);
-			time = ddhh.format(date);
-		}
-		
-		return time;
+		return time.toString();
 	}
 
 	public int getState() {

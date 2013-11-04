@@ -6,7 +6,10 @@ public final class Constants {
 
         public static final int ITEM_TYPE_NOTHING			= 0;
         public static final int ITEM_TYPE_MATERIAL			= 1;
-        public static final int ITEM_TYPE_COUPON			= 2;
+        public static final int ITEM_TYPE_DRINK				= 2;
+        public static final int ITEM_TYPE_BREAD				= 3;
+        public static final int ITEM_TYPE_COUPON			= 8;
+        public static final int ITEM_TYPE_RECEIPE			= 9;
     	
         public static final int ITEM_STATE_NOTHING			= 0;
         public static final int ITEM_STATE_PRODUCING		= 1;

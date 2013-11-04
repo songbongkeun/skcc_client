@@ -50,4 +50,16 @@ public class InventoryTab extends Fragment {
 		
 		Log.d("INVENTORY", "Activity created.");
 	}
+	
+	/**
+	 * Refresh grid
+	 */
+	public void refreshGrid() {
+		
+		GridView gridView = (GridView) getActivity().findViewById(R.id.inventoryGrid);
+		InventoryGridAdapter adapter = new InventoryGridAdapter(getActivity());
+		gridView.setAdapter(adapter);
+		
+		Log.d("INVENTORY", "Grid refresh");
+	}
 }

@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.Global;
@@ -19,6 +20,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -155,6 +158,14 @@ public class ProductionTab extends Fragment {
 					// Show toast
 					CharSequence msg = item.getName() + " 1개를 얻었습니다!";
 					Toast.makeText(gridView.getContext(), msg, Toast.LENGTH_SHORT).show();
+					
+					// Refresh InventoryTab
+					List<Fragment> tabs = getFragmentManager().getFragments();
+					
+					if(0 < tabs.size()) {
+						InventoryTab tab = (InventoryTab) tabs.get(0);
+						tab.refreshGrid();
+					}
 
 					Log.d("PRODUCTION", "Finished item get : " + position);
 				}
@@ -179,7 +190,7 @@ public class ProductionTab extends Fragment {
 	/**
 	 * Refresh grid
 	 */
-	protected void refreshGrid() {
+	public void refreshGrid() {
 		
 		// Fill empty lot
 		GridView gridView = (GridView) getActivity().findViewById(R.id.productionGrid);
