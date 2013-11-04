@@ -15,6 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class InventoryGridItem extends LinearLayout {
+	
+	private InventoryGridItem(Context context) {
+		
+		super(context);
+	}
 
 	public InventoryGridItem(Context context, InventoryItem item) {
 		
@@ -31,7 +36,7 @@ public class InventoryGridItem extends LinearLayout {
 		
 		int imageId = context.getResources().getIdentifier(item.getImageName(), "drawable", context.getPackageName());
 		Bitmap iconImage = BitmapFactory.decodeResource(context.getResources(), imageId);
-		iconImage = ImageHelper.getItemIcon(context, iconImage, 30, 15, Constants.code.ITEM_STATE_FINISHED, Constants.code.ITEM_PROGRESS_FINISHED);
+		iconImage = ImageHelper.getItemIcon(context, iconImage, 30, 15, Constants.code.ITEM_STATE_FINISHED, 0);
 		icon.setImageBitmap(iconImage);
 		
 		

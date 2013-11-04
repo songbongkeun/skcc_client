@@ -1,17 +1,12 @@
 package com.example.skcc_client;
 
-import java.util.ArrayList;
-
 import com.example.skcc_client.common.Global;
-import com.example.skcc_client.gameObject.InventoryItem;
 import com.example.skcc_client.gameObject.ProductionItem;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
 
 public class ProductionGridAdapter extends BaseAdapter {
 	

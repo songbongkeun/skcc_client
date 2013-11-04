@@ -81,23 +81,27 @@ public class ImageHelper {
 		
 		/////////////////////////////////////////////////////////////////////
 		// Draw complete part
-		if(state == Constants.code.ITEM_STATE_ROTTEN) {
+		if(progressRate < 0) {
 			paint.setColorFilter(colorFilterRotten);
 		}
 		canvas.drawBitmap(bitmap, rectComplete, rectComplete, paint);
+		paint.setColorFilter(null); // Remove color filter
 		
 		
 		/////////////////////////////////////////////////////////////////////
 		// Draw incomplete part
 		if(state == Constants.code.ITEM_STATE_PRODUCING) {
 			paint.setColorFilter(colorFilterIncomplete);
+			canvas.drawBitmap(bitmap, rectIncomplete, rectIncomplete, paint);
+			paint.setColorFilter(null); // Remove color filter
 		}
-		canvas.drawBitmap(bitmap, rectIncomplete, rectIncomplete, paint);
+		else if(state == Constants.code.ITEM_STATE_FINISHED) {
+			canvas.drawBitmap(bitmap, rectIncomplete, rectIncomplete, paint);
+		}
 		
 		
 		/////////////////////////////////////////////////////////////////////
-		// Draw rounded icon
-		paint.setColorFilter(null); // Remove color filter
+		// Draw rounded border
 		paint.setColor(stateColor);
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth((float) borderWidth);
