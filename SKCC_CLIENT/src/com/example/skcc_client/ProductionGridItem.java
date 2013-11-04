@@ -4,14 +4,12 @@ import java.util.Date;
 
 import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.ImageHelper;
-import com.example.skcc_client.gameObject.InventoryItem;
 import com.example.skcc_client.gameObject.ProductionItem;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -19,7 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ProductionGridItem extends LinearLayout {
-
+	
+	protected ProductionGridItem(Context context) {
+		
+		super(context);
+	}
+	
 	public ProductionGridItem(Context context, ProductionItem item) {
 		
 		super(context);
@@ -44,12 +47,15 @@ public class ProductionGridItem extends LinearLayout {
 		
 		if(item.getState() == Constants.code.ITEM_STATE_PRODUCING) {
 			Date date = new Date();
-			long completeTime = item.getEndTime().getTime() - date.getTime();
+			long completeTime = date.getTime() - item.getStartTime().getTime();
 			long totalTime = item.getEndTime().getTime() - item.getStartTime().getTime();
 			progressRate = (int) ((100 * completeTime) / totalTime);
 		}
 		else if(item.getState() == Constants.code.ITEM_STATE_FINISHED) {
-			progressRate = Constants.code.ITEM_PROGRESS_FINISHED;
+			Date date = new Date();
+			long finishTime = item.getEndTime().getTime() - date.getTime();
+			long expireTime = item.getExpireTime().getTime() - item.getEndTime().getTime();
+			progressRate = (int) ((100 * finishTime) / expireTime);
 		}
 		else if(item.getState() == Constants.code.ITEM_STATE_ROTTEN) {
 			progressRate = Constants.code.ITEM_PROGRESS_ROTTEN;
@@ -83,19 +89,14 @@ public class ProductionGridItem extends LinearLayout {
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////////
-		// Set item state to TextView
-		String stateText = "";
-		if(item.getState() == Constants.code.ITEM_STATE_PRODUCING) stateText = context.getResources().getString(R.string.state_producing);
-		else if(item.getState() == Constants.code.ITEM_STATE_FINISHED) stateText = context.getResources().getString(R.string.state_finished);
-		else if(item.getState() == Constants.code.ITEM_STATE_ROTTEN) stateText = context.getResources().getString(R.string.state_rotten);
-		
-		TextView state = new TextView(context);
-		state.setTypeface(name.getTypeface(), Typeface.BOLD);
-		state.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_height));
-		state.setText(stateText);
-		state.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
-		state.setTextColor(stateColor);
-		state.setGravity(Gravity.LEFT | Gravity.TOP);
+		// Set remain time to TextView
+		TextView remains = new TextView(context);
+		remains.setTypeface(name.getTypeface(), Typeface.BOLD);
+		remains.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_height));
+		remains.setText(item.getRemainTime());
+		remains.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
+		remains.setTextColor(stateColor);
+		remains.setGravity(Gravity.LEFT | Gravity.TOP);
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////////
@@ -103,6 +104,7 @@ public class ProductionGridItem extends LinearLayout {
 		this.setOrientation(LinearLayout.VERTICAL);
 		this.addView(name);
 		this.addView(icon);
-		this.addView(state);
+		this.addView(remains);
 	}
+	
 }

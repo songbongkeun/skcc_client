@@ -25,23 +25,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.skcc_client.TabInventory"
+            android:name="com.example.skcc_client.InventoryTab"
             android:label="@string/label_inventory" 
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.example.skcc_client.TabProduction"
+            android:name="com.example.skcc_client.ProductionTab"
             android:label="@string/label_production" 
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.example.skcc_client.TabQuest"
+            android:name="com.example.skcc_client.QuestTab"
             android:label="@string/label_quest" 
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.example.skcc_client.TabNFC"
-            android:label="@string/label_nfc" >
+            android:name="com.example.skcc_client.NFCTab"
+            android:label="@string/label_nfc" 
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

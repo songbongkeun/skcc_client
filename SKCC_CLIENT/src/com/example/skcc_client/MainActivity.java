@@ -81,21 +81,21 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		ArrayList<ProductionItem> productionList = Global.getInstance().productionList;
 		Date date = new Date(); 
 		// 1 Producing
-		Timestamp start1	= new Timestamp(date.getTime() - 400000);
-		Timestamp end1		= new Timestamp(date.getTime() + 200000);
-		Timestamp expire1	= new Timestamp(date.getTime() + 400000);
+		Timestamp start1	= new Timestamp(date.getTime() - 40000);
+		Timestamp end1		= new Timestamp(date.getTime() + 20000);
+		Timestamp expire1	= new Timestamp(date.getTime() + 40000);
 		// 2 Finished
-		Timestamp start2	= new Timestamp(date.getTime() - 400000);
-		Timestamp end2		= new Timestamp(date.getTime() - 200000);
-		Timestamp expire2	= new Timestamp(date.getTime() + 200000);
+		Timestamp start2	= new Timestamp(date.getTime() - 40000);
+		Timestamp end2		= new Timestamp(date.getTime() - 20000);
+		Timestamp expire2	= new Timestamp(date.getTime() + 20000);
 		// 3 Rotten
-		Timestamp start3	= new Timestamp(date.getTime() - 400000);
-		Timestamp end3		= new Timestamp(date.getTime() - 200000);
-		Timestamp expire3	= new Timestamp(date.getTime() - 100000);
+		Timestamp start3	= new Timestamp(date.getTime() - 40000);
+		Timestamp end3		= new Timestamp(date.getTime() - 20000);
+		Timestamp expire3	= new Timestamp(date.getTime() - 10000);
 		
-		productionList.add(new ProductionItem(8001, 1, Constants.code.ITEM_TYPE_MATERIAL, "目乔后", "目乔后", start1, end1, expire1));
-		productionList.add(new ProductionItem(9001, 1, Constants.code.ITEM_TYPE_MATERIAL, "快蜡", "快蜡", start2, end2, expire2));
-		productionList.add(new ProductionItem(9003, 1, Constants.code.ITEM_TYPE_MATERIAL, "檬内快蜡", "檬内快蜡", start3, end3, expire3));
+		productionList.add(new ProductionItem(8001, 1, Constants.code.ITEM_TYPE_MATERIAL, "墨其扼都", "墨其扼都", start1, end1, expire1));
+		productionList.add(new ProductionItem(9001, 1, Constants.code.ITEM_TYPE_MATERIAL, "户", "户", start2, end2, expire2));
+		productionList.add(new ProductionItem(9003, 1, Constants.code.ITEM_TYPE_MATERIAL, "檬内房", "檬内房", start3, end3, expire3));
 	}
 	
 	@Override

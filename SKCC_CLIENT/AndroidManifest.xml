@@ -41,7 +41,8 @@
         </activity>
         <activity
             android:name="com.example.skcc_client.NFCTab"
-            android:label="@string/label_nfc" >
+            android:label="@string/label_nfc" 
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

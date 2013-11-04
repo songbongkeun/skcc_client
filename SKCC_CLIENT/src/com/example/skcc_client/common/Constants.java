@@ -16,4 +16,9 @@ public final class Constants {
         public static final int ITEM_PROGRESS_FINISHED		=  100;
         public static final int ITEM_PROGRESS_ROTTEN		= -100;
     }
+
+    public static final class system {
+        
+        public static final int GRID_REFRESH_MILLISECOND	= 1000;
+    }
 }
