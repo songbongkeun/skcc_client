@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -61,5 +62,11 @@ public class InventoryTab extends Fragment {
 		gridView.setAdapter(adapter);
 		
 		Log.d("INVENTORY", "Grid refresh");
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.d("INVENTORY", "Item Id : " + item.getItemId() + "/t Group Id : " + item.getGroupId());
+		return super.onOptionsItemSelected(item);
 	}
 }
