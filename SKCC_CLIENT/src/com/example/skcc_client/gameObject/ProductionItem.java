@@ -148,4 +148,12 @@ public class ProductionItem extends Item {
 		
 		return state;
 	}
+
+	@Override
+	public String toString() {
+		String parent = super.toString();
+		return "ProductionItem [startTime=" + startTime + ", endTime="
+				+ endTime + ", expireTime=" + expireTime + ", state=" + state
+				+  " " + parent + "]";
+	}
 }

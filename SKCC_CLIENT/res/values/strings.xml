@@ -13,4 +13,14 @@
     <string name="state_finished">Finished</string>
     <string name="state_rotten">Rotten</string>
 
+    
+    <string name="item_company_id">Company Id</string>
+    <string name="item_id">Id</string>
+    <string name="item_type">Type</string>
+    <string name="item_name">Name</string>
+    <string name="item_description">Descriptiopn</string>
+    
+    <string name="inventory_item_quantity">Quantity</string>
+    
+    <string name="item_imange_description">Item Image</string>
 </resources>
