@@ -10,11 +10,13 @@ import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.InventoryItem;
 import com.example.skcc_client.gameObject.ProductionItem;
+import com.example.skcc_client.ui.production.ProductionDialog;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -181,7 +183,9 @@ public class ProductionTab extends Fragment {
 				// 4. Vacant -> Start new producing
 				else if(item.getState() == Constants.code.ITEM_STATE_NOTHING) {
 					
-					// TODO: Make it!
+					// New production popup
+					DialogFragment newProductionPopup = ProductionDialog.newInstance(position);
+					newProductionPopup.show(getFragmentManager(), "dialog");
 				}
 			}
 		});

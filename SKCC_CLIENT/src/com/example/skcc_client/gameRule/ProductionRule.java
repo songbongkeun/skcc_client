@@ -1,6 +1,10 @@
 package com.example.skcc_client.gameRule;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
+import com.example.skcc_client.common.Global;
+import com.example.skcc_client.gameObject.Item;
 
 public class ProductionRule {
 	
@@ -158,6 +162,17 @@ public class ProductionRule {
 		return costTable.get(id).costItem4Quantity;
 	}
 	
+	public ArrayList<Item> getProductionRuleList() {
+		
+		ArrayList<Item> list = new ArrayList<Item>();
+		
+		list.add(Global.getInstance().itemList.get(1001));
+		list.add(Global.getInstance().itemList.get(1002));
+		list.add(Global.getInstance().itemList.get(2002));
+		
+		return list;
+	}
+	
 	/** Generate level rule for test [Level 1 ~ 8] */
 	public void generateTestRule() {
 		
@@ -165,16 +180,16 @@ public class ProductionRule {
 		
 		long min = 1000 * 60;
 		
-		addRule(1001,	100,	false,	0,	0,	1,	4 * 60 * min,	1,	 50, 0, 0, 0, 0,    0, 0, 0, 0); // 커피빈
-		addRule(1002,	 50,	true,	2,	10, 1,	2 * 60 * min,	1,	 10, 0, 0, 0, 0,    0, 0, 0, 0); // 우유
-		addRule(1003,	100,	true,	6,	10, 1,	3 * 60 * min,	1,	 50, 0, 0, 0, 0,    0, 0, 0, 0); // 밀가루
-		addRule(1004,	120,	true,	5,	10, 2,	5 * 60 * min,	1,	 80, 0, 0, 0, 0,    0, 0, 0, 0); // 초코렛
-		addRule(2002,	100,	true,	3,	40, 1,	1 * 20 * min,	1,	100, 1, 1, 0, 0,    0, 0, 0, 0); // 아메리카노
-		addRule(2002,	150,	true,	4,	50, 2,	1 * 30 * min,	1,	150, 1, 1, 2, 1,    0, 0, 0, 0); // 카페라떼
-		addRule(3001,	 80,	true,	3,	10, 2,	1 * 60 * min,	1,	 50, 3, 1, 0, 0,    0, 0, 0, 0); // 빵
-		addRule(3002,	150,	true,	6,	15, 2,	1 * 15 * min,	1,	100, 4, 1, 2, 1,    0, 0, 0, 0); // 초코우유
-		addRule(3003,	175,	true,	6,	20, 3,	3 * 15 * min,	1,	100, 1, 2, 3, 1,    0, 0, 0, 0); // 모카번
-		addRule(3004,	190,	true,	8,	18, 3,	3 * 30 * min,	1,	 75, 4, 2, 3, 1,    0, 0, 0, 0); // 초코머핀
-		addRule(8001,	200,	true,	10,	50, 2,	1 * 30 * min,	1,	200, 1, 1, 2, 1, 9001, 1, 0, 0); // Cafe4U 카페라떼
+		addRule(1001,	100,	false,	0,	0,	1,	4 * 60 * min,	1,	 50,    0, 0,    0, 0,    0, 0, 0, 0); // 커피빈
+		addRule(1002,	 50,	true,	2,	10, 1,	2 * 60 * min,	1,	 10,    0, 0,    0, 0,    0, 0, 0, 0); // 우유
+		addRule(1003,	100,	true,	6,	10, 1,	3 * 60 * min,	1,	 50,    0, 0,    0, 0,    0, 0, 0, 0); // 밀가루
+		addRule(1004,	120,	true,	5,	10, 2,	5 * 60 * min,	1,	 80,    0, 0,    0, 0,    0, 0, 0, 0); // 초코렛
+		addRule(2001,	100,	true,	3,	40, 1,	1 * 20 * min,	1,	100, 1001, 1,    0, 0,    0, 0, 0, 0); // 아메리카노
+		addRule(2002,	150,	true,	4,	50, 2,	1 * 30 * min,	1,	150, 1001, 1, 1002, 1,    0, 0, 0, 0); // 카페라떼
+		addRule(3001,	 80,	true,	3,	10, 2,	1 * 60 * min,	1,	 50, 1003, 1,    0, 0,    0, 0, 0, 0); // 빵
+		addRule(3002,	150,	true,	6,	15, 2,	1 * 15 * min,	1,	100, 1004, 1, 1002, 1,    0, 0, 0, 0); // 초코우유
+		addRule(3003,	175,	true,	6,	20, 3,	3 * 15 * min,	1,	100, 1001, 2, 1003, 1,    0, 0, 0, 0); // 모카번
+		addRule(3004,	190,	true,	8,	18, 3,	3 * 30 * min,	1,	 75, 1004, 2, 1003, 1,    0, 0, 0, 0); // 초코머핀
+		addRule(8001,	200,	true,	10,	50, 2,	1 * 30 * min,	1,	200, 1001, 1, 1002, 1, 9001, 1, 0, 0); // Cafe4U 카페라떼
 	}
 }

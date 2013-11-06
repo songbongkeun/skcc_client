@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.example.skcc_client.common.Constants;
+import com.example.skcc_client.common.TextHelper;
 
 public class ProductionItem extends Item {
 	
@@ -65,7 +66,6 @@ public class ProductionItem extends Item {
 	
 	public String getRemainTime() {
 		
-		StringBuffer time = new StringBuffer();
 		long timeMSec = 0;
 		Date date = new Date();
 		Timestamp now = new Timestamp(date.getTime());
@@ -83,42 +83,9 @@ public class ProductionItem extends Item {
 			date = new Date(expireTime.getTime() - now.getTime());
 		}
 		
-		int units = 2; // Show just 2 units
 		timeMSec = date.getTime(); 
-
-		// days
-		if(units > 0 && timeMSec > 24 * 60 * 60 * 1000) {
-			
-			SimpleDateFormat dd = new SimpleDateFormat("d", Locale.KOREA);
-			time.append(dd.format(date));
-			time.append("d ");
-			--units;
-		}
-		// hours
-		if(units > 0 && timeMSec > 60 * 60 * 1000) {
-			
-			SimpleDateFormat hh = new SimpleDateFormat("h", Locale.KOREA);
-			time.append(hh.format(date));
-			time.append("h ");
-			--units;
-		}
-		// minutes
-		if(units > 0 && timeMSec > 60 * 1000) {
-			
-			SimpleDateFormat mm = new SimpleDateFormat("m", Locale.KOREA);
-			time.append(mm.format(date));
-			time.append("m ");
-			--units;
-		}
-		// seconds
-		if(units > 0) {
-			
-			SimpleDateFormat ss = new SimpleDateFormat("s", Locale.KOREA);
-			time.append(ss.format(date));
-			time.append("s ");
-		}
 		
-		return time.toString();
+		return TextHelper.remainTime(timeMSec);
 	}
 
 	public int getState() {
