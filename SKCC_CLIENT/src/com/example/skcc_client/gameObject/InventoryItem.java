@@ -58,4 +58,11 @@ public class InventoryItem extends Item {
 		
 		this.quantity -= qunatity;
 	}
+
+	@Override
+	public String toString() {
+		String parent = super.toString();
+		return "InventoryItem [quantity=" + quantity + " " + parent + "]";
+	}
+	
 }

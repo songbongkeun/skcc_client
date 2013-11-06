@@ -53,4 +53,12 @@ public class Item {
 	public String getImageName() {
 		return "item" + String.format(Locale.KOREA, "%04d", this.id);
 	}
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", companyId=" + companyId + ", itemType="
+				+ itemType + ", name=" + name + ", description=" + description
+				+ "]";
+	}
+	
 }

@@ -49,28 +49,42 @@ public final class R {
         public static final int pattern2=0x7f02000d;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
-        public static final int button3=0x7f090003;
+        public static final int action_settings=0x7f090016;
+        public static final int button3=0x7f090010;
         public static final int inventoryGrid=0x7f090002;
+        public static final int inventoryPopupCompanyId=0x7f090007;
+        public static final int inventoryPopupDescription=0x7f09000d;
+        public static final int inventoryPopupName=0x7f09000b;
+        public static final int inventoryPopupQuantity=0x7f09000f;
+        public static final int inventoryPopupType=0x7f090009;
+        public static final int inventoryPopupitemId=0x7f090005;
+        public static final int inventoryPopupitemImage=0x7f090003;
         public static final int pager=0x7f090000;
-        public static final int productionGrid=0x7f090004;
+        public static final int productionGrid=0x7f090011;
         public static final int section_label=0x7f090001;
-        public static final int tabstrip_inventory=0x7f090005;
-        public static final int tabstrip_nfc=0x7f090006;
-        public static final int tabstrip_production=0x7f090007;
-        public static final int tabstrip_quest=0x7f090008;
+        public static final int tabstrip_inventory=0x7f090012;
+        public static final int tabstrip_nfc=0x7f090013;
+        public static final int tabstrip_production=0x7f090014;
+        public static final int tabstrip_quest=0x7f090015;
+        public static final int textView1=0x7f090004;
+        public static final int textView2=0x7f090006;
+        public static final int textView3=0x7f090008;
+        public static final int textView4=0x7f09000a;
+        public static final int textView5=0x7f09000c;
+        public static final int textView6=0x7f09000e;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int fragment_main_dummy=0x7f030001;
         public static final int tab_inventory=0x7f030002;
-        public static final int tab_nfc=0x7f030003;
-        public static final int tab_production=0x7f030004;
-        public static final int tab_quest=0x7f030005;
-        public static final int tabstrip_inventory=0x7f030006;
-        public static final int tabstrip_nfc=0x7f030007;
-        public static final int tabstrip_production=0x7f030008;
-        public static final int tabstrip_quest=0x7f030009;
+        public static final int tab_inventory_item_detail=0x7f030003;
+        public static final int tab_nfc=0x7f030004;
+        public static final int tab_production=0x7f030005;
+        public static final int tab_quest=0x7f030006;
+        public static final int tabstrip_inventory=0x7f030007;
+        public static final int tabstrip_nfc=0x7f030008;
+        public static final int tabstrip_production=0x7f030009;
+        public static final int tabstrip_quest=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -79,6 +93,13 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
+        public static final int inventory_item_quantity=0x7f06000e;
+        public static final int item_company_id=0x7f060009;
+        public static final int item_description=0x7f06000d;
+        public static final int item_id=0x7f06000a;
+        public static final int item_imange_description=0x7f06000f;
+        public static final int item_name=0x7f06000c;
+        public static final int item_type=0x7f06000b;
         public static final int label_inventory=0x7f060002;
         public static final int label_nfc=0x7f060005;
         public static final int label_production=0x7f060003;
