@@ -6,78 +6,89 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.skcc_client.R;
 import com.example.skcc_client.gameObject.InventoryItem;
 
 public class ItemDetailDialog extends DialogFragment {
-	private EditText id;
-	private EditText companyId;
-	private EditText itemType;
-	private EditText name;
-	private EditText description;
-	private EditText quantity;
+	private TextView id;
+	private TextView companyId;
+	private TextView itemType;
+	private TextView name;
+	private TextView description;
+	private TextView quantity;
 	private ImageView itemImage;
 	
 	private InventoryItem item;
 	
 	public static ItemDetailDialog newInstance(InventoryItem item) {
 		ItemDetailDialog dialog = new ItemDetailDialog();
-		//set
 		dialog.setItem(item);
 		return dialog;
 	}
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-		LayoutInflater mLayoutInflater = getActivity().getLayoutInflater();
-		mBuilder.setView(mLayoutInflater.inflate(R.layout.tab_inventory_item_detail, null));
-		mBuilder.setTitle("Item Detail");
-		mBuilder.setMessage("Test");
-		return mBuilder.create();
+		Dialog dialog = super.onCreateDialog(savedInstanceState);
+		dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+		return dialog;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_inventory_item_detail, container, false);
-		id = (EditText) v.findViewById(R.id.inventoryPopupitemId);
-		companyId = (EditText) v.findViewById(R.id.inventoryPopupCompanyId);
-		itemType = (EditText) v.findViewById(R.id.inventoryPopupType);
-		name = (EditText) v.findViewById(R.id.inventoryPopupName);
-		description = (EditText) v.findViewById(R.id.inventoryPopupDescription);
-		quantity = (EditText) v.findViewById(R.id.inventoryPopupQuantity);
+		id = (TextView) v.findViewById(R.id.inventoryPopupitemId);
+		companyId = (TextView) v.findViewById(R.id.inventoryPopupCompanyId);
+		itemType = (TextView) v.findViewById(R.id.inventoryPopupType);
+		name = (TextView) v.findViewById(R.id.inventoryPopupName);
+		description = (TextView) v.findViewById(R.id.inventoryPopupDescription);
+		quantity = (TextView) v.findViewById(R.id.inventoryPopupQuantity);
 		itemImage = (ImageView) v.findViewById(R.id.inventoryPopupitemImage);
+		
 		setItemInformation();
-		return super.onCreateView(inflater, container, savedInstanceState);
+		Log.d("INVENTORY", "ItemDetailDialog Create");
+		return v;
 	}
 	
+	@Override
+	public void onStart() {
+		super.onStart();
+	}
 	@Override
 	public void onStop() {
 		super.onStop();
 	}
 
 	public void setItemInformation() {
-		id.setText(item.getId());
-		companyId.setText(item.getCompanyId());
-		itemType.setText(item.getItemType());
-		name.setText(item.getName());
-		description.setText(item.getDescription());
-		quantity.setText(item.getQuantity());
-		
-		int imageId = getResources().getIdentifier(item.getImageName(), "drawable", "test");
+		id.setText(String.valueOf(item.getId()), TextView.BufferType.NORMAL);
+		companyId.setText(String.valueOf(item.getCompanyId()), TextView.BufferType.NORMAL);
+		itemType.setText(String.valueOf(item.getItemType()), TextView.BufferType.NORMAL);
+		name.setText(String.valueOf(item.getName()), TextView.BufferType.NORMAL);
+		description.setText(String.valueOf(item.getDescription()), TextView.BufferType.NORMAL);
+		quantity.setText(String.valueOf(item.getQuantity()), TextView.BufferType.NORMAL);
+
+		int imageId = getResources().getIdentifier(item.getImageName(), "drawable", getActivity().getPackageName());
 		Bitmap image = BitmapFactory.decodeResource(getResources(), imageId);
 		itemImage.setImageBitmap(image);
+		
+		Log.d("INVENTORY", "id:"+id.getText().toString());
+		Log.d("INVENTORY", "companyId:"+companyId.getText().toString());
+		Log.d("INVENTORY", "itemType:"+itemType.getText().toString());
+		Log.d("INVENTORY", "name:"+name.getText().toString());
+		Log.d("INVENTORY", "description:"+description.getText().toString());
+		Log.d("INVENTORY", "quantity:"+quantity.getText().toString());
+		
 	}
 
 	public void setItem(InventoryItem item) {
 		this.item = item;
 	}
-	
+
 }
