@@ -1,2 +1,5 @@
-gen/
-bin/
+SKCC_CLIENT/gen/**
+SKCC_CLIENT/bin/**
+*.*
+SKCC_CLIENT/.gitignore
+*.*
