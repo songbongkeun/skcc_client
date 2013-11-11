@@ -146,7 +146,7 @@ public class ProductionListItem extends RelativeLayout {
 		
 		if(costItemId1 != 0) {
 
-			hasEnoughItem = (rule.hasEnoughItem(1, costItemId1) == Constants.rule.NEW_PRODUCTION_OK);
+			hasEnoughItem = (rule.hasEnoughItem(1, item.getId()) == Constants.rule.NEW_PRODUCTION_OK);
 			itemState = hasEnoughItem ? Constants.code.ITEM_STATE_PRODUCING : Constants.code.ITEM_STATE_ROTTEN;
 		
 			costItem1.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -170,9 +170,9 @@ public class ProductionListItem extends RelativeLayout {
 		
 		if(costItemId2 != 0) {
 
-			hasEnoughItem = (rule.hasEnoughItem(2, costItemId2) == Constants.rule.NEW_PRODUCTION_OK);
+			hasEnoughItem = (rule.hasEnoughItem(2, item.getId()) == Constants.rule.NEW_PRODUCTION_OK);
 			itemState = hasEnoughItem ? Constants.code.ITEM_STATE_PRODUCING : Constants.code.ITEM_STATE_ROTTEN;
-		
+			
 			costItem2.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			costItem2.setPadding(15, 5, 10, 5);
 			
@@ -194,7 +194,7 @@ public class ProductionListItem extends RelativeLayout {
 		
 		if(costItemId3 != 0) {
 
-			hasEnoughItem = (rule.hasEnoughItem(3, costItemId3) == Constants.rule.NEW_PRODUCTION_OK);;
+			hasEnoughItem = (rule.hasEnoughItem(3, item.getId()) == Constants.rule.NEW_PRODUCTION_OK);;
 			itemState = hasEnoughItem ? Constants.code.ITEM_STATE_PRODUCING : Constants.code.ITEM_STATE_ROTTEN;
 		
 			costItem3.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -218,7 +218,7 @@ public class ProductionListItem extends RelativeLayout {
 		
 		if(costItemId4 != 0) {
 
-			hasEnoughItem = (rule.hasEnoughItem(4, costItemId4) == Constants.rule.NEW_PRODUCTION_OK);;
+			hasEnoughItem = (rule.hasEnoughItem(4, item.getId()) == Constants.rule.NEW_PRODUCTION_OK);;
 			itemState = hasEnoughItem ? Constants.code.ITEM_STATE_PRODUCING : Constants.code.ITEM_STATE_ROTTEN;
 		
 			costItem4.setScaleType(ImageView.ScaleType.CENTER_CROP);

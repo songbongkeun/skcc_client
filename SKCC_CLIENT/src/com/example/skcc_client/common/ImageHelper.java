@@ -58,12 +58,12 @@ public class ImageHelper {
 	            0.55f, 0, 0, 0, 0, 
 	            0, 0.55f, 0, 0, 0,
 	            0, 0, 0.55f, 0, 0, 
-	            0, 0, 0, 0.6f, 0};
+	            0, 0, 0, 1f, 0};
 		float[] colorTransformIncomplete = {
 	            0.9f, 0, 0, 0, 0, 
 	            0, 0.6f, 0, 0, 0,
 	            0, 0, 0.2f, 0, 0, 
-	            0, 0, 0, 0.8f, 0};
+	            0, 0, 0, 1f, 0};
 		ColorMatrix colorMatrix = new ColorMatrix();
 		colorMatrix.setSaturation(0f);
 		colorMatrix.set(colorTransformRotten);

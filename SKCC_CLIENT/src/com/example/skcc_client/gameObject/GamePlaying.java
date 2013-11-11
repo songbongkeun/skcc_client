@@ -72,6 +72,12 @@ public class GamePlaying {
 		}
 	}
 	
+	private void getExpFromFinishedItem(Item item) {
+		
+		long getExp = Global.getInstance().productionRule.getProductionExp(item.getId());
+		Global.getInstance().player.addExp(getExp);
+	}
+	
 	public void cleanRottenItem(Item item, int position) {
 
 		// Clean rotten item
@@ -84,6 +90,9 @@ public class GamePlaying {
 		
 		// Add item to inventory
 		addItemToInventory(item, 1);
+		
+		// Get exp from finished item
+		getExpFromFinishedItem(item);
 		
 		// Clean got item
 		removeItemFromProduction(item, position);

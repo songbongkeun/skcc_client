@@ -187,8 +187,6 @@ public class ProductionTab extends Fragment {
 		}
 		
 		gridView.setAdapter(adapter);
-		
-		Log.d("PRODUCTION", "Grid refresh");
 	}
 	
 	

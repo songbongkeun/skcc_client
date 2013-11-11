@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
+import android.util.Log;
+
 import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.InventoryItem;
@@ -33,10 +35,15 @@ public class ProductionRule {
 	
 	private LinkedHashMap<Integer, info> costTable;
 	
+	private int currentListLevel;
+	private ArrayList<Item> list;
+	
 	public ProductionRule() {
 		
 		super();
 		costTable = new LinkedHashMap<Integer, info>();
+		list = new ArrayList<Item>();
+		currentListLevel = 0;
 	}
 	
 	/**
@@ -166,24 +173,34 @@ public class ProductionRule {
 	}
 	
 	public ArrayList<Item> getProductionRuleList() {
-
-		ArrayList<Item> list = new ArrayList<Item>();
-
-		Iterator<Integer> keyData = costTable.keySet().iterator();
-		Integer itemId = 0;
 		
-		// 현재 레벨에서 생산 가능한 아이템만 추려서 리턴한다.
-		while(keyData.hasNext()) {
+		int currentPlayerLevel = Global.getInstance().player.getLevel();
+		
+		// 기존 리스트의 레벨과 현재 플레이어 레벨이 다르면 생산 리스트를 재생성한다.
+		if(currentListLevel != Global.getInstance().player.getLevel()) {
 			
-			itemId = keyData.next();
-		
-			if(Constants.rule.NEW_PRODUCTION_OK == hasEnoughLevel(itemId.intValue())) {
+			list.clear();
+			
+			currentListLevel = currentPlayerLevel;
+			
+			Iterator<Integer> keyData = costTable.keySet().iterator();
+			Integer itemId = 0;
+			
+			// 현재 레벨에서 생산 가능한 아이템만 추려서 리턴한다.
+			while(keyData.hasNext()) {
 				
-				list.add(Global.getInstance().itemList.get(itemId.intValue()));
+				itemId = keyData.next();
+			
+				if(Constants.rule.NEW_PRODUCTION_OK == hasEnoughLevel(itemId.intValue())) {
+					
+					this.list.add(Global.getInstance().itemList.get(itemId.intValue()));
+					
+					Log.d("PRODUCTION", "Can make items = " + itemId);
+				}
 			}
 		}
 		
-		return list;
+		return this.list;
 	}
 	
 	/** Generate production rule for test */
@@ -193,7 +210,7 @@ public class ProductionRule {
 		
 		long min = 60 * 1000;
 
-		//      id    pExp   canUse   uAP  uEx Lv   costTime      cAP cMney item1    item2    imte3    item4
+		//      id    pExp   canUse   uAP  uEx Lv   costTime      cAP cMney item1    item2    item3    item4
 		addRule(1001,	100,	false,	 0,	 0,	1,	4 * 60 * min,	1,	 50,    0, 0,    0, 0,    0, 0,    0, 0); // 커피빈
 		addRule(1002,	 50,	 true,	 2,	10, 1,	2 * 60 * min,	1,	 10,    0, 0,    0, 0,    0, 0,    0, 0); // 우유
 		addRule(1003,	100,	 true,	 6,	10, 1,	3 * 60 * min,	1,	 50,    0, 0,    0, 0,    0, 0,    0, 0); // 밀가루
@@ -204,7 +221,7 @@ public class ProductionRule {
 		addRule(3002,	150,	 true,	 6,	15, 2,	1 * 15 * min,	1,	100, 1004, 1, 1002, 1,    0, 0,    0, 0); // 초코우유
 		addRule(3003,	175,	 true,	 6,	20, 3,	3 * 15 * min,	1,	100, 1001, 2, 1003, 1,    0, 0,    0, 0); // 모카번
 		addRule(3004,	190,	 true,	 8,	18, 3,	3 * 30 * min,	1,	 75, 1004, 2, 1003, 1,    0, 0,    0, 0); // 초코머핀
-		addRule(8001,	200,	 true,	10,	50, 2,	1 * 30 * min,	1,	200, 1001, 1, 1002, 1, 9001, 1,    0, 0); // Cafe4U 카페라떼
+		// addRule(8001,	200,	 true,	10,	50, 2,	1 * 30 * min,	1,	200, 1001, 1, 1002, 1, 9001, 1,    0, 0); // Cafe4U 카페라떼
 	}
 	
 	/**

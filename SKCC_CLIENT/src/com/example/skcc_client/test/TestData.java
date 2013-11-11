@@ -38,6 +38,7 @@ public class TestData {
 		Item item3003 = new Item(3003, 1, Constants.code.ITEM_TYPE_BREAD, "모카번", "커피빈과 빵의 조화~~ 한번 드셔보세요.");
 		Item item3004 = new Item(3004, 1, Constants.code.ITEM_TYPE_BREAD, "초코머핀", "그냥 빵은 가라... 초코렛이 듬뿍 담긴 머핀");
 		Item item8001 = new Item(8001, 1, Constants.code.ITEM_TYPE_COUPON, "Cafe4U 카페라떼", "Cafe4U 레시피를 가지고 만드는 환상의 커피우유~ 반합니다. 강추");
+		Item item9001 = new Item(9001, 1, Constants.code.ITEM_TYPE_RECEIPE, "Cafe4U 카페라떼 레시피", "Cafe4U 레시피");
 		
 		Hashtable<Integer, Item> itemList = Global.getInstance().itemList;
 		itemList.put(item0000.getId(), item1001);
@@ -52,9 +53,10 @@ public class TestData {
 		itemList.put(item3003.getId(), item3003);
 		itemList.put(item3004.getId(), item3004);
 		itemList.put(item8001.getId(), item8001);
+		itemList.put(item9001.getId(), item9001);
 		
 		// Player
-		Global.getInstance().player = new Player("park108", "종길", 0, 10, 1000);
+		Global.getInstance().player = new Player("park108", "종길", 64000, 100, 1000);
 		
 		// Inventory Item
 		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;

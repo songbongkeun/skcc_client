@@ -56,6 +56,10 @@ public class Player {
 		return actionPoint;
 	}
 
+	public void addExp(long exp) {
+		this.exp += exp;
+	}
+
 	public void addActionPoint(int actionPoint) {
 		this.actionPoint += actionPoint;
 	}

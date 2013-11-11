@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -73,7 +74,8 @@ public class ProductionDialog extends DialogFragment {
 		ap.setText(Global.getInstance().player.getActionPoint() + " AP");
 		
 		// List
-		ListView listView = (ListView) view.findViewById(R.id.newProductionList);
+		int listViewId = R.id.newProductionList;
+		ListView listView = (ListView) view.findViewById(listViewId);
 		ProductionListAdapter adapter = new ProductionListAdapter(getActivity());
 		listView.setAdapter(adapter);
 
@@ -109,6 +111,7 @@ public class ProductionDialog extends DialogFragment {
 				}
 			}
 		});
+		
 		
 		return view;
 	}

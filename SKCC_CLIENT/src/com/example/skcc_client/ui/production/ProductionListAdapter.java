@@ -4,6 +4,7 @@ import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.Item;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,9 +12,9 @@ import android.widget.BaseAdapter;
 public class ProductionListAdapter extends BaseAdapter {
 	
 	private Context context;
-
+ 
 	public ProductionListAdapter(Context context) {
-
+		
 		this.context = context;
 	}
 
@@ -24,7 +25,12 @@ public class ProductionListAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return position;
+		
+		// List item 을 가져온다.
+		Item item = Global.getInstance().productionRule.getProductionRuleList().get(position);
+		ProductionListItem listItem = new ProductionListItem(context, item);
+		
+		return listItem;
 	}
 
 	@Override
@@ -35,17 +41,19 @@ public class ProductionListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
-		if(convertView == null) {
+		Log.d("PRODUCTION", "LIST POSITION = " + position);
+		
+//		if(convertView == null) {
 			
 			// List item 을 가져온다.
 			Item item = Global.getInstance().productionRule.getProductionRuleList().get(position);
 			ProductionListItem listItem = new ProductionListItem(context, item);
 			
 			return listItem;
-		}
-		else {
-			
-			return convertView;
-		}
+//		}
+//		else {
+//			
+//			return convertView;
+//		}
 	}
 }
