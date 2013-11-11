@@ -22,7 +22,17 @@ public final class Constants {
     
     public static final class rule {
     	
-    	public static final int PRODUCTION_MAX_COUNT		= 16;
+    	public static final int PRODUCTION_MAX_COUNT			= 16;
+
+    	public static final int NEW_PRODUCTION_ERROR			= -1;
+    	public static final int NEW_PRODUCTION_OK				=  0;
+    	public static final int NEW_PRODUCTION_NOT_ENOUGH_LEVEL	= 11;
+    	public static final int NEW_PRODUCTION_NOT_ENOUGH_AP	= 21;
+    	public static final int NEW_PRODUCTION_NOT_ENOUGH_MONEY	= 31;
+    	public static final int NEW_PRODUCTION_NOT_ENOUGH_ITEM1	= 41;
+    	public static final int NEW_PRODUCTION_NOT_ENOUGH_ITEM2	= 42;
+    	public static final int NEW_PRODUCTION_NOT_ENOUGH_ITEM3	= 43;
+    	public static final int NEW_PRODUCTION_NOT_ENOUGH_ITEM4	= 44;
     }
 
     public static final class system {

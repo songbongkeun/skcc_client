@@ -9,5 +9,9 @@
     
     <dimen name="inventoryItem_name_height">18dp</dimen>
     <dimen name="inventoryItem_name_textSize">8dp</dimen>
+    
+    <dimen name="production_popup_player_info_textSize_L">15dp</dimen>
+    <dimen name="production_popup_player_info_textSize_M">13dp</dimen>
+    <dimen name="production_popup_player_info_textSize_S">11dp</dimen>
 
 </resources>

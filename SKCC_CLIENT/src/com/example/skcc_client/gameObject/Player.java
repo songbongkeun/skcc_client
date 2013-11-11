@@ -24,7 +24,7 @@ public class Player {
 	 * @param actionPoint	행동력
 	 * @param money			머니
 	 */
-	public Player(String id, String name, int level, long exp, int actionPoint, long money) {
+	public Player(String id, String name, long exp, int actionPoint, long money) {
 		
 		super();
 		

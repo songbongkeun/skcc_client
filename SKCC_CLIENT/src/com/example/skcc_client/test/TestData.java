@@ -26,6 +26,7 @@ public class TestData {
 		Global.getInstance().productionRule.generateTestRule(); // Production
 		
 		// Items
+		Item item0000 = new Item(   0, 1, Constants.code.ITEM_TYPE_NOTHING, "Vacant", "Vacant");
 		Item item1001 = new Item(1001, 1, Constants.code.ITEM_TYPE_MATERIAL, "커피빈", "커피빈");
 		Item item1002 = new Item(1002, 1, Constants.code.ITEM_TYPE_MATERIAL, "우유", "우유");
 		Item item1003 = new Item(1003, 1, Constants.code.ITEM_TYPE_MATERIAL, "밀가루", "밀가루");
@@ -39,6 +40,7 @@ public class TestData {
 		Item item8001 = new Item(8001, 1, Constants.code.ITEM_TYPE_COUPON, "Cafe4U 카페라떼", "Cafe4U 레시피를 가지고 만드는 환상의 커피우유~ 반합니다. 강추");
 		
 		Hashtable<Integer, Item> itemList = Global.getInstance().itemList;
+		itemList.put(item0000.getId(), item1001);
 		itemList.put(item1001.getId(), item1001);
 		itemList.put(item1002.getId(), item1002);
 		itemList.put(item1003.getId(), item1003);
@@ -52,7 +54,7 @@ public class TestData {
 		itemList.put(item8001.getId(), item8001);
 		
 		// Player
-		Global.getInstance().player = new Player("park108", "종길", 1, 0, 10, 1000);
+		Global.getInstance().player = new Player("park108", "종길", 0, 10, 1000);
 		
 		// Inventory Item
 		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;

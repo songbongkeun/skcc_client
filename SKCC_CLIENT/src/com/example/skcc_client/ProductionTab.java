@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.Global;
-import com.example.skcc_client.gameObject.InventoryItem;
 import com.example.skcc_client.gameObject.ProductionItem;
 import com.example.skcc_client.ui.production.ProductionDialog;
 
@@ -22,8 +21,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -119,47 +116,29 @@ public class ProductionTab extends Fragment {
 				if(item.getState() == Constants.code.ITEM_STATE_ROTTEN) {
 					
 					// Clean rotten item
-					itemToVacant(position);
-					Log.d("PRODUCTION", "Rotten item removed : " + position);
+					Global.getInstance().playing.cleanRottenItem(item, position);
 
 					// Show toast
 					CharSequence msg = "썩은 " + item.getName() + "을(를) 치웠습니다!";
 					Toast.makeText(gridView.getContext(), msg, Toast.LENGTH_SHORT).show();
+					
+					// Refresh
+					refreshGrid();
 				}
 
 				///////////////////////////////////////////////////////////////////////////////////
 				// 2. Finished item -> Add inventory and Clean
 				else if(item.getState() == Constants.code.ITEM_STATE_FINISHED) {
 					
-					// Check inventory has same item
-					boolean hasSameItem = false;
-					ArrayList<InventoryItem> list = Global.getInstance().inventoryList;
-					Iterator<InventoryItem> iterator = list.iterator();
-					
-					while(iterator.hasNext()) {
-						
-						InventoryItem inven = iterator.next();
-						if(item.getId() == inven.getId()) {
-							
-							inven.addQuantity(1);
-							hasSameItem = true;
-							break;
-						}
-					}
-					
-					// If no have same item, add new item
-					if(!hasSameItem) {
-						
-						InventoryItem producedItem = new InventoryItem(item, 1);
-						Global.getInstance().inventoryList.add(producedItem);
-					}
-					
-					// Clean got item
-					itemToVacant(position);
-					
+					// Get finished item
+					Global.getInstance().playing.getFinishedItem(item, position);
+
 					// Show toast
 					CharSequence msg = item.getName() + " 1개를 얻었습니다!";
 					Toast.makeText(gridView.getContext(), msg, Toast.LENGTH_SHORT).show();
+					
+					// Refresh
+					refreshGrid();
 					
 					// Refresh InventoryTab
 					List<Fragment> tabs = getFragmentManager().getFragments();
@@ -168,8 +147,6 @@ public class ProductionTab extends Fragment {
 						InventoryTab tab = (InventoryTab) tabs.get(0);
 						tab.refreshGrid();
 					}
-
-					Log.d("PRODUCTION", "Finished item get : " + position);
 				}
 
 				///////////////////////////////////////////////////////////////////////////////////
@@ -212,19 +189,6 @@ public class ProductionTab extends Fragment {
 		gridView.setAdapter(adapter);
 		
 		Log.d("PRODUCTION", "Grid refresh");
-	}
-	
-	/**
-	 * 특정 위치를 공터로 바꾼다.
-	 * @param position	공터로 바꿀 위치	
-	 */
-	public void itemToVacant(int position) {
-
-		Timestamp now = new Timestamp(new Date().getTime());
-		ProductionItem vacant = new ProductionItem(0, 1, Constants.code.ITEM_TYPE_NOTHING
-				, "Vacant", "Vacant", now, now, now);
-		Global.getInstance().productionList.set(position, vacant);
-		refreshGrid();
 	}
 	
 	

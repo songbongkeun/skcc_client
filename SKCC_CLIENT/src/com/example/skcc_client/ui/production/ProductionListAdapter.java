@@ -1,7 +1,6 @@
 package com.example.skcc_client.ui.production;
 
 import com.example.skcc_client.common.Global;
-import com.example.skcc_client.gameObject.InventoryItem;
 import com.example.skcc_client.gameObject.Item;
 
 import android.content.Context;

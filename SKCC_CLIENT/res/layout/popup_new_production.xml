@@ -1,14 +1,59 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
 	android:background="@drawable/pattern1"
 	>
- 
+	
+ 	<TextView
+ 	    android:id="@+id/playerId"
+		android:layout_height="30dp"
+		android:layout_width="90dp"
+		android:padding="5dp"
+		android:textSize="@dimen/production_popup_player_info_textSize_L"
+		android:textColor="@color/item_finished"
+		android:textStyle="bold"
+ 	    />
+	
+ 	<TextView
+ 	    android:id="@+id/playerLevel"
+		android:layout_height="30dp"
+		android:layout_width="60dp"
+		android:padding="5dp"
+		android:layout_toRightOf="@id/playerId"
+		android:textSize="@dimen/production_popup_player_info_textSize_L"
+		android:textColor="@color/item_finished"
+		android:textStyle="bold"
+ 	    />
+	
+ 	<TextView
+ 	    android:id="@+id/playerMoney"
+		android:layout_height="30dp"
+		android:layout_width="60dp"
+		android:padding="5dp"
+		android:layout_toRightOf="@id/playerLevel"
+		android:textSize="@dimen/production_popup_player_info_textSize_L"
+		android:textColor="@color/item_finished"
+		android:textStyle="bold"
+ 	    />
+	
+ 	<TextView
+ 	    android:id="@+id/playerAP"
+		android:layout_height="30dp"
+		android:layout_width="match_parent"
+		android:padding="5dp"
+		android:layout_toRightOf="@id/playerMoney"
+		android:textSize="@dimen/production_popup_player_info_textSize_L"
+		android:textColor="@color/item_finished"
+		android:textStyle="bold"
+		android:gravity="right"
+ 	    />
+ 	
 	<ListView
 		android:id="@+id/newProductionList"
-		android:layout_height="wrap_content"
+		android:layout_height="300dp"
 		android:layout_width="match_parent"
+		android:padding="5dp"
+		android:layout_below="@id/playerId"
 		/>
          
-</LinearLayout>
+</RelativeLayout>

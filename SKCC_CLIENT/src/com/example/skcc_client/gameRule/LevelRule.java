@@ -65,8 +65,9 @@ public class LevelRule {
 			
 			key = (Integer)keyData.next();
 			info i = levelTable.get(key);
+			returnLevel = key;
 			
-			if(exp < i.nextLevelExp) {
+			if(exp >= i.nextLevelExp) {
 				
 				returnLevel = key.intValue();
 			}

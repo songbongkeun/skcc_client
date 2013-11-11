@@ -1,9 +1,7 @@
 package com.example.skcc_client.gameObject;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.TextHelper;
