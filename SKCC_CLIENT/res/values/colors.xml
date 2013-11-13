@@ -1,10 +1,30 @@
 <resources>
+    <color name="titlebar_backbround_color">#ff000000</color>
+    <color name="titlebar_lv_font_color">#ff60ff00</color>
+    <color name="titlebar_player_id_font_color">#ffffffff</color>
+    <color name="titlebar_player_money_font_color">#ffffce37</color>
+    <color name="titlebar_player_current_ap_font_color">#ffffffff</color>
+    <color name="titlebar_player_max_ap_font_color">#ffff7800</color>
+    <color name="titlebar_player_ap_separator_font_color">#ffafafaf</color>
+    
+    <color name="tapstrip_border_color1">#ffff6600</color>
+    <color name="tapstrip_border_color2">#ff32b502</color>
+    <color name="tapstrip_border_color3">#ffc8bd01</color>
+    <color name="tapstrip_border_color4">#ff71c893</color>
+    <color name="tapstrip_border_color_off">#ffafafaf</color>
+    
+    <color name="tapstrip_background_color1">#fffde5c1</color>
+    <color name="tapstrip_background_color2">#ffedf8cd</color>
+    <color name="tapstrip_background_color3">#fffbfadc</color>
+    <color name="tapstrip_background_color4">#ffeaebf5</color>
+    <color name="tapstrip_background_color_off">#ff555555</color>
     
     <color name="tapstrip_font_color">#ff000000</color>
+    <color name="tapstrip_font_color_off">#ffafafaf</color>
     
     <color name="icon_rounding">#ff424242</color>
     <color name="item_nothing">#ff000000</color>
-    <color name="item_producing">#ff55aa00</color>
+    <color name="item_producing">#ff32b502</color>
     <color name="item_finished">#ffff6600</color>
     <color name="item_rotten">#ff555555</color>
 

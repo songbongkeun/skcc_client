@@ -1,0 +1,171 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/titlebar_user_info"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:paddingTop="5dp"
+	android:paddingBottom="5dp"
+	android:baselineAligned="false"
+	android:orientation="horizontal"
+	>
+	
+    <LinearLayout
+		android:layout_width="0dip"
+		android:layout_height="fill_parent"
+		android:layout_weight="3"
+		android:orientation="vertical"
+		>
+	
+	    <RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="0dip"
+			android:layout_weight="1"
+			>
+		
+		 	<TextView
+		 	    android:id="@+id/playerInfoLevelLabel"
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:text="@string/label_level"
+				android:textSize="@dimen/titlebar_textSize_M"
+				android:textColor="@color/titlebar_lv_font_color"
+				android:textStyle="bold"
+				android:gravity="bottom"
+		 	    />
+			
+		 	<TextView
+		 	    android:id="@+id/playerInfoLevel"
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:text=" 8"
+				android:textSize="@dimen/titlebar_textSize_M"
+				android:textColor="@color/titlebar_lv_font_color"
+				android:textStyle="bold"
+				android:gravity="bottom"
+				android:layout_toRightOf="@id/playerInfoLevelLabel"
+		 	    />
+		</RelativeLayout>
+
+	
+	    <LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="0dip"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			>
+	        <ProgressBar
+	            android:id="@+id/playerExpProgressBar"
+	            style="?android:attr/progressBarStyleHorizontal"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            />
+		</LinearLayout>
+	</LinearLayout>
+	
+    <LinearLayout
+		android:layout_width="0dip"
+		android:layout_height="fill_parent"
+		android:layout_weight="5"
+		android:orientation="vertical"
+		>
+			
+	 	<TextView
+	 	    android:id="@+id/playerId"
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:text="에스케이씨앤씨"
+			android:textSize="@dimen/titlebar_textSize_L"
+			android:textColor="@color/titlebar_player_id_font_color"
+			android:textStyle="bold"
+			android:gravity="center_vertical|center"
+	 	    />
+	</LinearLayout>
+	
+    <LinearLayout
+		android:layout_width="0dip"
+		android:layout_height="fill_parent"
+		android:layout_weight="4"
+		android:orientation="vertical"
+		>
+	
+	    <RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="0dip"
+			android:layout_weight="1"
+			>
+			<ImageView
+			    android:id="@+id/iconMoneyInverse"
+			    android:src="@drawable/icon_money_inverse"
+			    android:contentDescription="@string/null_string"
+			    android:padding="3dp"
+			    android:layout_height="fill_parent"
+			    android:layout_width="wrap_content"
+				/>
+			
+		 	<TextView
+		 	    android:id="@+id/playerInfoMoney"
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:text="100,000,000"
+				android:textSize="@dimen/titlebar_textSize_S"
+				android:textColor="@color/titlebar_player_money_font_color"
+				android:textStyle="bold"
+				android:gravity="bottom"
+				android:layout_toRightOf="@id/iconMoneyInverse"
+		 	    />
+		 	
+		</RelativeLayout>
+	    <RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="0dip"
+			android:layout_weight="1"
+			>
+			<ImageView
+			    android:id="@+id/iconAPInverse"
+			    android:src="@drawable/icon_ap_inverse"
+			    android:contentDescription="@string/null_string"
+			    android:padding="3dp"
+			    android:layout_height="fill_parent"
+			    android:layout_width="wrap_content"
+				/>
+			
+		 	<TextView
+		 	    android:id="@+id/playerInfoCurrentAP"
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:text="90"
+				android:textSize="@dimen/titlebar_textSize_S"
+				android:textColor="@color/titlebar_player_current_ap_font_color"
+			    android:paddingRight="3dp"
+				android:textStyle="bold"
+				android:gravity="bottom"
+				android:layout_toRightOf="@id/iconAPInverse"
+		 	    />
+			
+		 	<TextView
+		 	    android:id="@+id/playerAPSeparator"
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+			    android:paddingRight="3dp"
+				android:text="/"
+				android:textSize="@dimen/titlebar_textSize_S"
+				android:textColor="@color/titlebar_player_ap_separator_font_color"
+				android:textStyle="bold"
+				android:gravity="bottom"
+				android:layout_toRightOf="@id/playerInfoCurrentAP"
+		 	    />
+			
+		 	<TextView
+		 	    android:id="@+id/playerInfoMaxAP"
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:text="100"
+				android:textSize="@dimen/titlebar_textSize_S"
+				android:textColor="@color/titlebar_player_max_ap_font_color"
+				android:textStyle="bold"
+				android:gravity="bottom"
+				android:layout_toRightOf="@id/playerAPSeparator"
+		 	    />
+		</RelativeLayout>
+	</LinearLayout>
+
+</LinearLayout>

@@ -5,6 +5,7 @@ import java.util.Locale;
 import com.example.skcc_client.test.TestData;
 
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -34,11 +35,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
+		actionBar.setLogo(R.drawable.title_padding);
+		actionBar.setCustomView(R.layout.titlebar_user_info);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
-		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-		actionBar.setDisplayOptions(1, ActionBar.DISPLAY_SHOW_CUSTOM);
-		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_USE_LOGO);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_CUSTOM);
 		
 		ImageView a = new ImageView(getApplicationContext());
 		
@@ -69,8 +69,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			// the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
 			
-			actionBar.addTab(actionBar.newTab()
-				.setTabListener(this));
+			Tab newTab = actionBar.newTab().setTabListener(this);
+			if(0 == i) {
+				newTab.setCustomView(mSectionsPagerAdapter.getBackground(true, i));
+			}
+			else {
+				newTab.setCustomView(mSectionsPagerAdapter.getBackground(false, i));
+			}
+			actionBar.addTab(newTab);
 		}
 		
 		
@@ -84,13 +90,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
-		tab.setCustomView(mSectionsPagerAdapter.getBackground(tab.getPosition()));
+		tab.setCustomView(null);
+		tab.setCustomView(mSectionsPagerAdapter.getBackground(true, tab.getPosition()));
 	}
 	
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-		
+
 		tab.setCustomView(null);
+		tab.setCustomView(mSectionsPagerAdapter.getBackground(false, tab.getPosition()));
 	}
 	
 	@Override
@@ -138,18 +146,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			return 4;
 		}
 	
-		public int getBackground(int position) {
+		public int getBackground(boolean isOn, int position) {
 			
 			switch (position) {
 			
 				case 0:
-					return R.layout.tabstrip_inventory;
+					return isOn ? R.layout.tabstrip_inventory : R.layout.tabstrip_inventory_off;
 				case 1:
-					return R.layout.tabstrip_production;
+					return isOn ? R.layout.tabstrip_production : R.layout.tabstrip_production_off;
 				case 2:
-					return R.layout.tabstrip_quest;
+					return isOn ? R.layout.tabstrip_quest : R.layout.tabstrip_quest_off;
 				case 3:
-					return R.layout.tabstrip_nfc;
+					return isOn ? R.layout.tabstrip_nfc : R.layout.tabstrip_nfc_off;
 			}
 			
 			return R.layout.tabstrip_inventory;

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Product Game</string>
+    <string name="app_name">생산게임</string>
     <string name="action_settings">Settings</string>
+    
+    <string name="null_string"></string>
+    
+    <string name="label_level">LV. </string>
     
     <string name="label_inventory">인벤토리</string>
     <string name="label_production">생산</string>
@@ -13,7 +17,6 @@
     <string name="state_finished">Finished</string>
     <string name="state_rotten">Rotten</string>
 
-    
     <string name="item_company_id">Company Id</string>
     <string name="item_id">Id</string>
     <string name="item_type">Type</string>

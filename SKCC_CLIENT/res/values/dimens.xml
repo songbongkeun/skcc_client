@@ -1,11 +1,18 @@
 <resources>
 
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen>
+    
+    <dimen name="titlebar_textSize_L">20dp</dimen>
+    <dimen name="titlebar_textSize_M">15dp</dimen>
+    <dimen name="titlebar_textSize_S">12dp</dimen>
     
     <dimen name="tapstrip_textSize">17dp</dimen>
     <dimen name="tapstrip_width">80dp</dimen>
     <dimen name="tapstrip_height">50dp</dimen>
+    <dimen name="tapstrip_padding_bottom">8dp</dimen>
+    <dimen name="tapstrip_border_width">3dp</dimen>
+    <dimen name="tapstrip_border_radius">10dp</dimen>
     
     <dimen name="inventoryItem_name_height">18dp</dimen>
     <dimen name="inventoryItem_name_textSize">8dp</dimen>

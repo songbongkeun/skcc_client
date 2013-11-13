@@ -1,27 +1,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tabstrip_nfc"
+    android:id="@+id/tabstrip_production"
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:background="@drawable/tabstrip_rounded_border4_out"
+	android:background="@drawable/tabstrip_rounded_border_off_out"
 	>
 	
     <TextView
-        android:text="@string/label_nfc"
+        android:text="@string/label_production"
         android:width="@dimen/tapstrip_width"
-        android:height="@dimen/tapstrip_height"
+        android:height="@dimen/tapstrip_height"	
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/tapstrip_border_width"
         android:layout_marginLeft="@dimen/tapstrip_border_width"
         android:layout_marginRight="@dimen/tapstrip_border_width"
         android:layout_marginBottom="0dp"
-        android:paddingBottom="@dimen/tapstrip_padding_bottom"    
-        android:textColor="@color/tapstrip_font_color"
+        android:paddingBottom="@dimen/tapstrip_padding_bottom"
+        android:textColor="@color/tapstrip_font_color_off"
         android:textSize="@dimen/tapstrip_textSize"
         android:textStyle="bold"
         android:gravity="bottom|center"
-		android:background="@drawable/tabstrip_rounded_border4"
+		android:background="@drawable/tabstrip_rounded_border_off"
         />
 
 </LinearLayout>

@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+	<solid android:color="@color/tapstrip_background_color3" />
+	<stroke android:width="@dimen/tapstrip_border_width" android:color="@color/tapstrip_border_color3" />
+	<corners
+	    android:topLeftRadius="@dimen/tapstrip_border_radius"
+	    android:topRightRadius="@dimen/tapstrip_border_radius"
+	    />
+</shape>

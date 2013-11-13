@@ -13,8 +13,17 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="AppTheme"  parent="android:Theme.Holo.Light.DarkActionBar">
+	    <item name="android:actionBarTabBarStyle">@style/actionBarTabBarStyle</item>
+	    <item name="android:actionBarTabStyle">@style/actionBarTabStyle</item>
     </style>
+    
+	<style name="actionBarTabBarStyle">
+		<item name="android:showDividers">none</item>
+	</style>
+    
+    <style name="actionBarTabStyle" parent="android:style/Widget.Holo.Light.Tab">
+        <item name="android:background">@drawable/actionbar_tab_indicator</item>
+	</style>
 
 </resources>
