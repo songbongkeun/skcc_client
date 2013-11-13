@@ -3,11 +3,9 @@
     package="com.skcc_pos"
     android:versionCode="1"
     android:versionName="1.0" >
-
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="14"
         android:targetSdkVersion="18" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -18,10 +16,18 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+<!--             NFC Discover -->
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
     </application>
 
+	<!--     NFC Permission -->
+   	<uses-permission android:name="android.permission.NFC" />
+   	<uses-permission android:name="android.permission.CALL_PHONE" />
+   	<uses-feature android:name="android.hardware.nfc" android:required="true" />
 </manifest>
