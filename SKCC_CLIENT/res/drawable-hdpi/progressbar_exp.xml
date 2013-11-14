@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@android:id/background">
+    <shape>
+        <solid android:color="@color/titlebar_player_exp_progressbar_background_color" />
+        <corners
+            android:topLeftRadius="@dimen/titlebar_progressbar_radius"
+            android:topRightRadius="@dimen/titlebar_progressbar_radius"
+            android:bottomLeftRadius="@dimen/titlebar_progressbar_radius"
+            android:bottomRightRadius="@dimen/titlebar_progressbar_radius" 
+            />
+    </shape>
+</item>
+
+<item android:id="@android:id/progress">
+	<clip>
+		<shape>
+			<solid android:color="@color/titlebar_player_exp_progressbar_foreground_color" />
+	        <corners
+	            android:topLeftRadius="@dimen/titlebar_progressbar_radius"
+	            android:topRightRadius="@dimen/titlebar_progressbar_radius"
+	            android:bottomLeftRadius="@dimen/titlebar_progressbar_radius"
+	            android:bottomRightRadius="@dimen/titlebar_progressbar_radius" 
+	            />
+		</shape>
+	</clip>
+</item>
+
+</layer-list>

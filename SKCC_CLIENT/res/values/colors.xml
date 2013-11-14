@@ -6,6 +6,8 @@
     <color name="titlebar_player_current_ap_font_color">#ffffffff</color>
     <color name="titlebar_player_max_ap_font_color">#ffff7800</color>
     <color name="titlebar_player_ap_separator_font_color">#ffafafaf</color>
+    <color name="titlebar_player_exp_progressbar_foreground_color">#ffb7ff3a</color>
+    <color name="titlebar_player_exp_progressbar_background_color">#ff555555</color>
     
     <color name="tapstrip_border_color1">#ffff6600</color>
     <color name="tapstrip_border_color2">#ff32b502</color>
