@@ -41,61 +41,75 @@ public class TestData {
 		Item item9001 = new Item(9001, 1, Constants.code.ITEM_TYPE_RECEIPE, "Cafe4U 카페라떼 레시피", "Cafe4U 레시피");
 		
 		Hashtable<Integer, Item> itemList = Global.getInstance().itemList;
-		itemList.put(item0000.getId(), item1001);
-		itemList.put(item1001.getId(), item1001);
-		itemList.put(item1002.getId(), item1002);
-		itemList.put(item1003.getId(), item1003);
-		itemList.put(item1004.getId(), item1004);
-		itemList.put(item2001.getId(), item2001);
-		itemList.put(item2002.getId(), item2002);
-		itemList.put(item3001.getId(), item3001);
-		itemList.put(item3002.getId(), item3002);
-		itemList.put(item3003.getId(), item3003);
-		itemList.put(item3004.getId(), item3004);
-		itemList.put(item8001.getId(), item8001);
-		itemList.put(item9001.getId(), item9001);
+		
+		if(0 == itemList.size()) {
+			
+			itemList.put(item0000.getId(), item1001);
+			itemList.put(item1001.getId(), item1001);
+			itemList.put(item1002.getId(), item1002);
+			itemList.put(item1003.getId(), item1003);
+			itemList.put(item1004.getId(), item1004);
+			itemList.put(item2001.getId(), item2001);
+			itemList.put(item2002.getId(), item2002);
+			itemList.put(item3001.getId(), item3001);
+			itemList.put(item3002.getId(), item3002);
+			itemList.put(item3003.getId(), item3003);
+			itemList.put(item3004.getId(), item3004);
+			itemList.put(item8001.getId(), item8001);
+			itemList.put(item9001.getId(), item9001);
+		}
 		
 		// Player
-		Global.getInstance().player = new Player("힘내자!", "skcnc", 700, 10, 1000);
+		if(null == Global.getInstance().player) {
+			
+			Global.getInstance().player = new Player("힘내자!", "skcnc", 700, 10, 1000);
+		}
 		
 		// Inventory Item
-		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;
-		inventoryList.add(new InventoryItem(itemList.get(1001), 10));
-		inventoryList.add(new InventoryItem(itemList.get(1002), 20));
-		inventoryList.add(new InventoryItem(itemList.get(3002), 30));
+		if(0 == Global.getInstance().inventoryList.size()) {
+			
+			ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;
+			inventoryList.add(new InventoryItem(itemList.get(1001), 10));
+			inventoryList.add(new InventoryItem(itemList.get(1002), 20));
+			inventoryList.add(new InventoryItem(itemList.get(3002), 30));
+		}
 
 		// Production Item
-		ArrayList<ProductionItem> productionList = Global.getInstance().productionList;
-		Date date = new Date(); 
-		// 1 Producing
-		Timestamp start1	= new Timestamp(date.getTime() - 40000);
-		Timestamp end1		= new Timestamp(date.getTime() + 20000);
-		Timestamp expire1	= new Timestamp(date.getTime() + 40000);
-		// 2 Finished
-		Timestamp start2	= new Timestamp(date.getTime() - 40000);
-		Timestamp end2		= new Timestamp(date.getTime() - 20000);
-		Timestamp expire2	= new Timestamp(date.getTime() + 20000);
-		// 3 Rotten
-		Timestamp start3	= new Timestamp(date.getTime() - 40000);
-		Timestamp end3		= new Timestamp(date.getTime() - 20000);
-		Timestamp expire3	= new Timestamp(date.getTime() - 10000);
-		// 4 Producing
-		Timestamp start4	= new Timestamp(date.getTime() - 400000);
-		Timestamp end4		= new Timestamp(date.getTime() + 200000);
-		Timestamp expire4	= new Timestamp(date.getTime() + 400000);
-		// 4 Producing
-		Timestamp start5	= new Timestamp(date.getTime() - 40000000);
-		Timestamp end5		= new Timestamp(date.getTime() + 20000000);
-		Timestamp expire5	= new Timestamp(date.getTime() + 40000000);
-		
-		
-		productionList.add(new ProductionItem(itemList.get(2002), start1, end1, expire1));
-		productionList.add(new ProductionItem(itemList.get(3001), start2, end2, expire2));
-		productionList.add(new ProductionItem(itemList.get(3001), start2, end2, expire2));
-		productionList.add(new ProductionItem(itemList.get(3001), start2, end2, expire2));
-		productionList.add(new ProductionItem(itemList.get(3001), start2, end2, expire2));
-		productionList.add(new ProductionItem(itemList.get(1004), start3, end3, expire3));
-		productionList.add(new ProductionItem(itemList.get(3004), start4, end4, expire4));
-		productionList.add(new ProductionItem(itemList.get(8001), start5, end5, expire5));
+		if(0 == Global.getInstance().productionList.size()) {
+			
+			ArrayList<ProductionItem> productionList = Global.getInstance().productionList;
+			Date date = new Date();
+			
+			// 1 Producing
+			Timestamp start1	= new Timestamp(date.getTime() - 40000);
+			Timestamp end1		= new Timestamp(date.getTime() + 20000);
+			Timestamp expire1	= new Timestamp(date.getTime() + 40000);
+			// 2 Finished
+			Timestamp start2	= new Timestamp(date.getTime() - 40000);
+			Timestamp end2		= new Timestamp(date.getTime() - 20000);
+			Timestamp expire2	= new Timestamp(date.getTime() + 20000);
+			// 3 Rotten
+			Timestamp start3	= new Timestamp(date.getTime() - 40000);
+			Timestamp end3		= new Timestamp(date.getTime() - 20000);
+			Timestamp expire3	= new Timestamp(date.getTime() - 10000);
+			// 4 Producing
+			Timestamp start4	= new Timestamp(date.getTime() - 400000);
+			Timestamp end4		= new Timestamp(date.getTime() + 200000);
+			Timestamp expire4	= new Timestamp(date.getTime() + 400000);
+			// 4 Producing
+			Timestamp start5	= new Timestamp(date.getTime() - 40000000);
+			Timestamp end5		= new Timestamp(date.getTime() + 20000000);
+			Timestamp expire5	= new Timestamp(date.getTime() + 40000000);
+			
+			
+			productionList.add(new ProductionItem(itemList.get(2002), start1, end1, expire1));
+			productionList.add(new ProductionItem(itemList.get(3001), start2, end2, expire2));
+			productionList.add(new ProductionItem(itemList.get(3001), start2, end2, expire2));
+			productionList.add(new ProductionItem(itemList.get(3001), start2, end2, expire2));
+			productionList.add(new ProductionItem(itemList.get(3001), start2, end2, expire2));
+			productionList.add(new ProductionItem(itemList.get(1004), start3, end3, expire3));
+			productionList.add(new ProductionItem(itemList.get(3004), start4, end4, expire4));
+			productionList.add(new ProductionItem(itemList.get(8001), start5, end5, expire5));
+		}
 	}
 }

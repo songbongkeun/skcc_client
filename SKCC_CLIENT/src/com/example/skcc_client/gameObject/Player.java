@@ -10,7 +10,6 @@ public class Player {
 	
 	private String id;
 	private String name;
-	private int level;
 	private long exp;
 	private int actionPoint;
 	private long money;
@@ -30,7 +29,6 @@ public class Player {
 		
 		this.id = id;
 		this.name = name;
-		this.level = getLevel();
 		this.exp = exp;
 		this.actionPoint = actionPoint;
 		this.money = money;

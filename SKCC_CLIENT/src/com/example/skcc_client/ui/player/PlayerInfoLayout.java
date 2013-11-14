@@ -8,10 +8,8 @@ import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.Player;
 import com.example.skcc_client.gameRule.LevelRule;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
