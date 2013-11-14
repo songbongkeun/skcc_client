@@ -14,20 +14,25 @@
     <color name="tapstrip_border_color3">#ffc8bd01</color>
     <color name="tapstrip_border_color4">#ff71c893</color>
     <color name="tapstrip_border_color_off">#ffafafaf</color>
-    
     <color name="tapstrip_background_color1">#fffde5c1</color>
     <color name="tapstrip_background_color2">#ffedf8cd</color>
     <color name="tapstrip_background_color3">#fffbfadc</color>
     <color name="tapstrip_background_color4">#ffeaebf5</color>
     <color name="tapstrip_background_color_off">#ff555555</color>
-    
     <color name="tapstrip_font_color">#ff000000</color>
     <color name="tapstrip_font_color_off">#ffafafaf</color>
+    
+    <color name="popup_border_color2">#ff32b502</color>
+    <color name="popup_background_color2">#ffffffff</color>
     
     <color name="icon_rounding">#ff424242</color>
     <color name="item_nothing">#ff000000</color>
     <color name="item_producing">#ff32b502</color>
     <color name="item_finished">#ffff6600</color>
     <color name="item_rotten">#ff555555</color>
+    
+    <color name="new_production_ok_color">#ff000000</color>
+    <color name="new_production_not_ok_color">#ff888888</color>
+    <color name="new_production_not_enough_color">#ffaa3333</color>
 
 </resources>

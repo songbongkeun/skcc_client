@@ -79,7 +79,7 @@ public class ProductionGridItem extends LinearLayout {
 		
 		int imageId = context.getResources().getIdentifier(item.getImageName(), "drawable", context.getPackageName());
 		Bitmap iconImage = BitmapFactory.decodeResource(context.getResources(), imageId);
-		iconImage = ImageHelper.getItemIcon(context, iconImage, 30, 15, item.getState(), progressRate);
+		iconImage = ImageHelper.getProductionItemIcon(context, iconImage, 30, 15, item.getState(), progressRate);
 		icon.setImageBitmap(iconImage);
 		
 		

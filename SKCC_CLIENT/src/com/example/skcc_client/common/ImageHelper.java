@@ -15,11 +15,31 @@ import android.graphics.RectF;
 
 public class ImageHelper {
 
+	static float[] colorTransformRotten = {
+		            0.55f, 0, 0, 0, 0, 
+		            0, 0.55f, 0, 0, 0,
+		            0, 0, 0.55f, 0, 0, 
+		            0, 0, 0, 1f, 0};
+	static float[] colorTransformIncomplete = {
+		            0.9f, 0, 0, 0, 0, 
+		            0, 0.6f, 0, 0, 0,
+		            0, 0, 0.2f, 0, 0, 
+		            0, 0, 0, 1f, 0};
+
 	public ImageHelper() {
 		super();
 	}
 	
-	public static Bitmap getItemIcon(Context context, Bitmap bitmap, int borderRound, int borderWidth, int state, int progressRate) {
+	public static Bitmap getProductionListItemIcon(Context context, Bitmap bitmap, int borderRound, int borderWidth, int state) {
+
+		/////////////////////////////////////////////////////////////////////
+		// Set values
+		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
+		
+		return output;
+	}
+	
+	public static Bitmap getProductionItemIcon(Context context, Bitmap bitmap, int borderRound, int borderWidth, int state, int progressRate) {
 		
 		/////////////////////////////////////////////////////////////////////
 		// Set values
@@ -54,16 +74,6 @@ public class ImageHelper {
 		
 		/////////////////////////////////////////////////////////////////////
 		// Set color filter
-		float[] colorTransformRotten = {
-	            0.55f, 0, 0, 0, 0, 
-	            0, 0.55f, 0, 0, 0,
-	            0, 0, 0.55f, 0, 0, 
-	            0, 0, 0, 1f, 0};
-		float[] colorTransformIncomplete = {
-	            0.9f, 0, 0, 0, 0, 
-	            0, 0.6f, 0, 0, 0,
-	            0, 0, 0.2f, 0, 0, 
-	            0, 0, 0, 1f, 0};
 		ColorMatrix colorMatrix = new ColorMatrix();
 		colorMatrix.setSaturation(0f);
 		colorMatrix.set(colorTransformRotten);

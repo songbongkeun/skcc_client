@@ -36,7 +36,7 @@ public class InventoryGridItem extends LinearLayout {
 		
 		int imageId = context.getResources().getIdentifier(item.getImageName(), "drawable", context.getPackageName());
 		Bitmap iconImage = BitmapFactory.decodeResource(context.getResources(), imageId);
-		iconImage = ImageHelper.getItemIcon(context, iconImage, 30, 15, Constants.code.ITEM_STATE_FINISHED, 0);
+		iconImage = ImageHelper.getProductionItemIcon(context, iconImage, 30, 15, Constants.code.ITEM_STATE_FINISHED, 0);
 		icon.setImageBitmap(iconImage);
 		
 		

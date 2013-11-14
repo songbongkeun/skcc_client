@@ -18,6 +18,9 @@ public final class Constants {
         
         public static final int ITEM_PROGRESS_NOTHING		=  100;
         public static final int ITEM_PROGRESS_ROTTEN		= -100;
+        
+        public static final int NEW_PRODUCTION_STATE_OK		= 1;
+        public static final int NEW_PRODUCTION_STATE_NOT_OK	= 2;
     }
     
     public static final class rule {

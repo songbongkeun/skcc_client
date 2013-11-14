@@ -56,22 +56,6 @@ public class ProductionDialog extends DialogFragment {
 		
 		View view = inflater.inflate(R.layout.popup_new_production, container, false);
 		
-		// Player id
-		TextView playerId = (TextView) view.findViewById(R.id.playerId);
-		playerId.setText(Global.getInstance().player.getId());
-		
-		// Level
-		TextView level = (TextView) view.findViewById(R.id.playerLevel);
-		level.setText("Lv. " + Global.getInstance().player.getLevel());
-		
-		// Money
-		TextView money = (TextView) view.findViewById(R.id.playerMoney);
-		money.setText("£Ü" + Global.getInstance().player.getMoney());
-		
-		// Action Point
-		TextView ap = (TextView) view.findViewById(R.id.playerAP);
-		ap.setText(Global.getInstance().player.getActionPoint() + " AP");
-		
 		// List
 		int listViewId = R.id.newProductionList;
 		ListView listView = (ListView) view.findViewById(listViewId);
