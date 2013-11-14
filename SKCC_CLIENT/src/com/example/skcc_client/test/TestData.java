@@ -56,7 +56,7 @@ public class TestData {
 		itemList.put(item9001.getId(), item9001);
 		
 		// Player
-		Global.getInstance().player = new Player("park108", "종길", 64000, 100, 1000);
+		Global.getInstance().player = new Player("힘내자!", "skcnc", 700, 10, 1000);
 		
 		// Inventory Item
 		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;

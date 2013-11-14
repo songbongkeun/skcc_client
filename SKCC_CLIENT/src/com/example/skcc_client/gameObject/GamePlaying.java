@@ -82,6 +82,9 @@ public class GamePlaying {
 
 		// Clean rotten item
 		removeItemFromProduction(item, position);
+
+		// Refresh player info
+		Global.getInstance().playerInfoLayout.refreshInfo();
 		
 		Log.d("PLAYING", "Rotten item removed : " + position);
 	}
@@ -96,6 +99,9 @@ public class GamePlaying {
 		
 		// Clean got item
 		removeItemFromProduction(item, position);
+		
+		// Refresh player info
+		Global.getInstance().playerInfoLayout.refreshInfo();
 
 		Log.d("PLAYING", "Finished item get : " + position);
 	}
@@ -138,6 +144,9 @@ public class GamePlaying {
 			// Add new production
 			ArrayList<ProductionItem> list = Global.getInstance().productionList;
 			list.set(position, productionItem);
+			
+			// Refresh player info
+			Global.getInstance().playerInfoLayout.refreshInfo();
 		}
 		
 		return returnCode;

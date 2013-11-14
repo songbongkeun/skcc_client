@@ -6,7 +6,8 @@
     
     <string name="null_string"></string>
     
-    <string name="label_level">LV. </string>
+    <string name="label_level">LV.</string>
+    <string name="ap_separator">/</string>
     
     <string name="label_inventory">인벤토리</string>
     <string name="label_production">생산</string>

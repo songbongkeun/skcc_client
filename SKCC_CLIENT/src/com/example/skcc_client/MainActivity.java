@@ -2,9 +2,12 @@ package com.example.skcc_client;
 
 import java.util.Locale;
 
+import com.example.skcc_client.common.Global;
 import com.example.skcc_client.test.TestData;
+import com.example.skcc_client.ui.player.PlayerInfoLayout;
 
 import android.app.ActionBar;
+import android.app.ActionBar.LayoutParams;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -19,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -33,14 +37,20 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		
 		setContentView(R.layout.activity_main);
 		
+		// TODO: Test Code
+		TestData test = new TestData();
+		test.generateTestData();
+		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setLogo(R.drawable.title_padding);
-		actionBar.setCustomView(R.layout.titlebar_user_info);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_CUSTOM);
-		
-		ImageView a = new ImageView(getApplicationContext());
+
+		// Attach player info view
+		Global.getInstance().playerInfoLayout = (PlayerInfoLayout)LayoutInflater.from(this).inflate(R.layout.titlebar_player_info, null);
+		Global.getInstance().playerInfoLayout.refreshInfo();
+		actionBar.setCustomView(Global.getInstance().playerInfoLayout);
 		
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -78,11 +88,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			}
 			actionBar.addTab(newTab);
 		}
-		
-		
-		// TODO: Test Code
-		TestData test = new TestData();
-		test.generateTestData();
 	}
 	
 	@Override

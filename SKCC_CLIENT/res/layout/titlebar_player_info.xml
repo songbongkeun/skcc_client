@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.skcc_client.ui.player.PlayerInfoLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/titlebar_user_info"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
@@ -9,13 +10,15 @@
 	>
 	
     <LinearLayout
-		android:layout_width="0dip"
+        android:id="@+id/playerInfo1"
+		android:layout_width="90dp"
 		android:layout_height="fill_parent"
-		android:layout_weight="3"
+		android:layout_weight="1"
 		android:orientation="vertical"
 		>
 	
 	    <RelativeLayout
+        	android:id="@+id/playerInfo11"
 			android:layout_width="fill_parent"
 			android:layout_height="0dip"
 			android:layout_weight="1"
@@ -25,6 +28,7 @@
 		 	    android:id="@+id/playerInfoLevelLabel"
 				android:layout_height="match_parent"
 				android:layout_width="wrap_content"
+				android:paddingRight="5dp"
 				android:text="@string/label_level"
 				android:textSize="@dimen/titlebar_textSize_M"
 				android:textColor="@color/titlebar_lv_font_color"
@@ -36,7 +40,6 @@
 		 	    android:id="@+id/playerInfoLevel"
 				android:layout_height="match_parent"
 				android:layout_width="wrap_content"
-				android:text=" 8"
 				android:textSize="@dimen/titlebar_textSize_M"
 				android:textColor="@color/titlebar_lv_font_color"
 				android:textStyle="bold"
@@ -47,6 +50,7 @@
 
 	
 	    <LinearLayout
+        	android:id="@+id/playerInfo12"
 			android:layout_width="fill_parent"
 			android:layout_height="0dip"
 			android:layout_weight="1"
@@ -62,9 +66,12 @@
 	</LinearLayout>
 	
     <LinearLayout
-		android:layout_width="0dip"
+        android:id="@+id/playerInfo2"
+		android:layout_width="150dp"
 		android:layout_height="fill_parent"
-		android:layout_weight="5"
+		android:layout_weight="1"
+		android:paddingLeft="10dp"
+		android:paddingRight="10dp"
 		android:orientation="vertical"
 		>
 			
@@ -72,7 +79,6 @@
 	 	    android:id="@+id/playerId"
 			android:layout_height="match_parent"
 			android:layout_width="match_parent"
-			android:text="에스케이씨앤씨"
 			android:textSize="@dimen/titlebar_textSize_L"
 			android:textColor="@color/titlebar_player_id_font_color"
 			android:textStyle="bold"
@@ -81,13 +87,15 @@
 	</LinearLayout>
 	
     <LinearLayout
-		android:layout_width="0dip"
+        android:id="@+id/playerInfo3"
+		android:layout_width="100dp"
 		android:layout_height="fill_parent"
-		android:layout_weight="4"
+		android:layout_weight="1"
 		android:orientation="vertical"
 		>
 	
 	    <RelativeLayout
+        	android:id="@+id/playerInfo31"
 			android:layout_width="fill_parent"
 			android:layout_height="0dip"
 			android:layout_weight="1"
@@ -96,16 +104,16 @@
 			    android:id="@+id/iconMoneyInverse"
 			    android:src="@drawable/icon_money_inverse"
 			    android:contentDescription="@string/null_string"
-			    android:padding="3dp"
+			    android:paddingTop="2dp"
+			    android:layout_marginRight="5dp"
 			    android:layout_height="fill_parent"
 			    android:layout_width="wrap_content"
 				/>
 			
 		 	<TextView
-		 	    android:id="@+id/playerInfoMoney"
+		 	    android:id="@+id/playerMoney"
 				android:layout_height="match_parent"
 				android:layout_width="wrap_content"
-				android:text="100,000,000"
 				android:textSize="@dimen/titlebar_textSize_S"
 				android:textColor="@color/titlebar_player_money_font_color"
 				android:textStyle="bold"
@@ -115,6 +123,7 @@
 		 	
 		</RelativeLayout>
 	    <RelativeLayout
+        	android:id="@+id/playerInfo32"
 			android:layout_width="fill_parent"
 			android:layout_height="0dip"
 			android:layout_weight="1"
@@ -123,16 +132,16 @@
 			    android:id="@+id/iconAPInverse"
 			    android:src="@drawable/icon_ap_inverse"
 			    android:contentDescription="@string/null_string"
-			    android:padding="3dp"
+			    android:paddingTop="2dp"
+			    android:layout_marginRight="3dp"
 			    android:layout_height="fill_parent"
 			    android:layout_width="wrap_content"
 				/>
 			
 		 	<TextView
-		 	    android:id="@+id/playerInfoCurrentAP"
+		 	    android:id="@+id/playerCurrentAP"
 				android:layout_height="match_parent"
 				android:layout_width="wrap_content"
-				android:text="90"
 				android:textSize="@dimen/titlebar_textSize_S"
 				android:textColor="@color/titlebar_player_current_ap_font_color"
 			    android:paddingRight="3dp"
@@ -146,19 +155,18 @@
 				android:layout_height="match_parent"
 				android:layout_width="wrap_content"
 			    android:paddingRight="3dp"
-				android:text="/"
+				android:text="@string/ap_separator"
 				android:textSize="@dimen/titlebar_textSize_S"
 				android:textColor="@color/titlebar_player_ap_separator_font_color"
 				android:textStyle="bold"
 				android:gravity="bottom"
-				android:layout_toRightOf="@id/playerInfoCurrentAP"
+				android:layout_toRightOf="@id/playerCurrentAP"
 		 	    />
 			
 		 	<TextView
-		 	    android:id="@+id/playerInfoMaxAP"
+		 	    android:id="@+id/playerMaxAP"
 				android:layout_height="match_parent"
 				android:layout_width="wrap_content"
-				android:text="100"
 				android:textSize="@dimen/titlebar_textSize_S"
 				android:textColor="@color/titlebar_player_max_ap_font_color"
 				android:textStyle="bold"
@@ -167,5 +175,5 @@
 		 	    />
 		</RelativeLayout>
 	</LinearLayout>
+</com.example.skcc_client.ui.player.PlayerInfoLayout>
 
-</LinearLayout>

@@ -30,7 +30,7 @@ public class Player {
 		
 		this.id = id;
 		this.name = name;
-		this.level = Global.getInstance().levelRule.getLevel(exp);
+		this.level = getLevel();
 		this.exp = exp;
 		this.actionPoint = actionPoint;
 		this.money = money;
@@ -45,7 +45,7 @@ public class Player {
 	}
 
 	public int getLevel() {
-		return level;
+		return Global.getInstance().levelRule.getLevel(exp);
 	}
 
 	public long getExp() {

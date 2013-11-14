@@ -14,9 +14,15 @@
 
     <!-- Application theme. -->
     <style name="AppTheme"  parent="android:Theme.Holo.Light.DarkActionBar">
+	    <item name="android:windowTitleBackgroundStyle">@style/windowTitleBackground</item>
 	    <item name="android:actionBarTabBarStyle">@style/actionBarTabBarStyle</item>
 	    <item name="android:actionBarTabStyle">@style/actionBarTabStyle</item>
     </style>
+    
+	<style name="windowTitleBackground">
+		<item name="android:background">@android:color/transparent</item>
+		<item name="android:padding">0px</item>
+	</style>
     
 	<style name="actionBarTabBarStyle">
 		<item name="android:showDividers">none</item>

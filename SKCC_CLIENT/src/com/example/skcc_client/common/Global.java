@@ -10,6 +10,7 @@ import com.example.skcc_client.gameObject.ProductionItem;
 import com.example.skcc_client.gameObject.Player;
 import com.example.skcc_client.gameRule.LevelRule;
 import com.example.skcc_client.gameRule.ProductionRule;
+import com.example.skcc_client.ui.player.PlayerInfoLayout;
 
 /**
  * 전역 변수 관리 클래스
@@ -27,6 +28,8 @@ public class Global {
 	public Player player;
 	
 	public GamePlaying playing;
+	
+	public PlayerInfoLayout playerInfoLayout;
 
 	/**
 	 * Constructor
