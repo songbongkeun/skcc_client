@@ -78,9 +78,9 @@ public class ProductionListItem extends RelativeLayout {
 		// Set item name to TextView
 		TextView name = new TextView(context);
 		name.setTypeface(name.getTypeface(), Typeface.BOLD);
-		name.setHeight(context.getResources().getDimensionPixelSize(R.dimen.new_production_popup_text_height));
+		name.setHeight(context.getResources().getDimensionPixelSize(R.dimen.popup_text_height));
 		name.setText(item.getName());
-		name.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.new_production_popup_text_size_S));
+		name.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.popup_text_size_S));
 		name.setTextColor(textColor);
 		name.setGravity(Gravity.LEFT | Gravity.BOTTOM);
 		name.setId(ID_ITEM_NAME);
@@ -103,9 +103,9 @@ public class ProductionListItem extends RelativeLayout {
 		
 		TextView costTime = new TextView(context);
 		costTime.setTypeface(name.getTypeface(), Typeface.BOLD);
-		costTime.setHeight(context.getResources().getDimensionPixelSize(R.dimen.new_production_popup_text_height));
+		costTime.setHeight(context.getResources().getDimensionPixelSize(R.dimen.popup_text_height));
 		costTime.setText(TextHelper.remainTime(t));
-		costTime.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.new_production_popup_text_size_S));
+		costTime.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.popup_text_size_S));
 		costTime.setTextColor(textColor);
 		costTime.setGravity(Gravity.LEFT | Gravity.BOTTOM);
 		costTime.setId(ID_COST_TIME);
@@ -133,9 +133,9 @@ public class ProductionListItem extends RelativeLayout {
 		
 		TextView costMoney = new TextView(context);
 		costMoney.setTypeface(name.getTypeface(), Typeface.BOLD);
-		costMoney.setHeight(context.getResources().getDimensionPixelSize(R.dimen.new_production_popup_text_height));
+		costMoney.setHeight(context.getResources().getDimensionPixelSize(R.dimen.popup_text_height));
 		costMoney.setText(Long.toString(m));
-		costMoney.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.new_production_popup_text_size_S));
+		costMoney.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.popup_text_size_S));
 		costMoney.setTextColor(textColor);
 		costMoney.setGravity(Gravity.LEFT | Gravity.BOTTOM);
 		costMoney.setId(ID_COST_MONEY);
@@ -163,9 +163,9 @@ public class ProductionListItem extends RelativeLayout {
 		
 		TextView costAP = new TextView(context);
 		costAP.setTypeface(name.getTypeface(), Typeface.BOLD);
-		costAP.setHeight(context.getResources().getDimensionPixelSize(R.dimen.new_production_popup_text_height));
+		costAP.setHeight(context.getResources().getDimensionPixelSize(R.dimen.popup_text_height));
 		costAP.setText(Integer.toString(ap));
-		costAP.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.new_production_popup_text_size_S));
+		costAP.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.popup_text_size_S));
 		costAP.setTextColor(textColor);
 		costAP.setGravity(Gravity.LEFT | Gravity.BOTTOM);
 		costAP.setId(ID_COST_AP);
@@ -276,67 +276,66 @@ public class ProductionListItem extends RelativeLayout {
 		this.addView(icon);
 		
 		// name
-		RelativeLayout.LayoutParams nameParams = new RelativeLayout.LayoutParams(200, 50);
+		RelativeLayout.LayoutParams nameParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50);
 		nameParams.addRule(RelativeLayout.RIGHT_OF, ID_ITEM_ICON);
 		name.setLayoutParams(nameParams);
 		this.addView(name);
 		
 		// cost time icon
 		RelativeLayout.LayoutParams costTimeIconParams = new RelativeLayout.LayoutParams(50, 50);
-		costTimeIconParams.addRule(RelativeLayout.RIGHT_OF, ID_ITEM_ICON);
 		costTimeIconParams.addRule(RelativeLayout.BELOW, ID_ITEM_NAME);
+		costTimeIconParams.addRule(RelativeLayout.RIGHT_OF, ID_ITEM_ICON);
 		costTimeIcon.setLayoutParams(costTimeIconParams);
 		this.addView(costTimeIcon);
 		
 		// cost time
-		RelativeLayout.LayoutParams costTimeParams = new RelativeLayout.LayoutParams(150, 50);
-		costTimeParams.addRule(RelativeLayout.RIGHT_OF, ID_COST_TIME_ICON);
+		RelativeLayout.LayoutParams costTimeParams = new RelativeLayout.LayoutParams(120, 50);
 		costTimeParams.addRule(RelativeLayout.BELOW, ID_ITEM_NAME);
+		costTimeParams.addRule(RelativeLayout.RIGHT_OF, ID_COST_TIME_ICON);
 		costTime.setLayoutParams(costTimeParams);
 		this.addView(costTime);
 		
 		// cost money icon
 		RelativeLayout.LayoutParams costMoneyIconParams = new RelativeLayout.LayoutParams(50, 50);
-		costMoneyIconParams.addRule(RelativeLayout.RIGHT_OF, ID_ITEM_ICON);
-		costMoneyIconParams.addRule(RelativeLayout.BELOW, ID_COST_TIME_ICON);
+		costMoneyIconParams.addRule(RelativeLayout.BELOW, ID_ITEM_NAME);
+		costMoneyIconParams.addRule(RelativeLayout.RIGHT_OF, ID_COST_TIME);
 		costMoneyIcon.setLayoutParams(costMoneyIconParams);
 		this.addView(costMoneyIcon);
 		
 		// cost money
-		RelativeLayout.LayoutParams costMoneyParams = new RelativeLayout.LayoutParams(150, 50);
+		RelativeLayout.LayoutParams costMoneyParams = new RelativeLayout.LayoutParams(70, 50);
+		costMoneyParams.addRule(RelativeLayout.BELOW, ID_ITEM_NAME);
 		costMoneyParams.addRule(RelativeLayout.RIGHT_OF, ID_COST_MONEY_ICON);
-		costMoneyParams.addRule(RelativeLayout.BELOW, ID_COST_TIME);
 		costMoney.setLayoutParams(costMoneyParams);
 		this.addView(costMoney);
 		
 		// cost AP icon
 		RelativeLayout.LayoutParams costAPIconParams = new RelativeLayout.LayoutParams(50, 50);
-		costAPIconParams.addRule(RelativeLayout.RIGHT_OF, ID_ITEM_ICON);
-		costAPIconParams.addRule(RelativeLayout.BELOW, ID_COST_MONEY_ICON);
+		costAPIconParams.addRule(RelativeLayout.BELOW, ID_ITEM_NAME);
+		costAPIconParams.addRule(RelativeLayout.RIGHT_OF, ID_COST_MONEY);
 		costAPIcon.setLayoutParams(costAPIconParams);
 		this.addView(costAPIcon);
 		
 		// cost AP
-		RelativeLayout.LayoutParams costAPParams = new RelativeLayout.LayoutParams(150, 50);
+		RelativeLayout.LayoutParams costAPParams = new RelativeLayout.LayoutParams(50, 50);
+		costAPParams.addRule(RelativeLayout.BELOW, ID_ITEM_NAME);
 		costAPParams.addRule(RelativeLayout.RIGHT_OF, ID_COST_AP_ICON);
-		costAPParams.addRule(RelativeLayout.BELOW, ID_COST_MONEY);
 		costAP.setLayoutParams(costAPParams);
 		this.addView(costAP);
 
 		// cost item 1
 		if(costItemId1 != 0) {
-			RelativeLayout.LayoutParams costItem1Params = new RelativeLayout.LayoutParams(90, 90);
-			costItem1Params.addRule(RelativeLayout.RIGHT_OF, ID_ITEM_NAME);
-			costItem1Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_TIME);
-			costItem1Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_MONEY);
-			costItem1Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_AP);
+			RelativeLayout.LayoutParams costItem1Params = new RelativeLayout.LayoutParams(100, 100);
+			costItem1Params.addRule(RelativeLayout.BELOW, ID_COST_TIME_ICON);
+			costItem1Params.addRule(RelativeLayout.RIGHT_OF, ID_ITEM_ICON);
 			costItem1.setLayoutParams(costItem1Params);
 			this.addView(costItem1);
 		}
 
 		// cost item 2
 		if(costItemId2 != 0) {
-			RelativeLayout.LayoutParams costItem2Params = new RelativeLayout.LayoutParams(90, 90);
+			RelativeLayout.LayoutParams costItem2Params = new RelativeLayout.LayoutParams(100, 100);
+			costItem2Params.addRule(RelativeLayout.BELOW, ID_COST_TIME_ICON);
 			costItem2Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_ITEM1);
 			costItem2.setLayoutParams(costItem2Params);
 			this.addView(costItem2);
@@ -344,21 +343,18 @@ public class ProductionListItem extends RelativeLayout {
 
 		// cost item 3
 		if(costItemId3 != 0) {
-			RelativeLayout.LayoutParams costItem3Params = new RelativeLayout.LayoutParams(90, 90);
-			costItem3Params.addRule(RelativeLayout.RIGHT_OF, ID_ITEM_NAME);
-			costItem3Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_TIME);
-			costItem3Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_MONEY);
-			costItem3Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_AP);
-			costItem3Params.addRule(RelativeLayout.BELOW, ID_COST_ITEM1);
+			RelativeLayout.LayoutParams costItem3Params = new RelativeLayout.LayoutParams(100, 100);
+			costItem3Params.addRule(RelativeLayout.BELOW, ID_COST_TIME_ICON);
+			costItem3Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_ITEM2);
 			costItem3.setLayoutParams(costItem3Params);
 			this.addView(costItem3);
 		}
 
 		// cost item 4
 		if(costItemId4 != 0) {
-			RelativeLayout.LayoutParams costItem4Params = new RelativeLayout.LayoutParams(90, 90);
+			RelativeLayout.LayoutParams costItem4Params = new RelativeLayout.LayoutParams(100, 100);
+			costItem4Params.addRule(RelativeLayout.BELOW, ID_COST_TIME_ICON);
 			costItem4Params.addRule(RelativeLayout.RIGHT_OF, ID_COST_ITEM3);
-			costItem4Params.addRule(RelativeLayout.BELOW, ID_COST_ITEM2);
 			costItem4.setLayoutParams(costItem4Params);
 			this.addView(costItem4);
 		}

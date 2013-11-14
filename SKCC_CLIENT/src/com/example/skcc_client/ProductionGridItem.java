@@ -86,13 +86,13 @@ public class ProductionGridItem extends LinearLayout {
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Set item name to TextView
 		TextView name = new TextView(context);
-		name.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_height));
+		name.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventory_item_name_height));
 		
 		if(0 != item.getId()) {
 			
 			name.setTypeface(name.getTypeface(), Typeface.BOLD);
 			name.setText(item.getName());
-			name.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
+			name.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventory_item_name_textSize));
 			name.setTextColor(stateColor);
 			name.setGravity(Gravity.LEFT | Gravity.BOTTOM);
 		}
@@ -101,13 +101,13 @@ public class ProductionGridItem extends LinearLayout {
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Set remain time to TextView
 		TextView remains = new TextView(context);
-		remains.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_height));
+		remains.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventory_item_name_height));
 		
 		if(0 != item.getId()) {
 			
 			remains.setTypeface(remains.getTypeface(), Typeface.BOLD);
 			remains.setText(item.getRemainTime());
-			remains.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
+			remains.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventory_item_name_textSize));
 			remains.setTextColor(stateColor);
 			remains.setGravity(Gravity.LEFT | Gravity.TOP);
 		}

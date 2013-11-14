@@ -22,8 +22,19 @@
     <color name="tapstrip_font_color">#ff000000</color>
     <color name="tapstrip_font_color_off">#ffafafaf</color>
     
-    <color name="popup_border_color2">#ff32b502</color>
-    <color name="popup_background_color2">#ffffffff</color>
+    <color name="popup1_border_color">#ffff6600</color>
+    <color name="popup1_background_color">#ffffffff</color>
+    <color name="popup1_title_text_color">#ffffffff</color>
+    <color name="popup1_title_background_color">#ffff6600</color>
+    <color name="popup1_label_text_color1">#ff5555aa</color>
+    <color name="popup1_label_text_color2">#ff555555</color>
+    <color name="popup1_button_text_color">#ffffff</color>
+    <color name="popup1_exp_label_text_color">#ff32b502</color>
+    
+    <color name="popup2_border_color">#ff32b502</color>
+    <color name="popup2_background_color">#ffffffff</color>
+    <color name="popup2_title_text_color">#ffffffff</color>
+    <color name="popup2_title_background_color">#ff32b502</color>
     
     <color name="icon_rounding">#ff424242</color>
     <color name="item_nothing">#ff000000</color>

@@ -18,13 +18,14 @@
     <string name="state_finished">Finished</string>
     <string name="state_rotten">Rotten</string>
 
-    <string name="item_company_id">Company Id</string>
-    <string name="item_id">Id</string>
-    <string name="item_type">Type</string>
-    <string name="item_name">Name</string>
-    <string name="item_description">Descriptiopn</string>
+    <string name="popup_image_description">Item Image</string>
     
-    <string name="inventory_item_quantity">Quantity</string>
-    
-    <string name="item_imange_description">Item Image</string>
+    <string name="popup_label_item_detail_quantity">재고:</string>
+    <string name="popup_label_item_detail_type">타입:</string>
+    <string name="popup_label_item_detail_use_text1">사용시</string>
+    <string name="popup_label_item_detail_use_text2">exp.</string>
+    <string name="popup_label_item_detail_use_text3">획득</string>
+    <string name="popup_label_item_detail_use_button_text">사용</string>
+
+    <string name="popup2_title">생산</string>
 </resources>

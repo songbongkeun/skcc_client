@@ -44,9 +44,9 @@ public class InventoryGridItem extends LinearLayout {
 		// Set item name to TextView
 		TextView name = new TextView(context);
 		name.setTypeface(name.getTypeface(), Typeface.BOLD);
-		name.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_height));
+		name.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventory_item_name_height));
 		name.setText(item.getName());
-		name.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
+		name.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventory_item_name_textSize));
 		name.setTextColor(context.getResources().getColor(R.color.item_finished));
 		name.setGravity(Gravity.LEFT | Gravity.BOTTOM);
 		
@@ -55,9 +55,9 @@ public class InventoryGridItem extends LinearLayout {
 		// Set item qunatity to TextView
 		TextView qunatity = new TextView(context);
 		qunatity.setTypeface(name.getTypeface(), Typeface.BOLD);
-		qunatity.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_height));
+		qunatity.setHeight(context.getResources().getDimensionPixelSize(R.dimen.inventory_item_name_height));
 		qunatity.setText("" + item.getQuantity());
-		qunatity.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventoryItem_name_textSize));
+		qunatity.setTextSize(context.getResources().getDimensionPixelSize(R.dimen.inventory_item_name_textSize));
 		qunatity.setTextColor(context.getResources().getColor(R.color.item_finished));
 		qunatity.setGravity(Gravity.RIGHT | Gravity.TOP);
 		

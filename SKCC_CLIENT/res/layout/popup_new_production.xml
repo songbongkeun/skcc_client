@@ -3,12 +3,26 @@
     android:layout_height="match_parent"
 	android:background="@drawable/popup_border2"
 	>
+	
+	<TextView
+      	android:id="@+id/newProductionTitle"
+      	android:layout_width="@dimen/popup_width"
+      	android:layout_height="@dimen/popup_title_height"
+      	android:padding="@dimen/popup_text_padding"
+      	android:text="@string/popup2_title"
+      	android:textColor="@color/popup2_title_text_color"
+		android:textStyle="bold"
+		android:textSize="@dimen/titlebar_textSize_L"
+		android:gravity="left|center_vertical"
+      	android:background="@color/popup2_title_background_color"
+      	/>
  	
 	<ListView
 		android:id="@+id/newProductionList"
-		android:layout_height="420dp"
+		android:layout_height="@dimen/popup_height"
 		android:layout_width="match_parent"
 		android:padding="5dp"
+		android:layout_below="@id/newProductionTitle"
 		/>
          
 </RelativeLayout>

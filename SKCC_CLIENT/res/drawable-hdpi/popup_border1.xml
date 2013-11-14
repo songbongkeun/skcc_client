@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+	<solid android:color="@color/popup1_background_color" />
+	<stroke android:width="@dimen/popup_border_width" android:color="@color/popup1_border_color" />
+</shape>

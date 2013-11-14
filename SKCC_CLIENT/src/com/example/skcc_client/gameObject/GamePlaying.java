@@ -78,6 +78,54 @@ public class GamePlaying {
 		Global.getInstance().player.addExp(getExp);
 	}
 	
+	private void getExpFromUseItem(Item item) {
+		
+		long getExp = Global.getInstance().productionRule.getUseExp(item.getId());
+		Global.getInstance().player.addExp(getExp);
+	}
+	
+	private void getAPFromUseItem(Item item) {
+		
+		Player player = Global.getInstance().player;
+		
+		int currentAP = player.getActionPoint();
+		int maxAP = Global.getInstance().levelRule.getMaxActionPoint(player.getLevel());
+		int getAP = Global.getInstance().productionRule.getUseAP(item.getId());
+		
+		if(maxAP < currentAP + getAP) {
+			player.addActionPoint(maxAP - currentAP);
+		}
+		else {
+			player.addActionPoint(getAP);
+		}
+	}
+	
+	/**
+	 * 인벤토리의 아이템을 사용하여 행동력과 경험치를 얻는다.
+	 * @param item	사용할 아이템
+	 */
+	public void useInventoryItem(Item item) {
+
+		// Remove use item
+		removeItemFromInventory(item, 1);
+		
+		// Get exp from finished item
+		getExpFromUseItem(item);
+		
+		// Get AP from finished item
+		getAPFromUseItem(item);
+
+		// Refresh player info
+		Global.getInstance().playerInfoLayout.refreshInfo();
+		
+		Log.d("PLAYING", "Use Inventory Item : " + item.getId());
+	}
+	
+	/**
+	 * 생산의 썩은 아이템을 치운다
+	 * @param item		썩은 아이템
+	 * @param position	썩은 아이템의 위치
+	 */
 	public void cleanRottenItem(Item item, int position) {
 
 		// Clean rotten item
@@ -89,6 +137,11 @@ public class GamePlaying {
 		Log.d("PLAYING", "Rotten item removed : " + position);
 	}
 	
+	/**
+	 * 생산의 완료된 아이템을 인벤토리에 넣고, 경험치를 얻는다.
+	 * @param item		생산 완료된 아이템
+	 * @param position	생산 완료된 아이템의 위치
+	 */
 	public void getFinishedItem(Item item, int position) {
 		
 		// Add item to inventory
@@ -106,6 +159,12 @@ public class GamePlaying {
 		Log.d("PLAYING", "Finished item get : " + position);
 	}
 	
+	/**
+	 * 새로운 생산을 시작한다.
+	 * @param item		생산할 아이템
+	 * @param position	아이템을 생산할 위치
+	 * @return
+	 */
 	public int startNewProduction(Item item, int position) {
 		
 		ProductionRule rule = Global.getInstance().productionRule;
