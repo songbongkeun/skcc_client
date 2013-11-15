@@ -5,16 +5,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.example.dbio.adapter.InventoryDbAdapter;
 import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameRule.ProductionRule;
 
 public class GamePlaying {
+
+	private Context mContext;
 	
-	public GamePlaying() {
+	public GamePlaying(Context context) {
+		
 		super();
+		mContext = context;
 	}
 	
 	private void removeItemFromProduction(Item item, int position) {
@@ -51,6 +57,8 @@ public class GamePlaying {
 			InventoryItem producedItem = new InventoryItem(item, 1);
 			Global.getInstance().inventoryList.add(producedItem);
 		}
+		
+		InventoryDbAdapter inventoryDB = new InventoryDbAdapter(mContext);
 	}
 	
 	private void removeItemFromInventory(Item item, int quantity) {

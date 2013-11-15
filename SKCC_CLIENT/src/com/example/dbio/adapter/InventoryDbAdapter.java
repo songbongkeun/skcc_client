@@ -16,7 +16,7 @@ import com.example.dbio.data.InventoryInfo;
 
 public class InventoryDbAdapter {
 	
-	private static final String TAG = InventoryDbAdapter.class.getSimpleName();
+	private static final String TAG = "INVENTORY";
 	
 	// declare database fields
 	public static final String TBL_INFO = "inventory";

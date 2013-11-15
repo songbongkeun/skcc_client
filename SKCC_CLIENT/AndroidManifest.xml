@@ -8,13 +8,33 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="18" />
 
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:debuggable="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:logo="@drawable/ic_action_person"
         android:theme="@style/AppTheme" >
+        
+        <activity
+            android:name="com.example.preprocess.IntroActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
         <activity
             android:name="com.example.skcc_client.MainActivity"
             android:label="@string/app_name"
@@ -25,6 +45,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="com.example.skcc_client.InventoryTab"
             android:label="@string/label_inventory"
@@ -54,12 +75,5 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-
-    <uses-feature
-        android:name="android.hardware.nfc"
-        android:required="true" />
 
 </manifest>

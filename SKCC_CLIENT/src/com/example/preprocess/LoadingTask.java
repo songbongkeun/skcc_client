@@ -12,7 +12,7 @@ import com.example.skcc_client.gameObject.InventoryItem;
 import com.example.skcc_client.gameObject.Item;
 import com.example.skcc_client.gameObject.Player;
 import com.example.skcc_client.gameObject.ProductionItem;
-import com.example.skcc_client.test.TestData;
+import com.example.skcc_client.gameObject.GamePlaying;
 
 import android.content.Context;
 import android.database.SQLException;
@@ -93,14 +93,16 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 	private void downloadResources() {
 		
 		Log.d(TAG, "downloadResources");
-		TestData testData = new TestData();
 		
 		UserInfoCreator usercreator = new UserInfoCreator(mAppContext);
 		ItemCreator itemcreator = new ItemCreator(mAppContext);
 		InventoryCreator ivencreator = new InventoryCreator(mAppContext);
 		ProductionCreator productcreator = new ProductionCreator(mAppContext);
-		
-		testData.generatorTestRuleData();
+
+		// Rules
+		Global.getInstance().levelRule.generateTestRule(); // Level
+		Global.getInstance().productionRule.generateTestRule(); // Production
+		Global.getInstance().playing = new GamePlaying(mAppContext); // Production
 		
 		try{
 			usercreator.open();
