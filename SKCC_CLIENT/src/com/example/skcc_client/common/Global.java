@@ -18,6 +18,12 @@ import com.example.skcc_client.ui.player.PlayerInfoLayout;
  */
 public class Global {
 	
+	public static final String THIS_USER = "cheonjoy";
+	public static final int USER_INIT_COUNT = 6;
+	public static final int ITEM_INIT_COUNT = 13;
+	public static final int INVENTORY_INIT_COUNT = 12;
+	public static final int PRODUCTION_INIT_COUNT = 8;
+	
 	public Hashtable<Integer, Item> itemList;
 	public ArrayList<InventoryItem> inventoryList;
 	public ArrayList<ProductionItem> productionList;

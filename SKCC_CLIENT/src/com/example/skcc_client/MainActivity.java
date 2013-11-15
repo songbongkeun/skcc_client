@@ -3,7 +3,6 @@ package com.example.skcc_client;
 import java.util.Locale;
 
 import com.example.skcc_client.common.Global;
-import com.example.skcc_client.test.TestData;
 import com.example.skcc_client.ui.player.PlayerInfoLayout;
 
 import android.app.ActionBar;
@@ -32,10 +31,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_main);
-		
-		// TODO: Test Code
-		TestData test = new TestData();
-		test.generateTestData();
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
