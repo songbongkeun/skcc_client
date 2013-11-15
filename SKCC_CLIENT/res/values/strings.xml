@@ -3,29 +3,24 @@
 
     <string name="app_name">생산게임</string>
     <string name="action_settings">Settings</string>
-    
     <string name="null_string"></string>
-    
     <string name="label_level">LV.</string>
     <string name="ap_separator">/</string>
-    
     <string name="label_inventory">인벤토리</string>
     <string name="label_production">생산</string>
     <string name="label_quest">퀘스트</string>
     <string name="label_nfc">NFC</string>
-    
     <string name="state_producing">Producing</string>
     <string name="state_finished">Finished</string>
     <string name="state_rotten">Rotten</string>
-
     <string name="popup_image_description">Item Image</string>
-    
     <string name="popup_label_item_detail_quantity">재고:</string>
     <string name="popup_label_item_detail_type">타입:</string>
     <string name="popup_label_item_detail_use_text1">사용시</string>
     <string name="popup_label_item_detail_use_text2">exp.</string>
     <string name="popup_label_item_detail_use_text3">획득</string>
     <string name="popup_label_item_detail_use_button_text">사용</string>
-
     <string name="popup2_title">생산</string>
+    <string name="title_activity_nfc">NFCActivity</string>
+
 </resources>

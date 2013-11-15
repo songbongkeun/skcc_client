@@ -55,4 +55,14 @@ public class Global {
 		if (instance == null) instance = new Global();
 		return instance;
 	}
+	
+	public void addInventoryItem(InventoryItem inventoryItem) {
+		for(InventoryItem existItem : inventoryList) {
+			if(existItem.getId() == inventoryItem.getId()) {
+				existItem.setQunatity(existItem.getQuantity() + inventoryItem.getQuantity());
+				return;
+			}
+		}
+		inventoryList.add(inventoryItem);
+	}
 }

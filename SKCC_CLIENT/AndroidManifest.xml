@@ -10,14 +10,15 @@
 
     <application
         android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:debuggable="true" android:logo="@drawable/ic_action_person" android:icon="@drawable/ic_launcher">
+        android:logo="@drawable/ic_action_person"
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.skcc_client.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,23 +28,38 @@
         <activity
             android:name="com.example.skcc_client.InventoryTab"
             android:label="@string/label_inventory"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.skcc_client.ProductionTab"
-            android:label="@string/label_production" 
-            android:screenOrientation="portrait">
+            android:label="@string/label_production"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.skcc_client.QuestTab"
-            android:label="@string/label_quest" 
-            android:screenOrientation="portrait">
+            android:label="@string/label_quest"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.skcc_client.NFCTab"
-            android:label="@string/label_nfc" 
-            android:screenOrientation="portrait">
+            android:label="@string/label_nfc"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.skcc_client.NFCActivity"
+            android:label="@string/title_activity_nfc" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
 </manifest>

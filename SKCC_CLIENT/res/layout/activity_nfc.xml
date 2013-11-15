@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".NFCActivity" >
+
+<TextView
+      	android:id="@+id/inventoryPopupName"
+      	android:layout_width="@dimen/popup_width"
+      	android:layout_height="@dimen/popup_title_height"
+      	android:padding="@dimen/popup_text_padding"
+      	android:textColor="@color/popup1_title_text_color"
+		android:textStyle="bold"
+		android:textSize="@dimen/titlebar_textSize_L"
+		android:gravity="left|center_vertical"
+      	android:background="@color/popup1_title_background_color"
+      	/>
+  	
+    <ImageView
+        android:id="@+id/inventoryPopupitemImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="3dp"
+        android:contentDescription="@string/popup_image_description"
+        android:layout_below="@id/inventoryPopupName"
+        />
+    
+	<TextView
+    	android:id="@+id/label_quantity"
+     	android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+        android:layout_below="@id/inventoryPopupName"
+        android:layout_toRightOf="@id/inventoryPopupitemImage"
+        android:paddingTop="@dimen/popup_text_padding"
+        android:paddingBottom="@dimen/popup_text_padding"
+        android:paddingLeft="@dimen/popup_text_padding"
+        android:paddingRight="10dp"
+     	android:text="@string/popup_label_item_detail_use_text3"
+      	android:textColor="@color/popup1_label_text_color1"
+		android:textSize="@dimen/titlebar_textSize_M"
+		android:textStyle="bold"
+     	/>
+	
+	<TextView
+       	android:id="@+id/inventoryPopupQuantity"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+        android:layout_below="@id/inventoryPopupName"
+        android:layout_toRightOf="@id/label_quantity"
+	    android:padding="@dimen/popup_text_padding"
+      	android:textColor="@color/popup1_label_text_color2"
+		android:textSize="@dimen/titlebar_textSize_M"
+		android:textStyle="bold"
+        
+       	/>
+    <TextView
+    	android:id="@+id/label_type"
+      	android:layout_width="wrap_content"
+      	android:layout_height="wrap_content"
+        android:layout_below="@id/inventoryPopupName"
+        android:layout_toRightOf="@id/inventoryPopupQuantity"
+        android:paddingTop="@dimen/popup_text_padding"
+        android:paddingBottom="@dimen/popup_text_padding"
+        android:paddingLeft="@dimen/popup_text_padding"
+        android:paddingRight="10dp"
+      	android:text="@string/popup_label_item_detail_type"
+      	android:textColor="@color/popup1_label_text_color1"
+		android:textSize="@dimen/titlebar_textSize_M"
+		android:textStyle="bold"
+      	/>
+    
+	<TextView
+       	android:id="@+id/inventoryPopupType"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+        android:layout_below="@id/inventoryPopupName"
+        android:layout_toRightOf="@id/label_type"
+	    android:padding="@dimen/popup_text_padding"
+      	android:textColor="@color/popup1_label_text_color2"
+		android:textSize="@dimen/titlebar_textSize_M"
+		android:textStyle="bold"
+       	/>
+	
+	<TextView
+        android:id="@+id/inventoryPopupDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_type"
+	    android:padding="@dimen/popup_text_padding"
+		android:textStyle="italic"
+      	android:textColor="@color/popup1_label_text_color2"
+		android:textSize="@dimen/titlebar_textSize_M"
+        android:layout_toRightOf="@id/inventoryPopupitemImage"
+        />
+</RelativeLayout>
