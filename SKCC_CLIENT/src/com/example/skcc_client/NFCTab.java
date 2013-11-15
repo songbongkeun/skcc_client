@@ -31,15 +31,6 @@ public class NFCTab extends Fragment {
 		
 		Log.d("NFC", "end");
 		Button button = (Button) view.findViewById(R.id.nfcFindButton);
-		button.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-//				NfcTagDiscoverDialog dialog = NfcTagDiscoverDialog.newInstance();
-//				dialog.show(getFragmentManager(), "TAG2");
-				Intent targetIntent = new Intent(getActivity(), NFCActivity.class);
-				startActivity(targetIntent);
-			}
-		});
 		return view;
 	}
 
