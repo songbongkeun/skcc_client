@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -27,6 +28,7 @@ public class ProductionDialog extends DialogFragment {
 	private static final String TAG = "UI";
 	
 	private int productionPosition;
+	private ProductionListAdapter adapter;
 	
 	public static ProductionDialog newInstance(int productionPosition) {
 		
@@ -60,7 +62,7 @@ public class ProductionDialog extends DialogFragment {
 		// List
 		int listViewId = R.id.newProductionList;
 		ListView listView = (ListView) view.findViewById(listViewId);
-		ProductionListAdapter adapter = new ProductionListAdapter(getActivity());
+		adapter = new ProductionListAdapter(getActivity());
 		listView.setAdapter(adapter);
 
 		Log.d(TAG, "Production Dialog View created.");
@@ -107,6 +109,13 @@ public class ProductionDialog extends DialogFragment {
 		
 		super.onStop();
 		super.dismiss();
+	}
+	
+	@Override
+	public void onDestroy() {
+		
+		super.onDestroy();
+		adapter = null;
 	}
 
 	public void setPosition(int position) {

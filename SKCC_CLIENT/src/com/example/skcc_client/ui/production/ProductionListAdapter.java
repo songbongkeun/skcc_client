@@ -1,5 +1,7 @@
 package com.example.skcc_client.ui.production;
 
+import java.util.ArrayList;
+
 import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.Item;
 
@@ -14,25 +16,29 @@ public class ProductionListAdapter extends BaseAdapter {
 	private static final String TAG = "UI";
 	
 	private Context context;
+	private ArrayList<ProductionListItem> viewList;
  
 	public ProductionListAdapter(Context context) {
 		
 		this.context = context;
+		viewList = new ArrayList<ProductionListItem>();
+		ArrayList<Item> productionItemList = Global.getInstance().productionRule.getProductionRuleList();
+		
+		for(int i = 0; i < productionItemList.size(); i++) {
+			
+			viewList.add(new ProductionListItem(context, productionItemList.get(i)));
+		}
 	}
 
 	@Override
 	public int getCount() {
-		return Global.getInstance().productionRule.getProductionRuleList().size();
+		return viewList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
 		
-		// List item 을 가져온다.
-		Item item = Global.getInstance().productionRule.getProductionRuleList().get(position);
-		ProductionListItem listItem = new ProductionListItem(context, item);
-		
-		return listItem;
+		return viewList.get(position);
 	}
 
 	@Override
@@ -45,10 +51,6 @@ public class ProductionListAdapter extends BaseAdapter {
 		
 		Log.d(TAG, "New production item list position = " + position);
 		
-		// List item 을 가져온다.
-		Item item = Global.getInstance().productionRule.getProductionRuleList().get(position);
-		ProductionListItem listItem = new ProductionListItem(context, item);
-		
-		return listItem;
+		return viewList.get(position);
 	}
 }

@@ -21,7 +21,7 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:logo="@drawable/ic_action_person"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" android:largeHeap="true">
         
         <activity
             android:name="com.example.preprocess.IntroActivity"
