@@ -23,6 +23,8 @@ import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.Item;
 
 public class ProductionDialog extends DialogFragment {
+
+	private static final String TAG = "UI";
 	
 	private int productionPosition;
 	
@@ -61,14 +63,14 @@ public class ProductionDialog extends DialogFragment {
 		ProductionListAdapter adapter = new ProductionListAdapter(getActivity());
 		listView.setAdapter(adapter);
 
-		Log.d("PRODUCTION", "Production Dialog View created.");
+		Log.d(TAG, "Production Dialog View created.");
 		
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View listView, int position, long id) {
 				
-				Log.d("PRODUCTION", "New production list item click : " + position);
+				Log.d(TAG, "New production list item click : " + position);
 				
 				// Get clicked item
 				Item item = Global.getInstance().productionRule.getProductionRuleList().get(position);
@@ -101,7 +103,7 @@ public class ProductionDialog extends DialogFragment {
 	@Override
 	public void onStop() {
 		
-		Log.d("PRODUCTION", "Close new production popup");
+		Log.d(TAG, "Close new production popup");
 		
 		super.onStop();
 		super.dismiss();

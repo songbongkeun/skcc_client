@@ -19,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ProductionListItem extends RelativeLayout {
+
+	private static final String TAG = "UI";
 	
 	Item item;
 	
@@ -185,7 +187,7 @@ public class ProductionListItem extends RelativeLayout {
 			costItem1.setPadding(5, 5, 5, 5);
 			
 			Item costItem = Global.getInstance().itemList.get(costItemId1);
-			Log.d("PRODUCTION", "ITEM IMAGE NAME = " + costItem.getImageName());
+			Log.d(TAG, "New production item image name = " + costItem.getImageName());
 			imageId = context.getResources().getIdentifier(costItem.getImageName(), "drawable", context.getPackageName());
 			iconImage = BitmapFactory.decodeResource(context.getResources(), imageId);
 			iconImage = ImageHelper.getProductionItemIcon(context, iconImage, 30, 15, itemState, Constants.code.ITEM_PROGRESS_NOTHING);

@@ -53,10 +53,10 @@ public class PlayerInfoLayout extends LinearLayout {
 		int progressRate = (int)((progressExp * 100) / maxExp);
 		playerExp.setProgress(progressRate);
 		
-		// Refresh ID
-		TextView playerId = (TextView)findViewById(R.id.playerInfo2)
+		// Refresh player name
+		TextView playerName = (TextView)findViewById(R.id.playerInfo2)
 									.findViewById(R.id.playerId);
-		playerId.setText(player.getId());
+		playerName.setText(player.getName());
 		
 		// Refresh money
 		TextView playerMoney = (TextView)findViewById(R.id.playerInfo3)

@@ -1,14 +1,13 @@
 package com.example.dbio; 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import android.content.Context;
 
 import com.example.dbio.adapter.ProductionDbAdapter;
-import com.example.dbio.data.ItemInfo;
-import com.example.dbio.data.ProductionInfo;
+import com.example.skcc_client.gameObject.ProductionItem;
 
 public class ProductionCreator {
 	
@@ -19,6 +18,7 @@ public class ProductionCreator {
      * constructor 
      */ 
     public ProductionCreator(Context c) { 
+    	
         mDbAdapter = new ProductionDbAdapter(c); 
     } 
   
@@ -26,11 +26,12 @@ public class ProductionCreator {
      * open DBAdapter connection 
      */ 
     public void open() { 
+    	
         mDbAdapter.open(); 
     } 
   
 	
-    public void insertInit(String userId) { 
+    public void insertInit(String playerId) { 
     	mDbAdapter.deleteAllProduct();
     	
     	Date date = new Date();
@@ -55,24 +56,26 @@ public class ProductionCreator {
    	 	Timestamp end5		= new Timestamp(date.getTime() + 20000000);
    	 	Timestamp expire5	= new Timestamp(date.getTime() + 40000000);
    	 	
-        mDbAdapter.insertInitProduct(2002, userId, Long.valueOf(start1.getTime()).toString(),  Long.valueOf(end1.getTime()).toString(), Long.valueOf(expire1.getTime()).toString()); 
-        mDbAdapter.insertInitProduct(3001, userId, Long.valueOf(start2.getTime()).toString(),  Long.valueOf(end2.getTime()).toString(), Long.valueOf(expire2.getTime()).toString()); 
-        mDbAdapter.insertInitProduct(3001, userId, Long.valueOf(start2.getTime()).toString(),  Long.valueOf(end2.getTime()).toString(), Long.valueOf(expire2.getTime()).toString()); 
-        mDbAdapter.insertInitProduct(3001, userId, Long.valueOf(start2.getTime()).toString(),  Long.valueOf(end2.getTime()).toString(), Long.valueOf(expire2.getTime()).toString()); 
-        mDbAdapter.insertInitProduct(3001, userId, Long.valueOf(start2.getTime()).toString(),  Long.valueOf(end2.getTime()).toString(), Long.valueOf(expire2.getTime()).toString()); 
-        mDbAdapter.insertInitProduct(1004, userId, Long.valueOf(start3.getTime()).toString(),  Long.valueOf(end3.getTime()).toString(), Long.valueOf(expire3.getTime()).toString());
-        mDbAdapter.insertInitProduct(3004, userId, Long.valueOf(start4.getTime()).toString(),  Long.valueOf(end4.getTime()).toString(), Long.valueOf(expire4.getTime()).toString());
-        mDbAdapter.insertInitProduct(8001, userId, Long.valueOf(start5.getTime()).toString(),  Long.valueOf(end5.getTime()).toString(), Long.valueOf(expire5.getTime()).toString());
+        mDbAdapter.insertInitProduct(playerId, 0, 2002, start1.getTime(), end1.getTime(), expire1.getTime()); 
+        mDbAdapter.insertInitProduct(playerId, 4, 3001, start2.getTime(), end2.getTime(), expire2.getTime()); 
+        mDbAdapter.insertInitProduct(playerId, 5, 3001, start2.getTime(), end2.getTime(), expire2.getTime()); 
+        mDbAdapter.insertInitProduct(playerId, 6, 3001, start2.getTime(), end2.getTime(), expire2.getTime()); 
+        mDbAdapter.insertInitProduct(playerId, 7, 3001, start2.getTime(), end2.getTime(), expire2.getTime()); 
+        mDbAdapter.insertInitProduct(playerId, 8, 1004, start3.getTime(), end3.getTime(), expire3.getTime()); 
+        mDbAdapter.insertInitProduct(playerId, 9, 3004, start4.getTime(), end4.getTime(), expire4.getTime()); 
+        mDbAdapter.insertInitProduct(playerId, 10, 8001, start5.getTime(), end5.getTime(), expire5.getTime());
     } 
     
-    public void remove(String userid, ItemInfo item) { 
-    	mDbAdapter.deleteProduct(item.getID(),userid);
+    public void remove(int position) {
+    	
+    	mDbAdapter.deleteProduct(position);
     } 
   
     /* 
      * query all user info from db 
      */ 
-    public List<ProductionInfo> queryAll() { 
+    public ArrayList<ProductionItem> queryAll() { 
+    	
         return mDbAdapter.fetchAllProducts(); 
     } 
   
@@ -80,6 +83,7 @@ public class ProductionCreator {
      * close connection 
      */
     public void close() { 
+    	
         mDbAdapter.close(); 
     } 
 }

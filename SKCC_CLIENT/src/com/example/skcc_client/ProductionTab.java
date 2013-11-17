@@ -1,9 +1,7 @@
 package com.example.skcc_client;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import com.example.skcc_client.common.Constants;
@@ -28,6 +26,8 @@ import android.widget.Toast;
 
 @SuppressLint("ValidFragment")
 public class ProductionTab extends Fragment {
+
+	private static final String TAG = "UI";
 	
 	Context context;
 	Handler refreshHandler;
@@ -43,7 +43,7 @@ public class ProductionTab extends Fragment {
 	
 		View view = inflater.inflate(R.layout.tab_production, null);
 		
-		Log.d("PRODUCTION", "View created.");
+		Log.d(TAG, "ProductionTab created.");
 		
 		return view;
 	}
@@ -53,7 +53,7 @@ public class ProductionTab extends Fragment {
 		
 		super.onActivityCreated(savedInstanceState);
 		
-		Log.d("PRODUCTION", "Activity created.");
+		Log.d(TAG, "Production Activity created.");
 		
 		// Create runnable
 		runnable = new Runnable() {
@@ -65,12 +65,12 @@ public class ProductionTab extends Fragment {
 		    }
 		};
 		
-		Log.d("PRODUCTION", "Create runnable.");
+		Log.d(TAG, "Production runnable created.");
 		
 		// Create refresh handler
 		refreshHandler = new Handler();
 		
-		Log.d("PRODUCTION", "Create refresh handler.");
+		Log.d(TAG, "Production refresh handler created.");
 		
 		initGrid();
 	}
@@ -91,13 +91,13 @@ public class ProductionTab extends Fragment {
 				
 				gridView.setAdapter(adapter);
 				
-				Log.d("PRODUCTION", "Grid init");
+				Log.d(TAG, "Production grid init.");
 				
 				
 				// Set refresh handler
 				refreshHandler.postDelayed(runnable, Constants.system.GRID_REFRESH_MILLISECOND);
 				
-				Log.d("PRODUCTION", "Set refresh handler.");
+				Log.d(TAG, "Set production refresh handler.");
 			}
 		}
 		
@@ -107,7 +107,7 @@ public class ProductionTab extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View gridView, int position, long arg3) {
 				
-				Log.d("PRODUCTION", "Grid item click : " + position);
+				Log.d(TAG, "Production grid item click : " + position);
 				
 				ProductionItem item = Global.getInstance().productionList.get(position); // clicked item
 				
@@ -131,7 +131,7 @@ public class ProductionTab extends Fragment {
 				else if(item.getState() == Constants.code.ITEM_STATE_FINISHED) {
 					
 					// Get finished item
-					Global.getInstance().playing.getFinishedItem(item, position);
+					Global.getInstance().playing.getFinishedItem(position, item);
 
 					// Show toast
 					CharSequence msg = item.getName() + " 1개를 얻었습니다!";
@@ -173,45 +173,10 @@ public class ProductionTab extends Fragment {
 	 */
 	public void refreshGrid() {
 		
-		// Fill empty lot
 		GridView gridView = (GridView) getActivity().findViewById(R.id.productionGrid);
 		ProductionGridAdapter adapter = new ProductionGridAdapter(getActivity());
 		
-		while(Global.getInstance().productionList.size() < Constants.rule.PRODUCTION_MAX_COUNT) {
-			
-			Timestamp now = new Timestamp(new Date().getTime());
-			ProductionItem vacant = new ProductionItem(0, 1, Constants.code.ITEM_TYPE_NOTHING
-					, "Vacant", "Vacant", now, now, now);
-			
-			Global.getInstance().productionList.add(vacant);
-		}
-		
 		gridView.setAdapter(adapter);
-	}
-	
-	
-	/**
-	 * 살아있는 아이템의 개수를 리턴한다.
-	 * @return	Producing, Finished 상태의 아이템 개수
-	 */
-	public int liveItemCount() {
-		
-		int totalCount = 0;
-		
-		ArrayList<ProductionItem> list = Global.getInstance().productionList;
-		Iterator<ProductionItem> iterator = list.iterator();
-		
-		while(iterator.hasNext()) {
-			
-			ProductionItem item = iterator.next();
-			if(item.getState() == Constants.code.ITEM_STATE_PRODUCING
-				|| item.getState() == Constants.code.ITEM_STATE_FINISHED) {
-				
-				++totalCount;
-			}
-		}
-		
-		return totalCount;
 	}
 	
 	@Override
@@ -220,6 +185,6 @@ public class ProductionTab extends Fragment {
 		super.onDestroyView();
 		
 		refreshHandler.removeCallbacksAndMessages(null); // *IMPORTANT* Remove refresh handler.
-		Log.d("PRODUCTION", "Remove refresh handler call backs");
+		Log.d(TAG, "Remove production refresh handler call backs");
 	}
 }

@@ -1,12 +1,12 @@
 package com.example.dbio;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import android.content.Context;
 
 import com.example.skcc_client.common.Constants;
+import com.example.skcc_client.gameObject.Item;
 import com.example.dbio.adapter.ItemDbAdapter;
-import com.example.dbio.data.ItemInfo;
 
 public class ItemCreator {
 	
@@ -17,6 +17,7 @@ public class ItemCreator {
      * constructor 
      */ 
     public ItemCreator(Context c) { 
+    	
         mDbAdapter = new ItemDbAdapter(c); 
     } 
   
@@ -24,6 +25,7 @@ public class ItemCreator {
      * open DBAdapter connection 
      */ 
     public void open() { 
+    	
         mDbAdapter.open(); 
     } 
   
@@ -31,6 +33,7 @@ public class ItemCreator {
      * insert random data 
      */ 
     public void insert() { 
+    	
     	mDbAdapter.insertInitItem(0,    1,  Constants.code.ITEM_TYPE_NOTHING, "Vacant", "Vacant"); 
         mDbAdapter.insertInitItem(1001, 10, Constants.code.ITEM_TYPE_MATERIAL, "커피빈", "각종 커피의 원재료가 되는 커피나무 열매의 씨"); 
         mDbAdapter.insertInitItem(1002, 16, Constants.code.ITEM_TYPE_MATERIAL, "우유", "소의 젖. 백색으로 지방, 단백질, 칼슘, 비타민이 풍부하게 함유되어 있어 영양가가 높다."); 
@@ -47,26 +50,26 @@ public class ItemCreator {
         mDbAdapter.insertInitItem(9001, 16, Constants.code.ITEM_TYPE_RECEIPE, "Cafe4U 카페라떼 레시피", "Cafe4U 레시피");
     } 
     
-    public void insert(int id, int companyId, int itemType, String name, String desc) { 
-    	mDbAdapter.insertItem(id, companyId, itemType, name, desc);
-    }
-    
-    public void insert(ItemInfo item) { 
+    public void insert(Item item) {
+    	
     	mDbAdapter.insertItem(item);
     }
     
-    public void remove(ItemInfo item) { 
-    	mDbAdapter.deleteItem(item.getID());
+    public void remove(Item item) { 
+    	
+    	mDbAdapter.deleteItem(item.getId());
     }
     
-    public ItemInfo getItem(int itemId) { 
-    	return (ItemInfo)mDbAdapter.fetchSingleItem(itemId, ItemDbAdapter.QUERY_TYPE_ITEM_OBJ);
+    public Item getItem(int itemId) { 
+    	
+    	return (Item) mDbAdapter.fetchSingleItem(itemId, ItemDbAdapter.QUERY_TYPE_ITEM_OBJ);
     }
   
     /* 
      * query all user info from db 
      */ 
-    public List<ItemInfo> queryAll() { 
+    public ArrayList<Item> queryAll() { 
+    	
         return mDbAdapter.fetchAllItems(); 
     } 
   
@@ -74,6 +77,7 @@ public class ItemCreator {
      * close connection 
      */
     public void close() { 
+    	
         mDbAdapter.close(); 
     } 
 }

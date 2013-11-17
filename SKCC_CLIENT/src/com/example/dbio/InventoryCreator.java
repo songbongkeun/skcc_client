@@ -1,17 +1,20 @@
 package com.example.dbio;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.example.dbio.adapter.InventoryDbAdapter;
-import com.example.dbio.data.InventoryInfo;
-import com.example.dbio.data.ItemInfo;
+import com.example.skcc_client.common.Global;
+import com.example.skcc_client.gameObject.Item;
+import com.example.skcc_client.gameObject.InventoryItem;
 
 public class InventoryCreator {
 	
-	private static final String TAG = InventoryCreator.class.getSimpleName();
+	private static final String TAG = "INVENTORY";
 	
 	// db adapter 
     private InventoryDbAdapter mDbAdapter; 
@@ -45,34 +48,47 @@ public class InventoryCreator {
 	 * 	inventoryList.add(new InventoryItem(itemList.get(9001), 10));
 	 * 	
      */
-    public void insertInit(String userid, List<ItemInfo> itemList, int quantity) 
-    { 
-    	int size = itemList.size();
-    	Log.d(TAG, "[inventory insert]" + size);
+    public void insertInit(String playerId)  {
     	
-    	for( int i = 0; i < size; i++)
-    	{
-    		ItemInfo item = itemList.get(i);
-    		if(item.getID() == 0) continue;
-    		Log.d(TAG, "[inventory insert]" + userid + ":" + item.getID());
-    		mDbAdapter.insertInitItem2Inventory(userid, item.getID(), quantity);
+    	// 최초일 경우 테스트 데이터라도 집어넣는다.
+    	if(0 == queryAll().size()) {
+    		
+    		Hashtable<Integer, Item> itemTable = Global.getInstance().itemList;
+
+    		if(!itemTable.isEmpty()) {
+    			
+    			int itemId = 0;
+	    		Iterator<Integer> keyData = itemTable.keySet().iterator();
+	    		
+		    	while(keyData.hasNext()) {
+		    		
+		    		itemId = keyData.next();
+		    		Item item = itemTable.get(itemId);
+		    		if(item.getId() == 0) continue;
+		    		
+		    		Log.d(TAG, "InventoryCreator.insertInit() : Create test data = " + playerId + " / " + item.getId());
+		    		
+		    		mDbAdapter.insertInitItem2Inventory(playerId, item.getId(), 10);
+		    	}
+	    	}
     	}
     }
     
-    public void insert(String userid, ItemInfo item, int quantity) 
-    { 
-    	mDbAdapter.insertItem2Inventory(userid, item.getID(), quantity);
+    public void insert(String userid, Item item, int quantity)  { 
+    	
+    	mDbAdapter.insertItem2Inventory(userid, item.getId(), quantity);
     }
     
-    public void update(String userid, ItemInfo item, int quantity) 
-    { 
-    	mDbAdapter.insertItem2Inventory(userid, item.getID(), quantity);
+    public void update(String userid, Item item, int quantity) { 
+    	
+    	mDbAdapter.insertItem2Inventory(userid, item.getId(), quantity);
     }
   
     /* 
      * query all user info from db 
      */ 
-    public List<InventoryInfo> queryAll() { 
+    public ArrayList<InventoryItem> queryAll() {
+    	
         return mDbAdapter.fetchAllItemList(); 
     } 
   

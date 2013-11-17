@@ -20,6 +20,8 @@ import com.example.skcc_client.ui.inventory.ItemDetailDialog;
 
 @SuppressLint("ValidFragment")
 public class InventoryTab extends Fragment {
+
+	private static final String TAG = "UI";
 	
 	Context mContext;
 	
@@ -30,33 +32,47 @@ public class InventoryTab extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
 		View view = inflater.inflate(R.layout.tab_inventory, null);
-		Log.d("INVENTORY", "View created.");
+		Log.d(TAG, "InventoryTab created.");
 		return view;
 	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
+		
 		super.onActivityCreated(savedInstanceState);
+		
 		GridView gridView = (GridView) this.getActivity().findViewById(R.id.inventoryGrid);
+		
 		if(null != gridView) {
+			
 			InventoryGridAdapter adapter = new InventoryGridAdapter(this.getActivity());
+			
 			if(null != adapter) {
+				
 				gridView.setAdapter(adapter);
 			}
 		}
 		gridView.setOnItemClickListener(new OnItemClickListener() {
+			
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				
 				int listPosition = arg2 + (int)arg3;
 				InventoryItem item = Global.getInstance().inventoryList.get(listPosition);
+				
 				Assert.assertNotNull("Oppss?", item);
-				Log.d("INVENTORY", "selected Item : " + item);
+				
+				Log.d(TAG, "selected Item : " + item);
+				
 				ItemDetailDialog dialog = ItemDetailDialog.newInstance(item);
+				
 				dialog.show(getFragmentManager(), "TAG");
 			}
 		});
-		Log.d("INVENTORY", "Activity created.");
+		
+		Log.d(TAG, "Inventory Activity created.");
 	}
 	
 	/**
@@ -68,6 +84,6 @@ public class InventoryTab extends Fragment {
 		InventoryGridAdapter adapter = new InventoryGridAdapter(getActivity());
 		gridView.setAdapter(adapter);
 		
-		Log.d("INVENTORY", "Grid refresh");
+		Log.d(TAG, "Inventory grid refresh.");
 	}
 }

@@ -2,11 +2,11 @@ package com.example.preprocess;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
-import java.util.List;
 
 import com.example.dbio.*;
-import com.example.dbio.data.*;
+import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.InventoryItem;
 import com.example.skcc_client.gameObject.Item;
@@ -15,7 +15,6 @@ import com.example.skcc_client.gameObject.ProductionItem;
 import com.example.skcc_client.gameObject.GamePlaying;
 
 import android.content.Context;
-import android.database.SQLException;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
@@ -25,11 +24,6 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 	private static final String TAG = "LOADING";
 	
 	private final Context mAppContext;
-	
-	public interface LoadingTaskFinishedListener {
-		
-		void onTaskFinished(); // If you want to pass something back to the listener add a param to this method
-	}
 
 	// This is the progress bar you want to update while the task is in progress
 	private final ProgressBar progressBar;
@@ -47,6 +41,11 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 		this.progressBar = progressBar;
 		this.finishedListener = finishedListener;
 		this.mAppContext = appContext;
+	}
+	
+	public interface LoadingTaskFinishedListener {
+		
+		void onTaskFinished(); // If you want to pass something back to the listener add a param to this method
 	}
 
 	@Override
@@ -94,143 +93,183 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 		
 		Log.d(TAG, "downloadResources");
 		
-		UserInfoCreator usercreator = new UserInfoCreator(mAppContext);
-		ItemCreator itemcreator = new ItemCreator(mAppContext);
-		InventoryCreator ivencreator = new InventoryCreator(mAppContext);
-		ProductionCreator productcreator = new ProductionCreator(mAppContext);
+		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		// Load rules
+		///////////////////////////////////////////////////////////////////////////////////////////
 
 		// Rules
 		Global.getInstance().levelRule.generateTestRule(); // Level
 		Global.getInstance().productionRule.generateTestRule(); // Production
 		Global.getInstance().playing = new GamePlaying(mAppContext); // Production
 		
-		try{
-			usercreator.open();
-			usercreator.insert();
-			itemcreator.open();
-			itemcreator.insert();
-		}
-		catch(SQLException se) {
+		// Update progress bar
+		updateProgressBar(1);
+
+		PlayerCreator playerCreator = new PlayerCreator(mAppContext);
+		ItemCreator itemCreator = new ItemCreator(mAppContext);
+		InventoryCreator inventoryCreator = new InventoryCreator(mAppContext);
+		ProductionCreator productionCreator = new ProductionCreator(mAppContext);
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		// Create players
+		///////////////////////////////////////////////////////////////////////////////////////////
+		
+		// If has no player in DB, create new players.
+		playerCreator.open();
+		
+		if(0 == playerCreator.queryAll().size()) {
 			
-			se.printStackTrace();
-		}
-		finally {
-			
-			usercreator.close();
-			itemcreator.close();
-			usercreator = null;
-			itemcreator = null;
+			playerCreator.insert();
 		}
 		
-		usercreator = new UserInfoCreator(mAppContext);
-        
-		usercreator.open();
-		List<UserInfo> users = usercreator.queryAll();
+		ArrayList<Player> players = playerCreator.queryAll();
 		
-		for( int i = 0; i < users.size(); i++) {
+		if(null != players) {
 			
-			UserInfo usrInfo = users.get(i);
-			
-			if(usrInfo.getID().equals(Global.THIS_USER)) {
+			for(int i = 0; i < players.size(); i++) {
 				
-				Global.getInstance().player = new Player(usrInfo.getName(), usrInfo.getID(), usrInfo.getExperience(), usrInfo.getActionPoint(), usrInfo.getMoney());
-				break;
+				Player player = players.get(i);
+				
+				if(player.getId().equals(Global.THIS_USER)) {
+					
+					Global.getInstance().player = new Player(player.getId(), player.getName(), player.getExp(), player.getActionPoint(), player.getMoney());
+					break;
+				}
+				
+				player = null;
 			}
-			usrInfo = null;
-				
 		}
 		
-		usercreator.close();
-		usercreator = null;
+		playerCreator.close();
 		
+		// Update progress bar
+		updateProgressBar(2);
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		// Create items
+		///////////////////////////////////////////////////////////////////////////////////////////
+		
+		// If has no item in DB, create new items.
+		itemCreator.open();
+		
+		if(0 == itemCreator.queryAll().size()) {
+			
+			itemCreator.insert();
+		}
 		
 		Hashtable<Integer, Item> itemList = Global.getInstance().itemList;
-		
-		itemcreator = new ItemCreator(mAppContext);
         
-		itemcreator.open();
-		List<ItemInfo> items = itemcreator.queryAll();
+		ArrayList<Item> items = itemCreator.queryAll();
 		
-		for( int i = 0; i < items.size(); i++) {
+		if(null != items) {
 			
-			ItemInfo item = items.get(i);
-			Item it = new Item(item.getID(),item.getCompanyID(), 
-				item.getItemType(),item.getName(), item.getDescription());
-			itemList.put(item.getID(), it);
+			for(int i = 0; i < items.size(); i++) {
+				
+				Item item = items.get(i);
+				itemList.put(item.getId(), item);
+			}
 		}
 		
-		//testData.generateTestItems();
-		/////////////////// inventory create ////////////////////////////
-		ivencreator.open();
-		ivencreator.insertInit(Global.THIS_USER, items, 10);
-		ivencreator.close();
-		/////////////////// inventory create done ///////////////////////
+		itemCreator.close();
 		
-		/////////////////// inventory list create ////////////////////////////
-		//testData.generateTestInventory(itemList);
-		ivencreator = new InventoryCreator(mAppContext);
-		ivencreator.open();
+		// Update progress bar
+		updateProgressBar(3);
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		// Create inventory
+		///////////////////////////////////////////////////////////////////////////////////////////
+
+		// If has no inventory item in DB, create new inventory.
+		inventoryCreator.open();
+			
+		if(0 == inventoryCreator.queryAll().size()) {
+			
+			inventoryCreator.insertInit(Global.THIS_USER);
+		}
 		
 		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;
-		List<InventoryInfo> inventories = ivencreator.queryAll();
+        
+		ArrayList<InventoryItem> inventoryItems = inventoryCreator.queryAll();
 		
-		for( int i = 0; i < inventories.size(); i++) {
+		if(null != inventoryItems) {
 			
-			InventoryInfo inventory = inventories.get(i);
-			InventoryItem invntry = new InventoryItem(itemList.get(inventory.getItemID()), inventory.getQuantity());
-			inventoryList.add(invntry);
+			for(int i = 0; i < inventoryItems.size(); i++) {
+				
+				InventoryItem item = inventoryItems.get(i);
+				inventoryList.add(i, item);
+			}
+		}
+
+		inventoryCreator.close();
+		
+		// Update progress bar
+		updateProgressBar(4);
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		// Create production
+		///////////////////////////////////////////////////////////////////////////////////////////
+
+		// If has no production item in DB, create new production.
+		productionCreator.open();
 			
-			inventory = null;
-			invntry = null;
+		if(0 == productionCreator.queryAll().size()) {
+			
+			productionCreator.insertInit(Global.THIS_USER);
 		}
 		
-		ivencreator.close();
-		/////////////////// inventory list create done ///////////////////////
-		
-		/////////////////// production create ////////////////////////////
-		productcreator.open();
-		productcreator.insertInit(Global.THIS_USER);
-		productcreator.close();
-		/////////////////// production create done ////////////////////////////
-		
-		/////////////////// production list create ////////////////////////////
-		//testData.generateTestProduction(itemList);
-		productcreator = new ProductionCreator(mAppContext);
-		productcreator.open();
-		List<ProductionInfo> productions = productcreator.queryAll();
 		ArrayList<ProductionItem> productionList = Global.getInstance().productionList;
+        
+		ArrayList<ProductionItem> productionItems = productionCreator.queryAll();
 		
-		for( int i = 0; i < productions.size(); i++) {
+		ProductionItem item = null;
+		
+		// Set null
+		for(int i = 0; i < Constants.rule.PRODUCTION_MAX_COUNT; i++) {
 			
-			ProductionInfo production = productions.get(i);
-
-			Timestamp stime = new Timestamp(Long.valueOf(production.getStartTime()));
-			Timestamp etime = new Timestamp(Long.valueOf(production.getEndTime()));
-			Timestamp exptime = new Timestamp(Long.valueOf(production.getExpireTime()));
-			
-			ProductionItem prductitem =  new ProductionItem(itemList.get(production.getItemID()), stime, etime, exptime);
-			productionList.add(prductitem);
-			
-			stime = etime = exptime = null;
-			production = null;
-			prductitem = null;
+			productionList.add(null);
 		}
 		
-		productcreator.close();
-		/////////////////// production list create done ///////////////////////
-		
-		itemcreator.close();
-		itemcreator = null;
-		
-		int count = 10;
-		for (int i = 0; i < count; i++) {
-
-			// Update the progress bar after every step
-			int progress = (int) ((i / (float) count) * 100);
-			publishProgress(progress);
-
-			// Do some long loading things
-			try { Thread.sleep(200); } catch (InterruptedException ignore) {}
+		// Add queried items to list
+		for(int i = 0; i < productionItems.size(); i++) {
+			
+			item = productionItems.get(i);
+			productionList.set(item.getPosition(), item);
 		}
+		
+		// Fill vacant
+		for(int i = 0; i < Constants.rule.PRODUCTION_MAX_COUNT; i++) {
+			
+			if(null == productionList.get(i)) {
+
+				Timestamp now = new Timestamp(new Date().getTime());
+				ProductionItem vacant = new ProductionItem(
+						i, 0, 0, Constants.code.ITEM_TYPE_NOTHING
+						, "Vacant", "Vacant",  now, now, now);
+				productionList.set(i, vacant);
+			}
+		}
+
+		productionCreator.close();
+		
+		// Update progress bar
+		updateProgressBar(5);
+	}
+	
+	private void updateProgressBar(int step) {
+		
+		// Animate progress bar
+		int totalSteps = 5;
+
+		// Update the progress bar after every step
+		int progress = (int) ((step / (float) totalSteps) * 100);
+		publishProgress(progress);
+
+		// Do some long loading things
+		try { Thread.sleep(50); } catch (InterruptedException ignore) {}
 	}
 }

@@ -1,5 +1,9 @@
 package com.example.skcc_client;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
+import com.example.skcc_client.common.Constants;
 import com.example.skcc_client.common.Global;
 import com.example.skcc_client.gameObject.ProductionItem;
 
@@ -19,7 +23,7 @@ public class ProductionGridAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		return Global.getInstance().productionList.size();
+		return Constants.rule.PRODUCTION_MAX_COUNT;
 	}
 
 	@Override
@@ -37,8 +41,15 @@ public class ProductionGridAdapter extends BaseAdapter {
 		
 		if(convertView == null) {
 			
-			// Grid item 을 가져온다.
 			ProductionItem item = Global.getInstance().productionList.get(position);
+			
+			if(null == item) {
+
+				Timestamp now = new Timestamp(new Date().getTime());
+				item = new ProductionItem(position, 0, 0, Constants.code.ITEM_TYPE_NOTHING, "Vacant", "Vacant",  now, now, now);
+				Global.getInstance().productionList.set(position, item);
+			}
+			
 			ProductionGridItem gridItem = new ProductionGridItem(context, item);
 			
 			return gridItem;

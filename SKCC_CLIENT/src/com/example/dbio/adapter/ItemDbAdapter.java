@@ -1,7 +1,6 @@
 package com.example.dbio.adapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,15 +10,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.skcc_client.common.Global;
+import com.example.skcc_client.gameObject.Item;
 import com.example.dbio.assist.ItemDbHelper;
-import com.example.dbio.data.ItemInfo;
 
 public class ItemDbAdapter {
 	private static final String TAG = ItemDbAdapter.class.getSimpleName();
 	
 	// declare database fields
 	public static final String TBL_INFO = "item";
-	public static final String COL_ID = "item_id";
+	public static final String COL_ID = "id";
 	public static final String COL_COMPANY_ID = "company_id";
 	public static final String COL_TYPE = "item_type";
 	public static final String COL_NAME = "name";
@@ -114,21 +113,9 @@ public class ItemDbAdapter {
 		return false;
 	}
 	
-	public long insertItem(ItemInfo item) {
-		if(isExistingItem(item.getID()))
-			return -1;
-
-		long ret = mDb.insert(TBL_INFO, null, 
-			createContentValues(item.getID(), item.getCompanyID(), item.getItemType(), item.getName(), item.getDescription()));
-		
-		if(ret == -1) Log.d(TAG,"Failed...item[" + item.getID() + "]");
-		
-		return ret;
-	}
-	
 	public long insertInitItem(int id, int companyId, int itemType, String name, String desc) {
-		if(isExistingItem(id) || isExistingCount())
-			return -1;
+		
+		if(isExistingItem(id) || isExistingCount()) return -1;
 
 		long ret = mDb.insert(TBL_INFO, null, createContentValues(id, companyId, itemType, name, desc));
 		
@@ -140,13 +127,13 @@ public class ItemDbAdapter {
 	/*
 	 * insert a record to db
 	 */
-	public long insertItem(int id, int companyId, int itemType, String name, String desc) {
-		if(isExistingItem(id))
-			return -1;
-
-		long ret = mDb.insert(TBL_INFO, null, createContentValues(id, companyId, itemType, name, desc));
+	public long insertItem(Item item) {
 		
-		if(ret == -1) Log.d(TAG,"Failed...item[" + id + "]");
+		if(isExistingItem(item.getId())) return -1;
+
+		long ret = mDb.insert(TBL_INFO, null, createContentValues(item.getId(), item.getCompanyId(), item.getItemType(), item.getName(), item.getDescription()));
+		
+		if(ret == -1) Log.d(TAG, "Failed...item[" + item.getId() + "]");
 		
 		return ret;
 	}
@@ -155,8 +142,8 @@ public class ItemDbAdapter {
 	 * update a record to db
 	 */
 	public long updateItem(int id, int companyId, int itemType, String name, String desc) {
-		if(!isExistingItem(id))
-			return -1;
+		
+		if(!isExistingItem(id)) return -1;
 		
 		return mDb.update(TBL_INFO, createContentValues(id, companyId, itemType, name, desc), COL_ID + "=" + id, null);
 	}
@@ -165,8 +152,8 @@ public class ItemDbAdapter {
 	 * delete a record from db
 	 */
 	public long deleteItem(int id) {
-		if(!isExistingItem(id))
-			return -1;
+		
+		if(!isExistingItem(id)) return -1;
 		
 		return mDb.delete(TBL_INFO, COL_ID + "=" + id, null);
 	}
@@ -174,43 +161,49 @@ public class ItemDbAdapter {
 	/*
 	 * query all records
 	 */
-	public List<ItemInfo> fetchAllItems() {
+	public ArrayList<Item> fetchAllItems() {
+		
 		// get query cursor
 		Cursor queryCursor = mDb.query(TBL_INFO, PROJECTION_ALL, null, null, null, null, null);
+		
 		// just return null if cursor null
 		if(queryCursor == null) {
+			
 			Log.d(TAG, "fetchAllItems(): queryCursor = null "); 
 			return null;
 		}
+		
 		// init list to hold user info
-		List<ItemInfo> listItems = new ArrayList<ItemInfo>();
+		ArrayList<Item> listItems = new ArrayList<Item>();
+		
 		// set cursor to the first element
 		queryCursor.moveToFirst();
+		
 		// if cursor is not the last element
 		while(queryCursor.isAfterLast() == false) {
+			
 			// add new user info
-			listItems.add(new ItemInfo(
-					// get user id from cursor
+			listItems.add(new Item(
 					queryCursor.getInt(queryCursor.getColumnIndexOrThrow(COL_ID)),
-					// get company id from cursor
 					queryCursor.getInt(queryCursor.getColumnIndexOrThrow(COL_COMPANY_ID)),
-					// get item type from cursor
 					queryCursor.getInt(queryCursor.getColumnIndexOrThrow(COL_TYPE)),
-					// get user name from cursor
 					queryCursor.getString(queryCursor.getColumnIndexOrThrow(COL_NAME)),
-					// get user city from cursor
 					queryCursor.getString(queryCursor.getColumnIndexOrThrow(COL_DESC))					
-				)
-			);
+				));
+			
 			// move cursor to next item
 			queryCursor.moveToNext();
 		}
+		
 		// check if cursor is still opened and not null
 		if(queryCursor != null && !queryCursor.isClosed()) {
+			
 			// close it to avoid memory leak
 			queryCursor.close();
 		}
+		
 		Log.d(TAG, "fetchAllItems(): listItems.size() = " + listItems.size());
+		
 		// return user list
 		return listItems;
 	}
@@ -219,35 +212,46 @@ public class ItemDbAdapter {
 	 * query one record
 	 */
 	public Object fetchSingleItem(int id, int type) {
+		
 		// query a cursor on identified user
 		Cursor c = mDb.query(true, TBL_INFO, PROJECTION_ALL, COL_ID + "=" + id, null, null, null, null, null);
+		
 		// return null if no record avaiable
 		if(c == null) {
+			
 			return null;
 		}
 		
 		Object objOut = null;
-		
+
+		// create array to hold user info
 		if(type == QUERY_TYPE_STRING_ARRAY) {
-			// create array to hold user info
+			
 			String[] user_info = new String[5];
+			
 			user_info[0] = String.valueOf(id);
 			user_info[1] = String.valueOf(c.getInt(c.getColumnIndexOrThrow(COL_COMPANY_ID)));
 			user_info[2] = String.valueOf(c.getInt(c.getColumnIndexOrThrow(COL_TYPE)));
 			user_info[3] = c.getString(c.getColumnIndexOrThrow(COL_NAME));
 			user_info[4] = c.getString(c.getColumnIndexOrThrow(COL_DESC));
+			
 			objOut = user_info;
-		} else {
-			// create UserInfo object
-			ItemInfo item_info = new ItemInfo(
+		}
+
+		// create UserInfo object
+		else {
+			
+			Item item_info = new Item (
 					id,
 					c.getInt(c.getColumnIndexOrThrow(COL_COMPANY_ID)),
 					c.getInt(c.getColumnIndexOrThrow(COL_TYPE)),
 					c.getString(c.getColumnIndexOrThrow(COL_NAME)),
 					c.getString(c.getColumnIndexOrThrow(COL_DESC))					
 			);
+			
 			objOut = item_info;
 		}
+		
 		// close cursor 
 		c.close();
 		
@@ -261,14 +265,17 @@ public class ItemDbAdapter {
 	 * create ContentValues object to use for db transaction
 	 */
 	private ContentValues createContentValues(int id, int companyid, int itemType, String name, String desc) {
+		
 		// init a ContentValues object
 		ContentValues cv = new ContentValues();
+		
 		// put data
 		cv.put(COL_ID, id);
 		cv.put(COL_COMPANY_ID, companyid);
 		cv.put(COL_TYPE, itemType);
 		cv.put(COL_NAME, name);
 		cv.put(COL_DESC, desc);
+		
 		// return object
 		return cv;
 	}

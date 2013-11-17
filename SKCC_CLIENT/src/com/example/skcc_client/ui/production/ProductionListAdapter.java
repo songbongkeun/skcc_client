@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 public class ProductionListAdapter extends BaseAdapter {
+
+	private static final String TAG = "UI";
 	
 	private Context context;
  
@@ -41,19 +43,12 @@ public class ProductionListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
-		Log.d("PRODUCTION", "LIST POSITION = " + position);
+		Log.d(TAG, "New production item list position = " + position);
 		
-//		if(convertView == null) {
-			
-			// List item 을 가져온다.
-			Item item = Global.getInstance().productionRule.getProductionRuleList().get(position);
-			ProductionListItem listItem = new ProductionListItem(context, item);
-			
-			return listItem;
-//		}
-//		else {
-//			
-//			return convertView;
-//		}
+		// List item 을 가져온다.
+		Item item = Global.getInstance().productionRule.getProductionRuleList().get(position);
+		ProductionListItem listItem = new ProductionListItem(context, item);
+		
+		return listItem;
 	}
 }

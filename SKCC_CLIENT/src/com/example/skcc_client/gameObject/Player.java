@@ -18,7 +18,6 @@ public class Player {
 	 * Constructor : 파라미터를 입력받아 생성한다.
 	 * @param id			사용자 id
 	 * @param name			이름
-	 * @param level			레벨
 	 * @param exp			경험치
 	 * @param actionPoint	행동력
 	 * @param money			머니

@@ -8,6 +8,7 @@ import com.example.skcc_client.common.TextHelper;
 
 public class ProductionItem extends Item {
 	
+	private int position;
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private Timestamp expireTime;
@@ -16,14 +17,16 @@ public class ProductionItem extends Item {
 	
 	/**
 	 * Constructor : Item을 입력 받아 생성
+	 * @param position		생산 위치
 	 * @param item			Item
 	 * @param startTime		생산 시작 시각
 	 * @param endTime		생산 종료 시각
 	 * @param expireTime	유통기한 시각
 	 */
-	public ProductionItem(Item item, Timestamp startTime, Timestamp endTime, Timestamp expireTime) {
+	public ProductionItem(int position, Item item, Timestamp startTime, Timestamp endTime, Timestamp expireTime) {
 		
 		super(item);
+		this.position = position;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.expireTime = expireTime;
@@ -31,6 +34,7 @@ public class ProductionItem extends Item {
 	
 	/**
 	 * Constructor : 파라미터를 입력받아 생성
+	 * @param position		생산 위치
 	 * @param id			아이템 id
 	 * @param companyId		회사 id
 	 * @param itemType		아이템 타입
@@ -40,14 +44,19 @@ public class ProductionItem extends Item {
 	 * @param endTime		생산 종료 시각
 	 * @param expireTime	유통기한 시각
 	 */
-	public ProductionItem(int id, int companyId, int itemType, String name, String description,
+	public ProductionItem(int position, int id, int companyId, int itemType, String name, String description,
 			Timestamp startTime, Timestamp endTime, Timestamp expireTime) {
 		
 		super(id, companyId, itemType, name, description);
+		this.position = position;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.expireTime = expireTime;
 		this.state = getState();
+	}
+
+	public int getPosition() {
+		return position;
 	}
 
 	public Timestamp getStartTime() {
@@ -116,9 +125,15 @@ public class ProductionItem extends Item {
 
 	@Override
 	public String toString() {
+		
 		String parent = super.toString();
-		return "ProductionItem [startTime=" + startTime + ", endTime="
-				+ endTime + ", expireTime=" + expireTime + ", state=" + state
+		
+		return "ProductionItem ["
+				+ ", position=" + position
+				+ ", startTime=" + startTime
+				+ ", endTime=" + endTime
+				+ ", expireTime=" + expireTime
+				+ ", state=" + state
 				+  " " + parent + "]";
 	}
 }

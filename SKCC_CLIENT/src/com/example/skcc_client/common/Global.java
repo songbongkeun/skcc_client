@@ -3,8 +3,6 @@ package com.example.skcc_client.common;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import android.content.Context;
-
 import com.example.skcc_client.gameObject.GamePlaying;
 import com.example.skcc_client.gameObject.Item;
 import com.example.skcc_client.gameObject.InventoryItem;
