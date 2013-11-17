@@ -26,6 +26,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	ViewPager mViewPager;
 	
 	@Override
+	protected void onDestroy() {
+		
+		Global.BitMapCache.cleanAll();
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);

@@ -35,11 +35,11 @@ public class PlayerCreator {
      */ 
     public void insert() { 
     	
-    	mDbAdapter.insertInitUser("cheonjoy", "Ãµ±â»Ý", 700, 10, 50000);
-    	mDbAdapter.insertInitUser("tommybee", "¹é¿µ°ï", 700, 10, 50000);
-    	mDbAdapter.insertInitUser("freepsw", "¹Ú»ó¿ø", 700, 10, 50000);
-    	mDbAdapter.insertInitUser("jongkilpark", "¹ÚÁ¾±æ", 700, 10, 50000);
-    	mDbAdapter.insertInitUser("bongkeonsong", "¼ÛºÀ±Ù", 700, 10, 50000);
+    	mDbAdapter.insertInitUser("cheonjoy", "Ãµ±â»Ý", 700, 10, 5000);
+    	mDbAdapter.insertInitUser("tommybee", "¹é¿µ°ï", 700, 10, 5000);
+    	mDbAdapter.insertInitUser("freepsw", "¹Ú»ó¿ø", 700, 10, 5000);
+    	mDbAdapter.insertInitUser("park108", "¹ÚÁ¾±æ", 700, 10, 5000);
+    	mDbAdapter.insertInitUser("bongkeonsong", "¼ÛºÀ±Ù", 700, 10, 5000);
     }
     
     public Player queryPlayers(String userid) {

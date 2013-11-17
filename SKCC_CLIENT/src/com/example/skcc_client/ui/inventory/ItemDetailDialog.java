@@ -128,7 +128,17 @@ public class ItemDetailDialog extends DialogFragment {
 		exp.setText(String.valueOf(useExp), TextView.BufferType.NORMAL);
 
 		int imageId = getResources().getIdentifier(item.getImageName(), "drawable", getActivity().getPackageName());
-		Bitmap image = BitmapFactory.decodeResource(getResources(), imageId);
+		Bitmap image = null;
+		
+		// Create BitMap or load from BitMapCache
+		if(Global.BitMapCache.isExistsBitmap(imageId)) {
+			image = Global.BitMapCache.getBitmap(imageId);
+		}
+		else {
+			image = BitmapFactory.decodeResource(getResources(), imageId);
+			Global.BitMapCache.putBitmap(imageId, image);
+		}
+		
 		itemImage.setImageBitmap(image);
 		
 		Log.d("INVENTORY", "itemType:"+itemType.getText().toString());

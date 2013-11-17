@@ -71,7 +71,17 @@ public class ProductionListItem extends RelativeLayout {
 		
 		String itemImageName = newProductinoOk ? item.getImageName() : item.getImageName() + "x";
 		int imageId = context.getResources().getIdentifier(itemImageName, "drawable", context.getPackageName());
-		Bitmap iconImage = BitmapFactory.decodeResource(context.getResources(), imageId);
+		Bitmap iconImage = null;
+		
+		// Create BitMap or load from BitMapCache
+		if(Global.BitMapCache.isExistsBitmap(imageId)) {
+			iconImage = Global.BitMapCache.getBitmap(imageId);
+		}
+		else {
+			iconImage = BitmapFactory.decodeResource(context.getResources(), imageId);
+			Global.BitMapCache.putBitmap(imageId, iconImage);
+		}
+		
 		iconImage = ImageHelper.getProductionItemIcon(context, iconImage, 30, 15, itemState, Constants.code.ITEM_PROGRESS_NOTHING);
 		icon.setImageBitmap(iconImage);
 		icon.setId(ID_ITEM_ICON);

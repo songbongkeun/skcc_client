@@ -1,7 +1,11 @@
 package com.example.skcc_client.common;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
+
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 
 import com.example.skcc_client.gameObject.GamePlaying;
 import com.example.skcc_client.gameObject.Item;
@@ -18,11 +22,13 @@ import com.example.skcc_client.ui.player.PlayerInfoLayout;
  */
 public class Global {
 	
-	public static final String THIS_USER = "cheonjoy";
+	public static final String THIS_USER = "park108";
 	public static final int USER_INIT_COUNT = 6;
 	public static final int ITEM_INIT_COUNT = 13;
 	public static final int INVENTORY_INIT_COUNT = 12;
 	public static final int PRODUCTION_INIT_COUNT = 8;
+	
+	public static final boolean USE_CACHE = true;
 	
 	public Hashtable<Integer, Item> itemList;
 	public ArrayList<InventoryItem> inventoryList;
@@ -36,6 +42,36 @@ public class Global {
 	public GamePlaying playing;
 	
 	public PlayerInfoLayout playerInfoLayout;
+	
+	public static final class BitMapCache {
+
+		@SuppressLint("UseSparseArrays")
+		private static HashMap<Integer,Bitmap> cache = new HashMap<Integer,Bitmap>();
+		
+		public static void putBitmap(int imageId, Bitmap bitmap) {
+			
+			cache.put(imageId, bitmap);
+		}
+		
+		public static boolean isExistsBitmap(int imageId) {
+
+			if(USE_CACHE) {
+				return false;
+			}
+			
+			return cache.containsKey(imageId);
+		}
+		
+		public static Bitmap getBitmap(int imageId) {
+			
+			return cache.get(imageId);
+		}
+		
+		public static void cleanAll() {
+
+			cache.clear();
+		}
+	}
 
 	/**
 	 * Constructor

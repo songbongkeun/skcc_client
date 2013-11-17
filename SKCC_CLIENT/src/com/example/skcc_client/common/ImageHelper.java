@@ -30,15 +30,6 @@ public class ImageHelper {
 		super();
 	}
 	
-	public static Bitmap getProductionListItemIcon(Context context, Bitmap bitmap, int borderRound, int borderWidth, int state) {
-
-		/////////////////////////////////////////////////////////////////////
-		// Set values
-		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
-		
-		return output;
-	}
-	
 	public static Bitmap getProductionItemIcon(Context context, Bitmap bitmap, int borderRound, int borderWidth, int state, int progressRate) {
 		
 		/////////////////////////////////////////////////////////////////////

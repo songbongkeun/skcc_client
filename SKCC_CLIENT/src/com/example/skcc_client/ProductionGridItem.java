@@ -3,6 +3,7 @@ package com.example.skcc_client;
 import java.util.Date;
 
 import com.example.skcc_client.common.Constants;
+import com.example.skcc_client.common.Global;
 import com.example.skcc_client.common.ImageHelper;
 import com.example.skcc_client.gameObject.ProductionItem;
 
@@ -78,7 +79,18 @@ public class ProductionGridItem extends LinearLayout {
 		icon.setPadding(0, 0, 0, 0);
 		
 		int imageId = context.getResources().getIdentifier(item.getImageName(), "drawable", context.getPackageName());
-		Bitmap iconImage = BitmapFactory.decodeResource(context.getResources(), imageId);
+		
+		// Create BitMap or load from BitMapCache
+		Bitmap iconImage = null;
+		
+		if(Global.BitMapCache.isExistsBitmap(imageId)) {
+			iconImage = Global.BitMapCache.getBitmap(imageId);
+		}
+		else {
+			iconImage = BitmapFactory.decodeResource(getResources(), imageId);
+			Global.BitMapCache.putBitmap(imageId, iconImage);
+		}
+		
 		iconImage = ImageHelper.getProductionItemIcon(context, iconImage, 30, 15, item.getState(), progressRate);
 		icon.setImageBitmap(iconImage);
 		
