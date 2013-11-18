@@ -74,12 +74,12 @@ public class ProductionListItem extends RelativeLayout {
 		Bitmap iconImage = null;
 		
 		// Create BitMap or load from BitMapCache
-		if(Global.BitMapCache.isExistsBitmap(imageId)) {
-			iconImage = Global.BitMapCache.getBitmap(imageId);
+		if(Global.getInstance().getBitMapCache().isExistsBitmap(imageId)) {
+			iconImage = Global.getInstance().getBitMapCache().getBitmap(imageId);
 		}
 		else {
 			iconImage = BitmapFactory.decodeResource(context.getResources(), imageId);
-			Global.BitMapCache.putBitmap(imageId, iconImage);
+			Global.getInstance().getBitMapCache().putBitmap(imageId, iconImage);
 		}
 		
 		iconImage = ImageHelper.getProductionItemIcon(context, iconImage, 30, 15, itemState, Constants.code.ITEM_PROGRESS_NOTHING);

@@ -131,12 +131,12 @@ public class ItemDetailDialog extends DialogFragment {
 		Bitmap image = null;
 		
 		// Create BitMap or load from BitMapCache
-		if(Global.BitMapCache.isExistsBitmap(imageId)) {
-			image = Global.BitMapCache.getBitmap(imageId);
+		if(Global.getInstance().getBitMapCache().isExistsBitmap(imageId)) {
+			image = Global.getInstance().getBitMapCache().getBitmap(imageId);
 		}
 		else {
 			image = BitmapFactory.decodeResource(getResources(), imageId);
-			Global.BitMapCache.putBitmap(imageId, image);
+			Global.getInstance().getBitMapCache().putBitmap(imageId, image);
 		}
 		
 		itemImage.setImageBitmap(image);

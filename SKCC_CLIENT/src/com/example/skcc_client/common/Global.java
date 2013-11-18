@@ -1,17 +1,16 @@
 package com.example.skcc_client.common;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.util.SparseArray;
 
 import com.example.skcc_client.gameObject.GamePlaying;
-import com.example.skcc_client.gameObject.Item;
 import com.example.skcc_client.gameObject.InventoryItem;
-import com.example.skcc_client.gameObject.ProductionItem;
+import com.example.skcc_client.gameObject.Item;
 import com.example.skcc_client.gameObject.Player;
+import com.example.skcc_client.gameObject.ProductionItem;
 import com.example.skcc_client.gameRule.LevelRule;
 import com.example.skcc_client.gameRule.ProductionRule;
 import com.example.skcc_client.ui.player.PlayerInfoLayout;
@@ -21,7 +20,6 @@ import com.example.skcc_client.ui.player.PlayerInfoLayout;
  * @author Jongkil Park
  */
 public class Global {
-	
 	public static final String THIS_USER = "park108";
 	public static final int USER_INIT_COUNT = 6;
 	public static final int ITEM_INIT_COUNT = 13;
@@ -38,63 +36,33 @@ public class Global {
 	public ProductionRule productionRule;
 	
 	public Player player;
-	
 	public GamePlaying playing;
-	
 	public PlayerInfoLayout playerInfoLayout;
+	private BitMapCache bitMapCache;
 	
-	public static final class BitMapCache {
-
-		@SuppressLint("UseSparseArrays")
-		private static HashMap<Integer,Bitmap> cache = new HashMap<Integer,Bitmap>();
-		
-		public static void putBitmap(int imageId, Bitmap bitmap) {
-			
-			cache.put(imageId, bitmap);
-		}
-		
-		public static boolean isExistsBitmap(int imageId) {
-
-			if(USE_CACHE) {
-				return false;
-			}
-			
-			return cache.containsKey(imageId);
-		}
-		
-		public static Bitmap getBitmap(int imageId) {
-			
-			return cache.get(imageId);
-		}
-		
-		public static void cleanAll() {
-
-			cache.clear();
-		}
-	}
-
 	/**
 	 * Constructor
 	 */
 	private Global() {
-		
 		itemList = new Hashtable<Integer, Item>();
 		inventoryList = new ArrayList<InventoryItem>();
 		productionList = new ArrayList<ProductionItem>(Constants.rule.PRODUCTION_MAX_COUNT);
 		levelRule = new LevelRule();
 		productionRule = new ProductionRule();
+		
+		bitMapCache = new BitMapCache();
 	}
 	
-	private static Global instance;
+	public BitMapCache getBitMapCache() {
+		return bitMapCache;
+	}
 
 	/**
 	 * Global의 instance를 얻어 전역변수를 사용한다.
 	 * * 사용법 : Globa.getInstance().전역변수명
 	 */
 	public static Global getInstance() {
-		
-		if (instance == null) instance = new Global();
-		return instance;
+		return SingletonHolder.instance;
 	}
 	
 	public void addInventoryItem(InventoryItem inventoryItem) {
@@ -105,5 +73,39 @@ public class Global {
 			}
 		}
 		inventoryList.add(inventoryItem);
+	}
+	
+	/** Using Singleton Holder Pattern */
+	private static class SingletonHolder {
+		private static final Global instance = new Global();
+	}
+	
+	public class BitMapCache {
+		private SparseArray<Bitmap> cache = new SparseArray<Bitmap>();
+		
+		private BitMapCache(){}//외부에서 생성하는 실수를 방지하기 위해
+		
+		public void putBitmap(int imageId, Bitmap bitmap) {
+			cache.put(imageId, bitmap);
+		}
+		
+		public boolean isExistsBitmap(int imageId) {
+			if(USE_CACHE) {
+				return false;
+			}
+			if(cache.get(imageId) == null) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+		
+		public Bitmap getBitmap(int imageId) {
+			return cache.get(imageId);
+		}
+		
+		public void cleanAll() {
+			cache.clear();
+		}
 	}
 }

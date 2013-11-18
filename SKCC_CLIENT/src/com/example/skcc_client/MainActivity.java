@@ -27,8 +27,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 	@Override
 	protected void onDestroy() {
-		
-		Global.BitMapCache.cleanAll();
+		Global.getInstance().getBitMapCache().cleanAll();
 	}
 	
 	@Override
