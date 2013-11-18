@@ -17,7 +17,7 @@
     <dimen name="tapstrip_border_radius">10dp</dimen>
     
     <dimen name="inventory_item_name_height">18dp</dimen>
-    <dimen name="inventory_item_name_textSize">8dp</dimen>
+    <dimen name="inventory_item_name_textSize">5dp</dimen>
     
     <dimen name="popup_border_width">2dp</dimen>
     <dimen name="popup_width">500dp</dimen>
