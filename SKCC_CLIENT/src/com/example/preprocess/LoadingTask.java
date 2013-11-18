@@ -13,6 +13,7 @@ import com.example.skcc_client.gameObject.Item;
 import com.example.skcc_client.gameObject.Player;
 import com.example.skcc_client.gameObject.ProductionItem;
 import com.example.skcc_client.gameObject.GamePlaying;
+import com.example.skcc_client.gameObject.Quest;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -110,6 +111,7 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 		ItemCreator itemCreator = new ItemCreator(mAppContext);
 		InventoryCreator inventoryCreator = new InventoryCreator(mAppContext);
 		ProductionCreator productionCreator = new ProductionCreator(mAppContext);
+		QuestCreator questCreator = new QuestCreator(mAppContext);
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////////////
@@ -258,12 +260,41 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 		
 		// Update progress bar
 		updateProgressBar(5);
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		// Create Quest
+		///////////////////////////////////////////////////////////////////////////////////////////
+
+		// If has no quest in DB, create new quest.
+		questCreator.open();
+			
+		if(0 == questCreator.queryAll().size()) {
+			
+			questCreator.insertInit(Global.THIS_USER);
+		}
+		
+		ArrayList<Quest> questList = Global.getInstance().questList;
+	    
+		ArrayList<Quest> quests = questCreator.queryAll();
+		
+		if(null != quests) {
+			
+			for(int i = 0; i < quests.size(); i++) {
+				
+				Quest quest = quests.get(i);
+				questList.add(i, quest);
+			}
+		}
+
+		questCreator.close();
 	}
+	
 	
 	private void updateProgressBar(int step) {
 		
 		// Animate progress bar
-		int totalSteps = 5;
+		int totalSteps = 6;
 
 		// Update the progress bar after every step
 		int progress = (int) ((step / (float) totalSteps) * 100);

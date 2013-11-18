@@ -228,7 +228,7 @@ public class ProductionDbAdapter {
 			Timestamp end = new Timestamp(endTime);
 			Timestamp exp = new Timestamp(expireTime);
 			
-			// add new user info
+			// add new production item info
 			listProduct.add(new ProductionItem(position, item, stt, end, exp));
 			
 			// move cursor to next item

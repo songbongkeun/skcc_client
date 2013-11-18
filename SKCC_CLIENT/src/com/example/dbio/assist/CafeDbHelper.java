@@ -59,11 +59,26 @@ public abstract class CafeDbHelper extends SQLiteOpenHelper {
 				+ ", FOREIGN KEY(item_id) REFERENCES item(id)"
 				+ ");";
 	
+	// declared constant SQL Expression  
+	protected static final String DB_QUEST_CREATE = 
+		"CREATE TABLE IF NOT EXISTS quest ( "
+				+ "player_id text"
+				+ ", quest_id integer"
+				+ ", title text NOT NULL"
+				+ ", description text"
+				+ ", start_time integer"
+				+ ", end_time integer"
+				+ ", complete_time integer"
+				+ ", PRIMARY KEY(player_id, quest_id)"
+				+ ", FOREIGN KEY(player_id) REFERENCES player(id)"
+				+ ");";
+	
 
 	protected static final String DB_USER_DESTROY = "DROP TABLE IF EXISTS player";
 	protected static final String DB_ITEM_DESTROY = "DROP TABLE IF EXISTS item";
 	protected static final String DB_INVENTORY_DESTROY = "DROP TABLE IF EXISTS inventory";
 	protected static final String DB_PRODUCT_DESTROY = "DROP TABLE IF EXISTS product";
+	protected static final String DB_QUEST_DESTROY = "DROP TABLE IF EXISTS quest";
 	
 	/*
 	 * constructor
@@ -99,6 +114,9 @@ public abstract class CafeDbHelper extends SQLiteOpenHelper {
 		
 		db.execSQL(DB_PRODUCT_CREATE);
 		Log.d(TAG, "[onCreate] Production table created...");
+		
+		db.execSQL(DB_QUEST_CREATE);
+		Log.d(TAG, "[onCreate] Quest table created...");
 	}
 
 	/*
@@ -120,7 +138,7 @@ public abstract class CafeDbHelper extends SQLiteOpenHelper {
 		db.execSQL(DB_PRODUCT_DESTROY);
 		Log.d(TAG, "[onUpgrade] Production table droped!");
 		
-		onCreate(db);
+		db.execSQL(DB_QUEST_DESTROY);
 		Log.d(TAG, "[onUpgrade] SQLiteDatabase upgraded...");
 	}
 }

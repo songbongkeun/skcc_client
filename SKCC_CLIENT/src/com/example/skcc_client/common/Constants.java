@@ -21,6 +21,11 @@ public final class Constants {
         
         public static final int NEW_PRODUCTION_STATE_OK		= 1;
         public static final int NEW_PRODUCTION_STATE_NOT_OK	= 2;
+        
+        public static final int QUEST_STATE_NOTHING			= 0;
+        public static final int QUEST_STATE_ONGOING			= 1;
+        public static final int QUEST_STATE_COMPLETE		= 2;
+        public static final int QUEST_STATE_EXPIRED			= 3;
     }
     
     public static final class rule {

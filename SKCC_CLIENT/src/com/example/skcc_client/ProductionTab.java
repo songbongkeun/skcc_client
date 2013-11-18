@@ -1,7 +1,5 @@
 package com.example.skcc_client;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import com.example.skcc_client.common.Constants;

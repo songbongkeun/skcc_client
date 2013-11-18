@@ -11,6 +11,7 @@ import com.example.skcc_client.gameObject.InventoryItem;
 import com.example.skcc_client.gameObject.Item;
 import com.example.skcc_client.gameObject.Player;
 import com.example.skcc_client.gameObject.ProductionItem;
+import com.example.skcc_client.gameObject.Quest;
 import com.example.skcc_client.gameRule.LevelRule;
 import com.example.skcc_client.gameRule.ProductionRule;
 import com.example.skcc_client.ui.player.PlayerInfoLayout;
@@ -31,6 +32,7 @@ public class Global {
 	public Hashtable<Integer, Item> itemList;
 	public ArrayList<InventoryItem> inventoryList;
 	public ArrayList<ProductionItem> productionList;
+	public ArrayList<Quest> questList;
 	
 	public LevelRule levelRule;
 	public ProductionRule productionRule;
@@ -47,6 +49,8 @@ public class Global {
 		itemList = new Hashtable<Integer, Item>();
 		inventoryList = new ArrayList<InventoryItem>();
 		productionList = new ArrayList<ProductionItem>(Constants.rule.PRODUCTION_MAX_COUNT);
+		questList = new ArrayList<Quest>();
+		
 		levelRule = new LevelRule();
 		productionRule = new ProductionRule();
 		
@@ -81,6 +85,7 @@ public class Global {
 	}
 	
 	public class BitMapCache {
+		
 		private SparseArray<Bitmap> cache = new SparseArray<Bitmap>();
 		
 		private BitMapCache(){}//외부에서 생성하는 실수를 방지하기 위해

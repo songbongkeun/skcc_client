@@ -8,13 +8,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
 	android:background="@drawable/pattern3"
     tools:context=".QuestTab" >
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/label_quest" />
+	
+	<ExpandableListView 
+	    android:id="@+id/questList"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent"
+	    android:verticalSpacing="10dp"
+	    android:horizontalSpacing="10dp"
+	    android:gravity="center"
+	/>
 
 </RelativeLayout>
