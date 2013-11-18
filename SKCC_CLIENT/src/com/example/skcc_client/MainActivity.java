@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,19 +95,28 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		mViewPager.setCurrentItem(tab.getPosition());
 		tab.setCustomView(null);
 		tab.setCustomView(mSectionsPagerAdapter.getBackground(true, tab.getPosition()));
+		//NFC Tab이 Select되면 NFC Activity 활성화
+		if(tab.getPosition() == 3) {
+			
+		}
 	}
 	
 	@Override
 	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
 		tab.setCustomView(null);
 		tab.setCustomView(mSectionsPagerAdapter.getBackground(false, tab.getPosition()));
+		//NFC Tab이 Select되면 NFC Activity 비활성화
+		if(tab.getPosition() == 3) {
+			
+		}
+	}
+
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 	
-	@Override
-	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-	}
-		
 	/**
 	* A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	* one of the sections/tabs/pages.
@@ -119,13 +129,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		
 			super(fm);
 		}
-	
+		@Override
+		public void notifyDataSetChanged() {
+			super.notifyDataSetChanged();
+			Log.d("MAIN", "Page change");
+		}
 		@Override
 		public Fragment getItem(int position) {
 		
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
+			Log.d("MAIN", "position : " + position);
 			switch(position) {
 				case 0:
 					return new InventoryTab(mContext);
@@ -183,6 +198,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			
 			return null;
 		}
+		
 	}
 	
 	/**
@@ -210,4 +226,5 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			return rootView;
 		}
 	}
+
 }

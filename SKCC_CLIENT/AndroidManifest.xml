@@ -59,15 +59,14 @@
             android:name="com.example.skcc_client.NFCTab"
             android:label="@string/label_nfc"
             android:screenOrientation="portrait" >
+<!--             <intent-filter> -->
+<!--                 <action android:name="android.nfc.action.TAG_DISCOVERED" /> -->
+<!--                 <category android:name="android.intent.category.DEFAULT" /> -->
+<!--             </intent-filter> -->
         </activity>
-        <activity
-            android:name="com.example.skcc_client.NFCActivity"
-            android:label="@string/title_activity_nfc" >
-            <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+<!--         <activity -->
+<!--             android:name="com.example.skcc_client.NFCActivity" -->
+<!--             android:label="@string/title_activity_nfc" > -->
+<!--         </activity> -->
     </application>
-
 </manifest>

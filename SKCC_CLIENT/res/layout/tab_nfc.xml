@@ -9,12 +9,14 @@
 	android:background="@drawable/pattern4"
     tools:context=".NFCTab" >
 
-    <Button
-        android:id="@+id/nfcFindButton"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/label_nfc" />
+        android:gravity="center"
+        android:fadingEdge="horizontal|vertical|none"
+        android:src="@drawable/nfctagimage" />
 
 </RelativeLayout>
