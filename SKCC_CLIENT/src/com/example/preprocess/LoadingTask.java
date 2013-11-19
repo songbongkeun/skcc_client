@@ -194,6 +194,7 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 		}
 		
 		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;
+        inventoryList.clear();
         
 		ArrayList<InventoryItem> inventoryItems = inventoryCreator.queryAll();
 		
@@ -225,6 +226,7 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 		}
 		
 		ArrayList<ProductionItem> productionList = Global.getInstance().productionList;
+		productionList.clear();
         
 		ArrayList<ProductionItem> productionItems = productionCreator.queryAll();
 		
@@ -288,6 +290,9 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 		}
 
 		questCreator.close();
+		
+		// Update progress bar
+		updateProgressBar(6);
 	}
 	
 	
