@@ -18,7 +18,7 @@
     <string name="popup_label_item_detail_type">타입:</string>
     <string name="popup_label_item_detail_use_text1">사용시</string>
     <string name="popup_label_item_detail_use_text2">exp.</string>
-    <string name="popup_label_item_detail_use_text3">획득</string>
+    <string name="popup_label_item_detail_use_text3">획득:</string>
     <string name="popup_label_item_detail_use_button_text">사용</string>
     <string name="popup2_title">생산</string>
     <string name="title_activity_nfc">NFCActivity</string>

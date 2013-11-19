@@ -2,13 +2,14 @@ package com.example.skcc_client;
 
 import java.util.Locale;
 
-import com.example.skcc_client.common.Global;
-import com.example.skcc_client.ui.player.PlayerInfoLayout;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -20,6 +21,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.skcc_client.common.Global;
+import com.example.skcc_client.ui.nfc.NfcTagDiscoverDialog;
+import com.example.skcc_client.ui.player.PlayerInfoLayout;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	
@@ -34,9 +39,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
-		
+		Log.d("MAIN", "onCreate()");
 		setContentView(R.layout.activity_main);
 		
 		// Set up the action bar.
@@ -86,6 +90,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			}
 			actionBar.addTab(newTab);
 		}
+		setNfcFunction();
 	}
 	
 	@Override
@@ -95,9 +100,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		mViewPager.setCurrentItem(tab.getPosition());
 		tab.setCustomView(null);
 		tab.setCustomView(mSectionsPagerAdapter.getBackground(true, tab.getPosition()));
-		//NFC Tab이 Select되면 NFC Activity 활성화
+		//NFC Tab이 Select되면 NFC 활성화
 		if(tab.getPosition() == 3) {
-			
+			Log.d("NFC", "Enable NFC Function");
+			mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+			// Setup an intent filter for all MIME based dispatches
+			IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
+			mFilters = new IntentFilter[] { ndef, };
+			mAdapter.enableForegroundDispatch(this, mPendingIntent, mFilters, null);
 		}
 	}
 	
@@ -105,9 +115,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 		tab.setCustomView(null);
 		tab.setCustomView(mSectionsPagerAdapter.getBackground(false, tab.getPosition()));
-		//NFC Tab이 Select되면 NFC Activity 비활성화
+		//NFC Tab이 Select되면 NFC 비활성화
 		if(tab.getPosition() == 3) {
-			
+			Log.d("NFC", "Disable NFC Function");
+			mAdapter.disableForegroundDispatch(this);
 		}
 	}
 
@@ -140,7 +151,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Log.d("MAIN", "position : " + position);
 			switch(position) {
 				case 0:
 					return new InventoryTab(mContext);
@@ -226,5 +236,23 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			return rootView;
 		}
 	}
-
+	
+	//for NFC
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		Log.d("MAIN", "NFC event catch");
+		NfcTagDiscoverDialog dialog = NfcTagDiscoverDialog.newInstance(intent);
+		dialog.show(getSupportFragmentManager(), "TAG");
+	}
+	
+	//for NFC
+	private static NfcAdapter mAdapter;
+	private static PendingIntent mPendingIntent;
+	private static IntentFilter[] mFilters;
+	
+	private void setNfcFunction() {
+		//for NFC
+		mAdapter = NfcAdapter.getDefaultAdapter(this);
+	}
 }
