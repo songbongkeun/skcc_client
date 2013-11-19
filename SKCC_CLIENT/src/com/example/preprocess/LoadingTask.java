@@ -192,7 +192,8 @@ public class LoadingTask extends AsyncTask<String, Integer, Integer> {
 		}
 		
 		ArrayList<InventoryItem> inventoryList = Global.getInstance().inventoryList;
-        
+		inventoryList.clear();
+		
 		ArrayList<InventoryItem> inventoryItems = inventoryCreator.queryAll();
 		
 		if(null != inventoryItems) {
