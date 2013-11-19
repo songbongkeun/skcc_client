@@ -1,11 +1,23 @@
 package com.example.skcc_client.common;
 
+import android.annotation.SuppressLint;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TextHelper {
 	
 	static final long DAY = 24 * 60 * 60 * 1000;
 	static final long HOUR = 60 * 60 * 1000;
 	static final long MINUTE = 60 * 1000;
 	static final long SECOND = 1000;
+	
+	@SuppressLint("SimpleDateFormat")
+	public static String getFormattedDate(Date date) {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy³â M¿ù ddÀÏ");
+		
+		return format.format(date);
+	}
 	
 	public static String remainTime(long timeMSec) {
 

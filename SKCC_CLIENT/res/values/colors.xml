@@ -10,6 +10,8 @@
     <color name="titlebar_player_exp_progressbar_background_color">#ff555555</color>
     
     <color name="quest_list_background_color">#ffffffff</color>
+    <color name="quest_list_description_color">#ff000000</color>
+    <color name="quest_list_term_color">#ff555555</color>
     
     <color name="tapstrip_border_color1">#ffff6600</color>
     <color name="tapstrip_border_color2">#ff32b502</color>
